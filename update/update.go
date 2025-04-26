@@ -49,10 +49,9 @@ func getPlaylog(accessCode string) (error) {
 	}
 
 	form := url.Values{
-		"accessCode": []string{accessCode},
-		"requestType": []string{"getUserApiId"},
+		"accessCode": {accessCode},
+		"requestType": {"getUserApiId"},
 	}
-
 
 	req, err := http.NewRequest("POST", apiUrl, strings.NewReader(form.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
