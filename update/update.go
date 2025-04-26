@@ -25,10 +25,23 @@ import (
 	"net/url"
 	"net/http"
 	"net/http/cookiejar"
-	_ "encoding/json"
+	"encoding/json"
 )
 
 const apiUrl = "https://www.solips.app/maimai/profile?_data=routes%2Fmaimai.profile"
+
+type apiPlaylog struct {
+	Playlog	[]apiPlaylogItem
+}
+
+type apiPlaylogItem struct {
+	PlaylogApiId	string
+	Info		apiPlaylogItemInfo
+}
+
+type apiPlaylogItemInfo struct {
+	UserPlayDate	string
+}
 
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
@@ -83,7 +96,14 @@ func getPlaylog(accessCode string) (error) {
 	}
 	resp.Body.Close()
 
-	fmt.Println(string(data))
+	playlog := apiPlaylog{
+		Playlog: make([]apiPlaylogItem, 0, 100),
+	}
+	err = json.Unmarshal(data, &playlog)
+	if err != nil {
+		return err
+	}
 
+	fmt.Printf("%+v", playlog)
 	return nil
 }
