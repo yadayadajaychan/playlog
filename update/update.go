@@ -40,11 +40,9 @@ type apiPlaylog struct {
 
 type apiPlaylogItem struct {
 	PlaylogApiId	string
-	Info		apiPlaylogItemInfo
-}
-
-type apiPlaylogItemInfo struct {
-	UserPlayDate	string
+	Info		struct {
+		UserPlayDate	string
+	}
 }
 
 // Update uses the Mythos access code to get the most recent 100 songs played
@@ -56,7 +54,12 @@ func Update(accessCode string, apiDelay time.Duration) error {
 		return err
 	}
 
-	_ = playlog
+	err = validatePlaylog(playlog)
+	if err != nil {
+		return err
+	}
+
+	printPlaylog(playlog)
 
 	//time.Sleep(apiDelay)
 
@@ -147,5 +150,11 @@ func validatePlaylog(playlog *apiPlaylog) error {
 	return nil
 }
 
+// convenience function for diagnostics
+func printPlaylog(playlog *apiPlaylog) {
+	for _, item := range playlog.Playlog {
+		fmt.Printf("%v\t%v\n", item.PlaylogApiId, item.Info.UserPlayDate)
+	}
+}
 
-//func getPlaylogDetail(playlogApiId []string) (
+//func getPlaylogDetail(playlogApiId string) (
