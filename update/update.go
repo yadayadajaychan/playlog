@@ -51,10 +51,11 @@ func Update(accessCode string, apiDelay time.Duration) {
 	//time.Sleep(apiDelay)
 }
 
-func getPlaylog(accessCode string) (error) {
+func getPlaylog(accessCode string) (*apiPlaylog, error) {
+	// POST to API and save cookie
 	jar, err := cookiejar.New(nil)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	client := &http.Client{
@@ -71,39 +72,42 @@ func getPlaylog(accessCode string) (error) {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	resp.Body.Close()
 
-	fmt.Println(string(data))
-
+	// GET with authentication cookie
 	req.Method = "GET"
 	req.Body = nil
 
 	resp, err = client.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	data, err = io.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	resp.Body.Close()
 
+	// Unmarshal JSON
 	playlog := apiPlaylog{
 		Playlog: make([]apiPlaylogItem, 0, 100),
 	}
 	err = json.Unmarshal(data, &playlog)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	fmt.Printf("%+v", playlog)
-	return nil
+	for _, item := range playlog.Playlog {
+		fmt.Printf("%s\t%s\n", item.PlaylogApiId, item.Info.UserPlayDate)
+	}
+
+	return &playlog, nil
 }
