@@ -18,7 +18,6 @@
 package update
 
 import (
-	"fmt"
 	"io"
 	"time"
 	"strings"
@@ -46,11 +45,21 @@ type apiPlaylogItemInfo struct {
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
 // delaying by apiDelay between requests. It then adds them to the database.
-func Update(accessCode string, apiDelay time.Duration) {
-	getPlaylog(accessCode)
+func Update(accessCode string, apiDelay time.Duration) error {
+	playlog, err := getPlaylog(accessCode)
+	if err != nil {
+		return err
+	}
+
+	_ = playlog
+
 	//time.Sleep(apiDelay)
+
+	return nil
 }
 
+// getPlaylog gets the non-detailed playlog of the most recent 100 plays.
+// only the playlogApiId and userPlayDate values matter in this case.
 func getPlaylog(accessCode string) (*apiPlaylog, error) {
 	// POST to API and save cookie
 	jar, err := cookiejar.New(nil)
@@ -103,10 +112,6 @@ func getPlaylog(accessCode string) (*apiPlaylog, error) {
 	err = json.Unmarshal(data, &playlog)
 	if err != nil {
 		return nil, err
-	}
-
-	for _, item := range playlog.Playlog {
-		fmt.Printf("%s\t%s\n", item.PlaylogApiId, item.Info.UserPlayDate)
 	}
 
 	return &playlog, nil
