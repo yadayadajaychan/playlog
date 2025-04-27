@@ -35,23 +35,8 @@ func TestGetPlaylog(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	n := len(playlog.Playlog)
-	if n != 100 {
-		t.Errorf("length of playlog: expected %v, got %v", 100, n)
-	}
-
-	// check for duplicates
-	seenPlaylogApiId := make(map[string]bool)
-	seenUserPlayDate := make(map[string]bool)
-	for _, item := range playlog.Playlog {
-		if seenPlaylogApiId[item.PlaylogApiId] {
-			t.Error("duplicate PlaylogApiId: ", item.PlaylogApiId)
-		}
-		seenPlaylogApiId[item.PlaylogApiId] = true
-
-		if seenUserPlayDate[item.Info.UserPlayDate] {
-			t.Error("duplicate UserPlayDate: ", item.Info.UserPlayDate)
-		}
-		seenUserPlayDate[item.Info.UserPlayDate] = true
+	err = validatePlaylog(playlog)
+	if err != nil {
+		t.Fatal(err)
 	}
 }

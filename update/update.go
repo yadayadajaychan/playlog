@@ -18,6 +18,7 @@
 package update
 
 import (
+	"fmt"
 	"io"
 	"time"
 	"strings"
@@ -25,9 +26,13 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"encoding/json"
+	"errors"
 )
 
-const apiUrl = "https://www.solips.app/maimai/profile?_data=routes%2Fmaimai.profile"
+const (
+	apiUrl = "https://www.solips.app/maimai/profile?_data=routes%2Fmaimai.profile"
+	playlogLength = 100
+)
 
 type apiPlaylog struct {
 	Playlog	[]apiPlaylogItem
@@ -106,13 +111,41 @@ func getPlaylog(accessCode string) (*apiPlaylog, error) {
 	resp.Body.Close()
 
 	// Unmarshal JSON
-	playlog := apiPlaylog{
+	playlog := &apiPlaylog{
 		Playlog: make([]apiPlaylogItem, 0, 100),
 	}
-	err = json.Unmarshal(data, &playlog)
+	err = json.Unmarshal(data, playlog)
 	if err != nil {
 		return nil, err
 	}
 
-	return &playlog, nil
+	return playlog, nil
 }
+
+func validatePlaylog(playlog *apiPlaylog) error {
+	// verify there are playlogLength items
+	n := len(playlog.Playlog)
+	if n != playlogLength {
+		return errors.New(fmt.Sprintf("len(playlog): expected %d, got %d", playlogLength, n))
+	}
+
+	// check for duplicates
+	seenPlaylogApiId := make(map[string]bool)
+	seenUserPlayDate := make(map[string]bool)
+	for _, item := range playlog.Playlog {
+		if seenPlaylogApiId[item.PlaylogApiId] {
+			return errors.New(fmt.Sprint("duplicate PlaylogApiId: ", item.PlaylogApiId))
+		}
+		seenPlaylogApiId[item.PlaylogApiId] = true
+
+		if seenUserPlayDate[item.Info.UserPlayDate] {
+			return errors.New(fmt.Sprint("duplicate UserPlayDate: ", item.Info.UserPlayDate))
+		}
+		seenUserPlayDate[item.Info.UserPlayDate] = true
+	}
+
+	return nil
+}
+
+
+//func getPlaylogDetail(playlogApiId []string) (
