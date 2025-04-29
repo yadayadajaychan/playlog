@@ -145,7 +145,9 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	song := SongInfo{}
 
-	rows, err := songdb.db.Query(`SELECT * FROM songs WHERE song_id=?`, songId)
+	rows, err := songdb.db.Query(`
+	SELECT song_id, name, artist, type,
+		bpm, category, version, sort FROM songs WHERE song_id=?`, songId)
 	if err != nil {
 		return song, err
 	}
@@ -159,6 +161,7 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	} else {
 		return song, errors.New("no song found")
 	}
+	// TODO: custom error type
 
 	return song, nil
 }
