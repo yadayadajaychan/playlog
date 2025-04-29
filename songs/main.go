@@ -21,6 +21,8 @@ import (
 	"encoding/json"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
+
+	"github.com/yadayadajaychan/playlog/database"
 )
 
 type songData struct {
@@ -48,7 +50,10 @@ func main() {
 	}
 	defer db.Close()
 
-	initDB(db)
+	songdb, err := database.NewSongDB(db)
+	if err != nil {
+		panic(err)
+	}
 
 	file, err := os.Open(os.Args[2])
 	if err != nil {
@@ -65,109 +70,24 @@ func main() {
 	}
 
 	for _, song := range songs {
-		addSong(db, song)
+		addSong(songdb, song)
 	}
 }
 
-func addSong(db *sql.DB, song songData) {
-	_, err := db.Exec(`
-	INSERT OR IGNORE INTO songs (
-		song_id, name, artist, type,
-		bpm, category, version, sort) VALUES (
-		?, ?, ?, ?,
-		?, ?, ?, ?
-	);`,
-		song.Song_id, song.Name, song.Artist, song.Type,
-		int(song.Bpm), song.Category, song.Version, song.Sort)
-	if err != nil {
-		panic(err)
-	}
-}
-
-func initDB(db *sql.DB) {
-	_, err := db.Exec(`
-	CREATE TABLE IF NOT EXISTS songs (
-		song_id  INTEGER PRIMARY KEY NOT NULL,
-		name     TEXT,
-		artist   TEXT,
-		type     TEXT,
-		bpm      INTEGER,
-		category TEXT,
-		version  TEXT,
-		sort     TEXT
-	);`)
-	if err != nil {
-		panic(err)
+func addSong(songdb *database.SongDB, song songData) {
+	songInfo := database.SongInfo{
+		Song_id:  song.Song_id,
+		Name:     song.Name,
+		Artist:   song.Artist,
+		Type:     song.Type,
+		Bpm:      int(song.Bpm),
+		Category: song.Category,
+		Version:  song.Version,
+		Sort:     song.Sort,
+		Charts:   make([]database.ChartInfo, 0),
 	}
 
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS basic (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS advanced (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS expert (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS master (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS remaster (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS utage (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
+	err := songdb.AddSong(songInfo)
 	if err != nil {
 		panic(err)
 	}
