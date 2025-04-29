@@ -104,7 +104,13 @@ func (songdb *SongDB) initDB() error {
 
 // AddSong adds a song to the song db, ignoring if the song already exists
 func (songdb *SongDB) AddSong(song SongInfo) error {
-	_, err := songdb.db.Exec(`
+	tx, err := songdb.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Exec(`
 	INSERT OR IGNORE INTO songs (
 		song_id, name, artist, type,
 		bpm, category, version, sort) VALUES (
@@ -113,8 +119,27 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 	);`,
 		song.Song_id, song.Name, song.Artist, song.Type,
 		song.Bpm, song.Category, song.Version, song.Sort)
+	if err != nil {
+		return err
+	}
 
-	return err
+	for _, chart := range song.Charts {
+		_, err = tx.Exec(`
+		INSERT OR IGNORE INTO charts (
+			song_id, difficulty, level,
+			internal_level, notes_designer, max_notes) VALUES (
+			?, ?, ?,
+			?, ?, ?
+		);`,
+			song.Song_id, chart.Difficulty, chart.Level,
+			chart.Internal_level, chart.Notes_designer,
+			chart.Max_notes)
+		if err != nil {
+			return err
+		}
+	}
+
+	return tx.Commit()
 }
 
 func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {

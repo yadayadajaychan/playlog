@@ -35,13 +35,15 @@ type songData struct {
 	Category	string
 	Version		string
 	Sort		string
-	Charts		[]struct {
-		Difficulty	string
-		Level		int
-		Internal_level	float32
-		Notes_designer	string
-		Max_notes	int
-	}
+	Charts		[]chartData
+}
+
+type chartData struct {
+	Difficulty	string
+	Level		int
+	Internal_level	float32
+	Notes_designer	string
+	Max_notes	int
 }
 
 func main() {
@@ -92,11 +94,40 @@ func addSong(songdb *database.SongDB, song songData) {
 		Category: song.Category,
 		Version:  song.Version,
 		Sort:     song.Sort,
-		Charts:   make([]database.ChartInfo, 0),
+		Charts:   make([]database.ChartInfo, 0, 5),
+	}
+
+	for _, chart := range song.Charts {
+		chartInfo := database.ChartInfo{
+			Level:          chart.Level,
+			Internal_level: chart.Internal_level,
+			Notes_designer: chart.Notes_designer,
+			Max_notes:      chart.Max_notes,
+		}
+
+		switch chart.Difficulty {
+		case "basic":
+			chartInfo.Difficulty = database.Basic
+		case "advanced":
+			chartInfo.Difficulty = database.Advanced
+		case "expert":
+			chartInfo.Difficulty = database.Expert
+		case "master":
+			chartInfo.Difficulty = database.Master
+		case "remaster":
+			chartInfo.Difficulty = database.ReMaster
+		case "utage":
+			chartInfo.Difficulty = database.Utage
+		default:
+			panic(fmt.Sprint("unexpected level difficulty: ", chart.Difficulty))
+		}
+
+		songInfo.Charts = append(songInfo.Charts, chartInfo)
 	}
 
 	err := songdb.AddSong(songInfo)
 	if err != nil {
 		panic(err)
 	}
+
 }
