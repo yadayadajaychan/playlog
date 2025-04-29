@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 // Package update handles making api requests to solips.app and
-// updating the database
+// updating the playlog database
 package update
 
 import (
