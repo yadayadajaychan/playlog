@@ -163,5 +163,27 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	}
 	// TODO: custom error type
 
+	rows, err = songdb.db.Query(`
+	SELECT difficulty, level, internal_level,
+		notes_designer, max_notes FROM charts WHERE song_id=?`, songId)
+	if err != nil {
+		return song, err
+	}
+
+	for rows.Next() {
+		chart := ChartInfo{}
+		err = rows.Scan(&chart.Difficulty, &chart.Level, &chart.Internal_level,
+				&chart.Notes_designer, &chart.Max_notes)
+		if err != nil {
+			return song, err
+		}
+
+		song.Charts = append(song.Charts, chart)
+	}
+
+	if song.Charts == nil {
+		return song, errors.New("no chart found")
+	}
+
 	return song, nil
 }
