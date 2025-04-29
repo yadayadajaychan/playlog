@@ -18,6 +18,7 @@ package main
 
 import (
 	"os"
+	"fmt"
 	"encoding/json"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
@@ -72,6 +73,13 @@ func main() {
 	for _, song := range songs {
 		addSong(songdb, song)
 	}
+
+	song, err := songdb.GetSong(11441)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Printf("%v\n", song)
 }
 
 func addSong(songdb *database.SongDB, song songData) {

@@ -18,6 +18,7 @@ package database
 
 import (
 	"database/sql"
+	"errors"
 )
 
 type SongInfo struct {
@@ -55,7 +56,7 @@ type SongDB struct {
 	db	*sql.DB
 }
 
-// New creates a SongDB object and initializes the database
+// NewSongDB creates a SongDB object and initializes the database
 func NewSongDB(db *sql.DB) (*SongDB, error) {
 	songdb := &SongDB{db: db}
 	err := songdb.initDB()
@@ -172,4 +173,25 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 		song.Bpm, song.Category, song.Version, song.Sort)
 
 	return err
+}
+
+func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
+	song := SongInfo{}
+
+	rows, err := songdb.db.Query(`SELECT * FROM songs WHERE song_id=?`, songId)
+	if err != nil {
+		return song, err
+	}
+
+	if rows.Next() {
+		err = rows.Scan(&song.Song_id, &song.Name, &song.Artist, &song.Type,
+				&song.Bpm, &song.Category, &song.Version, &song.Sort)
+		if err != nil {
+			return song, err
+		}
+	} else {
+		return song, errors.New("no song found")
+	}
+
+	return song, nil
 }
