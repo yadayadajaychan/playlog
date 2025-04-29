@@ -86,72 +86,14 @@ func (songdb *SongDB) initDB() error {
 	}
 
 	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS basic (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
+	CREATE TABLE IF NOT EXISTS charts (
+		song_id        INTEGER NOT NULL,
+		difficulty     INTEGER NOT NULL,
 		level          INTEGER,
 		internal_level REAL,
 		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		return err
-	}
-
-	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS advanced (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		return err
-	}
-
-	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS expert (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		return err
-	}
-
-	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS master (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		return err
-	}
-
-	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS remaster (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
-	);`)
-	if err != nil {
-		return err
-	}
-
-	_, err = tx.Exec(`
-	CREATE TABLE IF NOT EXISTS utage (
-		song_id        INTEGER PRIMARY KEY NOT NULL,
-		level          INTEGER,
-		internal_level REAL,
-		notes_designer TEXT,
-		max_notes      INTEGER
+		max_notes      INTEGER,
+		PRIMARY KEY (song_id, difficulty)
 	);`)
 	if err != nil {
 		return err
