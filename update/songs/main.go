@@ -19,6 +19,7 @@ package main
 import (
 	"os"
 	"fmt"
+	"math"
 	"encoding/json"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
@@ -31,7 +32,7 @@ type songData struct {
 	Name		string
 	Artist		string
 	Type		string
-	Bpm		float32
+	Bpm		float64
 	Category	string
 	Version		string
 	Sort		string
@@ -41,7 +42,7 @@ type songData struct {
 type chartData struct {
 	Difficulty	string
 	Level		int
-	Internal_level	float32
+	Internal_level	float64
 	Notes_designer	string
 	Max_notes	int
 }
@@ -100,7 +101,7 @@ func addSong(songdb *database.SongDB, song songData) {
 	for _, chart := range song.Charts {
 		chartInfo := database.ChartInfo{
 			Level:          chart.Level,
-			Internal_level: chart.Internal_level,
+			Internal_level: int(math.Round(chart.Internal_level * 10)),
 			Notes_designer: chart.Notes_designer,
 			Max_notes:      chart.Max_notes,
 		}

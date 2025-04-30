@@ -36,7 +36,7 @@ type SongInfo struct {
 type ChartInfo struct {
 	Difficulty	Difficulty
 	Level		int
-	Internal_level	float32
+	Internal_level	int // multiplied by 10
 	Notes_designer	string
 	Max_notes	int
 }
@@ -90,7 +90,7 @@ func (songdb *SongDB) initDB() error {
 		song_id        INTEGER NOT NULL,
 		difficulty     INTEGER NOT NULL,
 		level          INTEGER,
-		internal_level REAL,
+		internal_level INTEGER,
 		notes_designer TEXT,
 		max_notes      INTEGER,
 		PRIMARY KEY (song_id, difficulty)
