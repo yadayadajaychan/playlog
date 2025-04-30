@@ -22,7 +22,7 @@ import (
 )
 
 type SongInfo struct {
-	Song_id		int
+	SongId		int
 	Name		string
 	Artist		string
 	Type		string
@@ -36,9 +36,9 @@ type SongInfo struct {
 type ChartInfo struct {
 	Difficulty	Difficulty
 	Level		int
-	Internal_level	int // multiplied by 10
-	Notes_designer	string
-	Max_notes	int
+	InternalLevel	int // multiplied by 10
+	NotesDesigner	string
+	MaxNotes	int
 }
 
 type Difficulty int
@@ -117,7 +117,7 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 		?, ?, ?, ?,
 		?, ?, ?, ?
 	);`,
-		song.Song_id, song.Name, song.Artist, song.Type,
+		song.SongId, song.Name, song.Artist, song.Type,
 		song.Bpm, song.Category, song.Version, song.Sort)
 	if err != nil {
 		return err
@@ -131,9 +131,9 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 			?, ?, ?,
 			?, ?, ?
 		);`,
-			song.Song_id, chart.Difficulty, chart.Level,
-			chart.Internal_level, chart.Notes_designer,
-			chart.Max_notes)
+			song.SongId, chart.Difficulty, chart.Level,
+			chart.InternalLevel, chart.NotesDesigner,
+			chart.MaxNotes)
 		if err != nil {
 			return err
 		}
@@ -153,7 +153,7 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	}
 
 	if rows.Next() {
-		err = rows.Scan(&song.Song_id, &song.Name, &song.Artist, &song.Type,
+		err = rows.Scan(&song.SongId, &song.Name, &song.Artist, &song.Type,
 				&song.Bpm, &song.Category, &song.Version, &song.Sort)
 		if err != nil {
 			return song, err
@@ -172,8 +172,8 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 
 	for rows.Next() {
 		chart := ChartInfo{}
-		err = rows.Scan(&chart.Difficulty, &chart.Level, &chart.Internal_level,
-				&chart.Notes_designer, &chart.Max_notes)
+		err = rows.Scan(&chart.Difficulty, &chart.Level, &chart.InternalLevel,
+				&chart.NotesDesigner, &chart.MaxNotes)
 		if err != nil {
 			return song, err
 		}

@@ -87,7 +87,7 @@ func main() {
 
 func addSong(songdb *database.SongDB, song songData) {
 	songInfo := database.SongInfo{
-		Song_id:  song.Song_id,
+		SongId:  song.Song_id,
 		Name:     song.Name,
 		Artist:   song.Artist,
 		Type:     song.Type,
@@ -101,9 +101,9 @@ func addSong(songdb *database.SongDB, song songData) {
 	for _, chart := range song.Charts {
 		chartInfo := database.ChartInfo{
 			Level:          chart.Level,
-			Internal_level: int(math.Round(chart.Internal_level * 10)),
-			Notes_designer: chart.Notes_designer,
-			Max_notes:      chart.Max_notes,
+			InternalLevel: int(math.Round(chart.Internal_level * 10)),
+			NotesDesigner: chart.Notes_designer,
+			MaxNotes:      chart.Max_notes,
 		}
 
 		switch chart.Difficulty {
