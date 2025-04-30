@@ -35,10 +35,10 @@ const (
 )
 
 type apiPlaylog struct {
-	Playlog	[]apiPlaylogItem
+	Playlog	[]apiPlaylogEntry
 }
 
-type apiPlaylogItem struct {
+type apiPlaylogEntry struct {
 	PlaylogApiId	string
 	Info		struct {
 		UserPlayDate	string
@@ -115,7 +115,7 @@ func getPlaylog(accessCode string) (*apiPlaylog, error) {
 
 	// Unmarshal JSON
 	playlog := &apiPlaylog{
-		Playlog: make([]apiPlaylogItem, 0, 100),
+		Playlog: make([]apiPlaylogEntry, 0, 100),
 	}
 	err = json.Unmarshal(data, playlog)
 	if err != nil {

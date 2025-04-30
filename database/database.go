@@ -36,6 +36,8 @@ const (
 	NoCombo ComboStatus = iota
 	FullCombo
 	FullComboPlus
+	AllPerfect
+	AllPerfectPlus
 )
 
 type SyncStatus int
@@ -43,6 +45,8 @@ const (
 	NoSync SyncStatus = iota
 	FullSync
 	FullSyncPlus
+	FullSyncDx
+	FullSyncDxPlus
 )
 
 type SongInfo struct {
