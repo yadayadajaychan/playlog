@@ -66,6 +66,8 @@ type ChartInfo struct {
 }
 
 type PlaylogEntry struct {
+	UserPlayDate	int64 // Unix timestamp
+
 	SongId		int
 	Difficulty	Difficulty
 	Score		int
@@ -76,7 +78,6 @@ type PlaylogEntry struct {
 	IsNewRecord	bool
 	IsDxNewRecord	bool
 	Track		int
-	UserPlayDate	int64 // Unix timestamp
 	MatchingUsers	[]string
 
 	MaxCombo	int
