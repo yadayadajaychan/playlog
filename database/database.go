@@ -21,6 +21,30 @@ import (
 	"errors"
 )
 
+type Difficulty int
+const (
+	Basic Difficulty = iota
+	Advanced
+	Expert
+	Master
+	ReMaster
+	Utage
+)
+
+type ComboStatus int
+const (
+	NoCombo ComboStatus = iota
+	FullCombo
+	FullComboPlus
+)
+
+type SyncStatus int
+const (
+	NoSync SyncStatus = iota
+	FullSync
+	FullSyncPlus
+)
+
 type SongInfo struct {
 	SongId		int
 	Name		string
@@ -41,16 +65,66 @@ type ChartInfo struct {
 	MaxNotes	int
 }
 
-type Difficulty int
+type PlaylogEntry struct {
+	SongId		int
+	Difficulty	Difficulty
+	Score		int
+	DxScore		int
+	ComboStatus	ComboStatus
+	SyncStatus	SyncStatus
+	IsClear		bool
+	IsNewRecord	bool
+	IsDxNewRecord	bool
+	Track		int
+	UserPlayDate	int64 // Unix timestamp
+	MatchingUsers	[]string
 
-const (
-	Basic Difficulty = iota
-	Advanced
-	Expert
-	Master
-	ReMaster
-	Utage
-)
+	MaxCombo	int
+	TotalCombo	int
+	MaxSync		int
+	TotalSync	int
+
+	FastCount	int
+	LateCount	int
+	BeforeRating	int
+	AfterRating	int
+
+	TapCriticalPerfect	int
+        TapPerfect		int
+	TapGreat		int
+	TapGood			int
+	TapMiss			int
+
+	HoldCriticalPerfect	int
+        HoldPerfect		int
+	HoldGreat		int
+	HoldGood		int
+	HoldMiss		int
+
+	SlideCriticalPerfect	int
+        SlidePerfect		int
+	SlideGreat		int
+	SlideGood		int
+	SlideMiss		int
+
+	TouchCriticalPerfect	int
+        TouchPerfect		int
+	TouchGreat		int
+	TouchGood		int
+	TouchMiss		int
+
+	BreakCriticalPerfect	int
+        BreakPerfect		int
+	BreakGreat		int
+	BreakGood		int
+	BreakMiss		int
+
+	TotalCriticalPerfect	int
+        TotalPerfect		int
+	TotalGreat		int
+	TotalGood		int
+	TotalMiss		int
+}
 
 type SongDB struct {
 	db	*sql.DB
