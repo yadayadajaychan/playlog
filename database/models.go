@@ -66,9 +66,9 @@ type ChartInfo struct {
 
 type PlaylogEntry struct {
 	UserPlayDate	int64 // Unix timestamp
-
 	SongId		int
 	Difficulty	Difficulty
+
 	Score		int
 	DxScore		int
 	ComboStatus	ComboStatus

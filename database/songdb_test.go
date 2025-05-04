@@ -72,6 +72,14 @@ func TestAddAndGetSong(t *testing.T) {
 		MaxNotes: 1488,
 	})
 
+	song1.Charts = append(song1.Charts, database.ChartInfo{
+		Difficulty:    database.Expert,
+		Level:         10,
+		InternalLevel: 102,
+		NotesDesigner: "",
+		MaxNotes: 1600,
+	})
+
 	err = songdb.AddSong(song1)
 	if err != nil {
 		t.Fatal(err)
