@@ -98,6 +98,8 @@ func TestAddAndGetSong(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(song1, song1g) {
+		t.Log(song1)
+		t.Log(song1g)
 		t.Error("song1 not equal")
 	}
 }
