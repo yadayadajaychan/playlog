@@ -19,6 +19,8 @@ package database
 import (
 	"database/sql"
 	"encoding/json"
+	"errors"
+	"fmt"
 )
 
 type PlayDB struct {
@@ -108,7 +110,39 @@ func (playdb *PlayDB) initDB() error {
 }
 
 func validatePlay(play PlayInfo) error {
-	// TODO
+	// check note counts add up to total
+	if play.TapCriticalPerfect + play.HoldCriticalPerfect +
+	   play.SlideCriticalPerfect + play.TouchCriticalPerfect +
+	   play.BreakCriticalPerfect != play.TotalCriticalPerfect {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Critical Perfects does not add up", play.UserPlayDate))
+	}
+
+	if play.TapPerfect + play.HoldPerfect +
+	   play.SlidePerfect + play.TouchPerfect +
+	   play.BreakPerfect != play.TotalPerfect {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Perfects does not add up", play.UserPlayDate))
+	}
+
+	if play.TapGreat + play.HoldGreat +
+	   play.SlideGreat + play.TouchGreat +
+	   play.BreakGreat != play.TotalGreat {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Greats does not add up", play.UserPlayDate))
+	}
+
+	if play.TapGood + play.HoldGood +
+	   play.SlideGood + play.TouchGood +
+	   play.BreakGood != play.TotalGood {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Goods does not add up", play.UserPlayDate))
+	}
+
+	if play.TapMiss + play.HoldMiss +
+	   play.SlideMiss + play.TouchMiss +
+	   play.BreakMiss != play.TotalMiss {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Misses does not add up", play.UserPlayDate))
+	}
+
+	// TODO: more validation on combo status, score, etc.
+
 	return nil
 }
 
