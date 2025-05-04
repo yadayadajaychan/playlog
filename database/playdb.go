@@ -18,6 +18,7 @@ package database
 
 import (
 	"database/sql"
+	"encoding/json"
 )
 
 type PlayDB struct {
@@ -117,6 +118,11 @@ func (playdb *PlayDB) AddPlay(play PlayInfo) error {
 		return err
 	}
 
+	matchingUsersJSON, err := json.Marshal(play.MatchingUsers)
+	if err != nil {
+		return err
+	}
+
 	tx, err := playdb.db.Begin()
 	if err != nil {
 		return err
@@ -185,7 +191,7 @@ func (playdb *PlayDB) AddPlay(play PlayInfo) error {
 
 		play.Score, play.DxScore, play.ComboStatus, play.SyncStatus,
 		play.IsClear, play.IsNewRecord, play.IsDxNewRecord,
-		play.Track, play.MatchingUsers[0],
+		play.Track, matchingUsersJSON,
 
 		play.MaxCombo, play.TotalCombo, play.MaxSync, play.TotalSync,
 
@@ -212,8 +218,6 @@ func (playdb *PlayDB) AddPlay(play PlayInfo) error {
 	if err != nil {
 		return err
 	}
-
-	// TODO fix MatchingUsers
 
 	return tx.Commit()
 }
