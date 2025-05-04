@@ -22,7 +22,7 @@ import (
 )
 
 type SongDB struct {
-	db	*sql.DB
+	db *sql.DB
 }
 
 // NewSongDB creates a SongDB object and initializes the database
