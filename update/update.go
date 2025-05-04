@@ -147,6 +147,8 @@ func validatePlaylog(playlog *apiPlaylog) error {
 		seenUserPlayDate[item.Info.UserPlayDate] = true
 	}
 
+	// TODO: validate dates
+
 	return nil
 }
 
