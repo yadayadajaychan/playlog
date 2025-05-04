@@ -111,6 +111,7 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 	return tx.Commit()
 }
 
+// GetSong gets a song from the database using the songId
 func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	song := SongInfo{}
 
