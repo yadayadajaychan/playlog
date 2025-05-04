@@ -64,7 +64,7 @@ type ChartInfo struct {
 	MaxNotes	int
 }
 
-type PlaylogEntry struct {
+type PlayInfo struct {
 	UserPlayDate	int64 // Unix timestamp
 	SongId		int
 	Difficulty	Difficulty
