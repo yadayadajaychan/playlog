@@ -105,3 +105,115 @@ func (playdb *PlayDB) initDB() error {
 
 	return tx.Commit()
 }
+
+func validatePlay(play PlayInfo) error {
+	// TODO
+	return nil
+}
+
+func (playdb *PlayDB) AddPlay(play PlayInfo) error {
+	err := validatePlay(play)
+	if err != nil {
+		return err
+	}
+
+	tx, err := playdb.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Exec(`
+	INSERT OR IGNORE INTO plays (
+		user_play_date, song_id, difficulty,
+
+		score, dx_score, combo_status, sync_status,
+		is_clear, is_new_record, is_dx_new_record,
+		track, matching_users,
+
+		max_combo, total_combo, max_sync, total_sync,
+
+		fast_count, late_count, before_rating, after_rating,
+
+		tap_critical_perfect, tap_perfect, tap_great,
+		tap_good, tap_miss,
+
+		hold_critical_perfect, hold_perfect, hold_great,
+		hold_good, hold_miss,
+
+		slide_critical_perfect, slide_perfect, slide_great,
+		slide_good, slide_miss,
+
+		touch_critical_perfect, touch_perfect, touch_great,
+		touch_good, touch_miss,
+
+		break_critical_perfect, break_perfect, break_great,
+		break_good, break_miss,
+
+		total_critical_perfect, total_perfect, total_great,
+		total_good, total_miss
+	) VALUES (
+		?, ?, ?,
+
+		?, ?, ?, ?,
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?, ?,
+
+		?, ?, ?, ?,
+
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?,
+		?, ?,
+
+		?, ?, ?,
+		?, ?
+	);`,
+		play.UserPlayDate, play.SongId, play.Difficulty,
+
+		play.Score, play.DxScore, play.ComboStatus, play.SyncStatus,
+		play.IsClear, play.IsNewRecord, play.IsDxNewRecord,
+		play.Track, play.MatchingUsers[0],
+
+		play.MaxCombo, play.TotalCombo, play.MaxSync, play.TotalSync,
+
+		play.FastCount, play.LateCount, play.BeforeRating, play.AfterRating,
+
+		play.TapCriticalPerfect, play.TapPerfect, play.TapGreat,
+		play.TapGood, play.TapMiss,
+
+		play.HoldCriticalPerfect, play.HoldPerfect, play.HoldGreat,
+		play.HoldGood, play.HoldMiss,
+
+		play.SlideCriticalPerfect, play.SlidePerfect, play.SlideGreat,
+		play.SlideGood, play.SlideMiss,
+
+		play.TouchCriticalPerfect, play.TouchPerfect, play.TouchGreat,
+		play.TouchGood, play.TouchMiss,
+
+		play.BreakCriticalPerfect, play.BreakPerfect, play.BreakGreat,
+		play.BreakGood, play.BreakMiss,
+
+		play.TotalCriticalPerfect, play.TotalPerfect, play.TotalGreat,
+		play.TotalGood, play.TotalMiss)
+
+	if err != nil {
+		return err
+	}
+
+	// TODO fix MatchingUsers
+
+	return tx.Commit()
+}
