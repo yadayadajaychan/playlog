@@ -39,4 +39,14 @@ func TestGetPlaylog(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	playlogDetail, err := getPlaylogDetail(accessCode, playlog.Playlog[0].PlaylogApiId)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	err = validatePlaylogDetail(playlogDetail)
+	if err != nil {
+		t.Fatal(err)
+	}
 }

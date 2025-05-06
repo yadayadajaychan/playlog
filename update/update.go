@@ -45,6 +45,78 @@ type apiPlaylogEntry struct {
 	}
 }
 
+type apiPlaylogDetail struct {
+	MaimaiPlaylogDetail	maimaiPlaylogDetail
+}
+
+type maimaiPlaylogDetail struct {
+	Info	struct {
+		MusicId		int
+		Level		string
+		Achievement	int
+		Deluxscore	int
+		ScoreRank	string
+		ComboStatus	string
+		SyncStatus	string
+		IsClear		bool
+		IsAchieveNewRecord	bool
+		IsDeluxscoreNewRecord	bool
+		Track		int
+		UserPlayDate	string
+	}
+
+	Detail	struct {
+		JudgeTap	struct {
+			TapCriticalPerfect	int
+			TapPerfect		int
+			TapGreat		int
+			TapGood			int
+			TapMiss			int
+		}
+		JudgeHold	struct {
+			HoldCriticalPerfect	int
+			HoldPerfect		int
+			HoldGreat		int
+			HoldGood		int
+			HoldMiss		int
+		}
+		JudgeSlide	struct {
+			SlideCriticalPerfect	int
+			SlidePerfect		int
+			SlideGreat		int
+			SlideGood		int
+			SlideMiss		int
+		}
+		JudgeTouch	struct {
+			TouchCriticalPerfect	int
+			TouchPerfect		int
+			TouchGreat		int
+			TouchGood		int
+			TouchMiss		int
+		}
+		JudgeBreak	struct {
+			BreakCriticalPerfect	int
+			BreakPerfect		int
+			BreakGreat		int
+			BreakGood		int
+			BreakMiss		int
+		}
+
+		MaxCombo	int
+		TotalCombo	int
+		MaxSync		int
+		TotalSync	int
+		FastCount	int
+		LateCount	int
+		BeforeRating	int
+		AfterRating	int
+	}
+
+	MatchingUsers []struct {
+		UserName	string
+	}
+}
+
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
 // delaying by apiDelay between requests. It then adds them to the database.
@@ -159,4 +231,45 @@ func printPlaylog(playlog *apiPlaylog) {
 	}
 }
 
-//func getPlaylogDetail(playlogApiId string) (
+func getPlaylogDetail(accessCode, playlogApiId string) (*apiPlaylogDetail, error) {
+	form := url.Values{
+		"accessCode": {accessCode},
+		"requestType": {"getPlaylogDetail"},
+		"playlogApiId": {playlogApiId},
+	}
+
+	req, err := http.NewRequest("POST", apiUrl, strings.NewReader(form.Encode()))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+	client := http.DefaultClient
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	resp.Body.Close()
+
+	playlogDetail := &apiPlaylogDetail{}
+
+	err = json.Unmarshal(data, playlogDetail)
+	if err != nil {
+		return nil, err
+	}
+
+	return playlogDetail, nil
+}
+
+func validatePlaylogDetail(playlogDetail *apiPlaylogDetail) error {
+	if len(playlogDetail.MaimaiPlaylogDetail.Info.UserPlayDate) <= 0 {
+		return errors.New("error validating playlogDetail, userPlayDate not found")
+	}
+
+	return nil
+}
