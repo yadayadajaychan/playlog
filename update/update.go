@@ -157,6 +157,9 @@ func getPlaylog(accessCode string) (*apiPlaylog, error) {
 	}
 
 	req, err := http.NewRequest("POST", apiUrl, strings.NewReader(form.Encode()))
+	if err != nil {
+		return nil, err
+	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	resp, err := client.Do(req)
