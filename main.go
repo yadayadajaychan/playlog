@@ -22,7 +22,7 @@ import (
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 
-	"github.com/yadayadajaychan/playlog/update"
+	"github.com/yadayadajaychan/playlog/internal/update"
 	"github.com/yadayadajaychan/playlog/database"
 	_ "github.com/pborman/getopt/v2"
 )
