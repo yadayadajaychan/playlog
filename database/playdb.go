@@ -255,3 +255,71 @@ func (playdb *PlayDB) AddPlay(play PlayInfo) error {
 
 	return tx.Commit()
 }
+
+func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
+	rows, err := playdb.db.Query(`
+	SELECT * FROM plays WHERE user_play_date=?`, date)
+	if err != nil {
+		return PlayInfo{}, err
+	}
+
+	plays, err := rowsToPlayInfos(rows)
+	if err != nil {
+		return PlayInfo{}, err
+	}
+
+	if len(plays) < 1 {
+		return PlayInfo{}, errors.New("GetPlay: failed to find play")
+	}
+
+	return plays[0], nil
+}
+
+func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
+	plays := make([]PlayInfo, 0, 1)
+
+	for rows.Next() {
+		var matchingUsersJSON []byte
+		play := PlayInfo{}
+		err := rows.Scan(
+			&play.UserPlayDate, &play.SongId, &play.Difficulty,
+
+			&play.Score, &play.DxScore, &play.ComboStatus, &play.SyncStatus,
+			&play.IsClear, &play.IsNewRecord, &play.IsDxNewRecord,
+			&play.Track, &matchingUsersJSON,
+
+			&play.MaxCombo, &play.TotalCombo, &play.MaxSync, &play.TotalSync,
+
+			&play.FastCount, &play.LateCount, &play.BeforeRating, &play.AfterRating,
+
+			&play.TapCriticalPerfect, &play.TapPerfect,
+			&play.TapGreat, &play.TapGood, &play.TapMiss,
+
+			&play.HoldCriticalPerfect, &play.HoldPerfect,
+			&play.HoldGreat, &play.HoldGood, &play.HoldMiss,
+
+			&play.SlideCriticalPerfect, &play.SlidePerfect,
+			&play.SlideGreat, &play.SlideGood, &play.SlideMiss,
+
+			&play.TouchCriticalPerfect, &play.TouchPerfect,
+			&play.TouchGreat, &play.TouchGood, &play.TouchMiss,
+
+			&play.BreakCriticalPerfect, &play.BreakPerfect,
+			&play.BreakGreat, &play.BreakGood, &play.BreakMiss,
+
+			&play.TotalCriticalPerfect, &play.TotalPerfect,
+			&play.TotalGreat, &play.TotalGood, &play.TotalMiss)
+		if err != nil {
+			return nil, err
+		}
+
+		err = json.Unmarshal(matchingUsersJSON, &play.MatchingUsers)
+		if err != nil {
+			return nil, err
+		}
+
+		plays = append(plays, play)
+	}
+
+	return plays, nil
+}

@@ -17,7 +17,8 @@ package database_test
 
 import (
 	"testing"
-	_ "os"
+	"os"
+	"reflect"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 
@@ -25,14 +26,13 @@ import (
 )
 
 func TestAddAndGetPlay(t *testing.T) {
-	//tmpFile, err := os.CreateTemp("", "playdb-")
-	//if err != nil {
-	//	t.Fatal(err)
-	//}
-	//defer os.Remove(tmpFile.Name())
+	tmpFile, err := os.CreateTemp("", "playdb-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(tmpFile.Name())
 
-	//db, err := sql.Open("sqlite3", tmpFile.Name())
-	db, err := sql.Open("sqlite3", "tmp")
+	db, err := sql.Open("sqlite3", tmpFile.Name())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -108,5 +108,23 @@ func TestAddAndGetPlay(t *testing.T) {
 	err = playdb.AddPlay(play1)
 	if err != nil {
 		t.Fatal(err)
+	}
+
+	play1g, err := playdb.GetPlay(1743108003)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = playdb.GetPlay(123)
+	if err != nil {
+		t.Log("correctly returned non-nil error:", err)
+	} else {
+		t.Error("expected non-nil error for non-existant play")
+	}
+
+	if !reflect.DeepEqual(play1, play1g) {
+		t.Log(play1)
+		t.Log(play1g)
+		t.Error("play1 not equal")
 	}
 }
