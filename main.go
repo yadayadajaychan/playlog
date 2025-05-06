@@ -24,10 +24,30 @@ import (
 
 	"github.com/yadayadajaychan/playlog/internal/update"
 	"github.com/yadayadajaychan/playlog/database"
-	_ "github.com/pborman/getopt/v2"
+	"github.com/pborman/getopt/v2"
 )
 
 func main() {
+	help := getopt.BoolLong("help", 'h', "display help")
+	verbose := getopt.CounterLong("verbose", 'v', "verbosity level (errors only, info, debug)")
+	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
+	playdbFilename := getopt.StringLong("playdb", 'p', "plays.db", "filename of play db")
+	updateOnly := getopt.BoolLong("update-only", 'u', "only update the play db")
+	backendOnly := getopt.BoolLong("backend-only", 'b', "only run the backend")
+	getopt.Parse()
+
+	// TODO
+	_=verbose
+	_=songdbFilename
+	_=playdbFilename
+	_=updateOnly
+	_=backendOnly
+
+	if *help {
+		getopt.Usage()
+		os.Exit(0)
+	}
+
 	accessCode := os.Getenv("PLAYLOG_ACCESS_CODE")
 	if accessCode == "" {
 		log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
