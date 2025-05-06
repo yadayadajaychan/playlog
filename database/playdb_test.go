@@ -116,10 +116,12 @@ func TestAddAndGetPlay(t *testing.T) {
 	}
 
 	_, err = playdb.GetPlay(123)
-	if err != nil {
-		t.Log("correctly returned non-nil error:", err)
+	if _, ok := err.(*database.PlayNotFoundError); ok {
+		t.Log("correctly returned PlayNotFoundError:", err)
+	} else if err != nil {
+		t.Error("returned non-nil error, but not PlayNotFoundError:", err)
 	} else {
-		t.Error("expected non-nil error for non-existant play")
+		t.Error("expected PlayNotFoundError for non-existant play")
 	}
 
 	if !reflect.DeepEqual(play1, play1g) {

@@ -269,10 +269,18 @@ func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 	}
 
 	if len(plays) < 1 {
-		return PlayInfo{}, errors.New("GetPlay: failed to find play")
+		return PlayInfo{}, &PlayNotFoundError{UserPlayDate: date}
 	}
 
 	return plays[0], nil
+}
+
+type PlayNotFoundError struct {
+	UserPlayDate int64
+}
+
+func (e *PlayNotFoundError) Error() string {
+	return fmt.Sprintf("Playlog entry with date %d not found in database", e.UserPlayDate)
 }
 
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
