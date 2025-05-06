@@ -19,7 +19,11 @@ import (
 	"time"
 	"os"
 	"log"
+	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
+
 	"github.com/yadayadajaychan/playlog/update"
+	"github.com/yadayadajaychan/playlog/database"
 )
 
 func main() {
@@ -28,5 +32,16 @@ func main() {
 		log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
 	}
 
-	update.Update(accessCode, 1 * time.Second)
+	db, err := sql.Open("sqlite3", "tmp.db")
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		panic(err)
+	}
+
+	update.Update(playdb, accessCode, 1 * time.Second)
 }

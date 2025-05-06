@@ -27,6 +27,8 @@ import (
 	"net/http/cookiejar"
 	"encoding/json"
 	"errors"
+
+	"github.com/yadayadajaychan/playlog/database"
 )
 
 const (
@@ -120,7 +122,7 @@ type maimaiPlaylogDetail struct {
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
 // delaying by apiDelay between requests. It then adds them to the database.
-func Update(accessCode string, apiDelay time.Duration) error {
+func Update(playdb *database.PlayDB, accessCode string, apiDelay time.Duration) error {
 	playlog, err := getPlaylog(accessCode)
 	if err != nil {
 		return err
@@ -131,9 +133,194 @@ func Update(accessCode string, apiDelay time.Duration) error {
 		return err
 	}
 
-	printPlaylog(playlog)
+	for _, entry := range playlog.Playlog {
+		playdate, err := time.Parse(time.RFC3339, entry.Info.UserPlayDate)
+		if err != nil {
+			return err
+		}
 
-	//time.Sleep(apiDelay)
+		_, err = playdb.GetPlay(playdate.Unix())
+		if _, ok := err.(*database.PlayNotFoundError); ok {
+			playlogDetail, err := getPlaylogDetail(accessCode, entry.PlaylogApiId)
+			if err != nil {
+				return err
+			}
+
+			err = validatePlaylogDetail(playlogDetail)
+			if err != nil {
+				return err
+			}
+
+			err = addMaimaiPlaylogDetailToPlayDB(playdb, playlogDetail.MaimaiPlaylogDetail)
+			if err != nil {
+				return err
+			}
+
+			fmt.Printf("play %d: added to db\n", playdate.Unix())
+			time.Sleep(apiDelay)
+
+		} else if err != nil {
+			return err
+		} else {
+			fmt.Printf("play %d: already exists in db\n", playdate.Unix())
+		}
+	}
+
+
+	return nil
+}
+
+func addMaimaiPlaylogDetailToPlayDB(playdb *database.PlayDB, maimai maimaiPlaylogDetail) error {
+	playdate, err := time.Parse(time.RFC3339, maimai.Info.UserPlayDate)
+	if err != nil {
+		return err
+	}
+
+	var difficulty database.Difficulty
+	switch maimai.Info.Level {
+	case "MAIMAI_LEVEL_BASIC":
+		difficulty = database.Basic
+	case "MAIMAI_LEVEL_ADVANCED":
+		difficulty = database.Advanced
+	case "MAIMAI_LEVEL_EXPERT":
+		difficulty = database.Expert
+	case "MAIMAI_LEVEL_MASTER":
+		difficulty = database.Master
+	case "MAIMAI_LEVEL_REMASTER":
+		difficulty = database.ReMaster
+	case "MAIMAI_LEVEL_UTAGE":
+		difficulty = database.Utage
+	default:
+		return errors.New("addMaimaiPlaylogDetailToPlayDB: invalid level: " + maimai.Info.Level)
+	}
+
+	var comboStatus database.ComboStatus
+	switch maimai.Info.ComboStatus {
+	case "MAIMAI_COMBO_STATUS_NONE":
+		comboStatus = database.NoCombo
+	case "MAIMAI_COMBO_STATUS_FULL_COMBO":
+		comboStatus = database.FullCombo
+	case "MAIMAI_COMBO_STATUS_FULL_COMBO_PLUS":
+		comboStatus = database.FullComboPlus
+	case "MAIMAI_COMBO_STATUS_ALL_PERFECT":
+		comboStatus = database.AllPerfect
+	case "MAIMAI_COMBO_STATUS_ALL_PERFECT_PLUS":
+		comboStatus = database.AllPerfectPlus
+	default:
+		return errors.New("addMaimaiPlaylogDetailToPlayDB: invalid combo status: " + maimai.Info.ComboStatus)
+	}
+
+	var syncStatus database.SyncStatus
+	switch maimai.Info.SyncStatus {
+	case "MAIMAI_SYNC_STATUS_NONE":
+		syncStatus = database.NoSync
+	case "MAIMAI_SYNC_STATUS_FULL_SYNC":
+		syncStatus = database.FullSync
+	case "MAIMAI_SYNC_STATUS_FULL_SYNC_PLUS":
+		syncStatus = database.FullSyncPlus
+	case "MAIMAI_SYNC_STATUS_FULL_SYNC_DX":
+		syncStatus = database.FullSyncDx
+	case "MAIMAI_SYNC_STATUS_FULL_SYNC_DX_PLUS":
+		syncStatus = database.FullSyncDxPlus
+	default:
+		return errors.New("addMaimaiPlaylogDetailToPlayDB: invalid sync status: " + maimai.Info.SyncStatus)
+	}
+
+	matchingUsers := make([]string, 0, 1)
+	for _, v := range maimai.MatchingUsers {
+		matchingUsers = append(matchingUsers, v.UserName)
+	}
+
+	playinfo := database.PlayInfo{
+		UserPlayDate : playdate.Unix(),
+		SongId       : maimai.Info.MusicId,
+		Difficulty   : difficulty,
+
+		Score         : maimai.Info.Achievement,
+		DxScore       : maimai.Info.Deluxscore,
+		ComboStatus   : comboStatus,
+		SyncStatus    : syncStatus,
+		IsClear       : maimai.Info.IsClear,
+		IsNewRecord   : maimai.Info.IsAchieveNewRecord,
+		IsDxNewRecord : maimai.Info.IsDeluxscoreNewRecord,
+		Track         : maimai.Info.Track,
+		MatchingUsers : matchingUsers,
+
+		MaxCombo   : maimai.Detail.MaxCombo,
+		TotalCombo : maimai.Detail.TotalCombo,
+		MaxSync    : maimai.Detail.MaxSync,
+		TotalSync  : maimai.Detail.TotalSync,
+
+		FastCount    : maimai.Detail.FastCount,
+		LateCount    : maimai.Detail.LateCount,
+		BeforeRating : maimai.Detail.BeforeRating,
+		AfterRating  : maimai.Detail.AfterRating,
+
+		TapCriticalPerfect : maimai.Detail.JudgeTap.TapCriticalPerfect,
+		TapPerfect         : maimai.Detail.JudgeTap.TapPerfect,
+		TapGreat           : maimai.Detail.JudgeTap.TapGreat,
+		TapGood            : maimai.Detail.JudgeTap.TapGood,
+		TapMiss            : maimai.Detail.JudgeTap.TapMiss,
+
+		HoldCriticalPerfect : maimai.Detail.JudgeHold.HoldCriticalPerfect,
+		HoldPerfect         : maimai.Detail.JudgeHold.HoldPerfect,
+		HoldGreat           : maimai.Detail.JudgeHold.HoldGreat,
+		HoldGood            : maimai.Detail.JudgeHold.HoldGood,
+		HoldMiss            : maimai.Detail.JudgeHold.HoldMiss,
+
+		SlideCriticalPerfect : maimai.Detail.JudgeSlide.SlideCriticalPerfect,
+		SlidePerfect         : maimai.Detail.JudgeSlide.SlidePerfect,
+		SlideGreat           : maimai.Detail.JudgeSlide.SlideGreat,
+		SlideGood            : maimai.Detail.JudgeSlide.SlideGood,
+		SlideMiss            : maimai.Detail.JudgeSlide.SlideMiss,
+
+		TouchCriticalPerfect : maimai.Detail.JudgeTouch.TouchCriticalPerfect,
+		TouchPerfect         : maimai.Detail.JudgeTouch.TouchPerfect,
+		TouchGreat           : maimai.Detail.JudgeTouch.TouchGreat,
+		TouchGood            : maimai.Detail.JudgeTouch.TouchGood,
+		TouchMiss            : maimai.Detail.JudgeTouch.TouchMiss,
+
+		BreakCriticalPerfect : maimai.Detail.JudgeBreak.BreakCriticalPerfect,
+		BreakPerfect         : maimai.Detail.JudgeBreak.BreakPerfect,
+		BreakGreat           : maimai.Detail.JudgeBreak.BreakGreat,
+		BreakGood            : maimai.Detail.JudgeBreak.BreakGood,
+		BreakMiss            : maimai.Detail.JudgeBreak.BreakMiss,
+
+		TotalCriticalPerfect : maimai.Detail.JudgeTap.TapCriticalPerfect +
+					maimai.Detail.JudgeHold.HoldCriticalPerfect +
+					maimai.Detail.JudgeSlide.SlideCriticalPerfect +
+					maimai.Detail.JudgeTouch.TouchCriticalPerfect +
+					maimai.Detail.JudgeBreak.BreakCriticalPerfect,
+
+		TotalPerfect : maimai.Detail.JudgeTap.TapPerfect +
+				maimai.Detail.JudgeHold.HoldPerfect +
+				maimai.Detail.JudgeSlide.SlidePerfect +
+				maimai.Detail.JudgeTouch.TouchPerfect +
+				maimai.Detail.JudgeBreak.BreakPerfect,
+
+		TotalGreat : maimai.Detail.JudgeTap.TapGreat +
+				maimai.Detail.JudgeHold.HoldGreat +
+				maimai.Detail.JudgeSlide.SlideGreat +
+				maimai.Detail.JudgeTouch.TouchGreat +
+				maimai.Detail.JudgeBreak.BreakGreat,
+
+		TotalGood : maimai.Detail.JudgeTap.TapGood +
+				maimai.Detail.JudgeHold.HoldGood +
+				maimai.Detail.JudgeSlide.SlideGood +
+				maimai.Detail.JudgeTouch.TouchGood +
+				maimai.Detail.JudgeBreak.BreakGood,
+
+		TotalMiss : maimai.Detail.JudgeTap.TapMiss +
+				maimai.Detail.JudgeHold.HoldMiss +
+				maimai.Detail.JudgeSlide.SlideMiss +
+				maimai.Detail.JudgeTouch.TouchMiss +
+				maimai.Detail.JudgeBreak.BreakMiss,
+	}
+
+	err = playdb.AddPlay(playinfo)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
