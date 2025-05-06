@@ -24,6 +24,7 @@ import (
 
 	"github.com/yadayadajaychan/playlog/update"
 	"github.com/yadayadajaychan/playlog/database"
+	_ "github.com/pborman/getopt/v2"
 )
 
 func main() {

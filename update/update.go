@@ -19,7 +19,7 @@ package update
 
 import (
 	"fmt"
-	"os"
+	"log"
 	"io"
 	"time"
 	"strings"
@@ -157,13 +157,13 @@ func Update(playdb *database.PlayDB, accessCode string, apiDelay time.Duration) 
 				return err
 			}
 
-			fmt.Fprintf(os.Stderr, "play %d: added to db\n", playdate.Unix())
+			log.Printf("play %d: added to db\n", playdate.Unix())
 			time.Sleep(apiDelay)
 
 		} else if err != nil {
 			return err
 		} else {
-			fmt.Fprintf(os.Stderr, "play %d: already exists in db\n", playdate.Unix())
+			log.Printf("play %d: already exists in db\n", playdate.Unix())
 		}
 	}
 
@@ -418,7 +418,7 @@ func validatePlaylog(playlog *apiPlaylog) error {
 // convenience function for diagnostics
 func printPlaylog(playlog *apiPlaylog) {
 	for _, item := range playlog.Playlog {
-		fmt.Fprintf(os.Stderr, "%v\t%v\n", item.PlaylogApiId, item.Info.UserPlayDate)
+		fmt.Printf("%v\t%v\n", item.PlaylogApiId, item.Info.UserPlayDate)
 	}
 }
 
