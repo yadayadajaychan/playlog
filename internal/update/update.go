@@ -125,7 +125,7 @@ type maimaiPlaylogDetail struct {
 // and makes an api request per new song that's not in the database,
 // delaying by ctx.ApiInterval between requests.
 // It then adds them to the database.
-// ctx requires Playdb, AccessCode, ApiInterval
+// ctx requires Playdb, AccessCode, ApiInterval, Verbose
 func Update(ctx *context.PlaylogCtx) error {
 	playlog, err := getPlaylog(ctx.AccessCode)
 	if err != nil {
@@ -160,13 +160,17 @@ func Update(ctx *context.PlaylogCtx) error {
 				return err
 			}
 
-			log.Printf("play %d: added to db\n", playdate.Unix())
+			if ctx.Verbose >= 1 {
+				log.Printf("play %d: added to db\n", playdate.Unix())
+			}
 			time.Sleep(ctx.ApiInterval)
 
 		} else if err != nil {
 			return err
 		} else {
-			log.Printf("play %d: already exists in db\n", playdate.Unix())
+			if ctx.Verbose >= 2 {
+				log.Printf("play %d: already exists in db\n", playdate.Unix())
+			}
 		}
 	}
 
