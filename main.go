@@ -24,29 +24,13 @@ import (
 
 	"github.com/yadayadajaychan/playlog/internal/update"
 	"github.com/yadayadajaychan/playlog/database"
+	"github.com/yadayadajaychan/playlog/internal/context"
 	"github.com/pborman/getopt/v2"
 )
 
-type PlaylogCtx struct {
-	AccessCode string
-
-	Playdb *database.PlayDB
-	Songdb *database.SongDB
-
-	Verbose        int
-	ListenPort     int
-
-	UpdateInterval time.Duration
-	ApiInterval    time.Duration
-
-	UpdateOnly       bool
-	BackendOnly      bool
-	UpdateAndBackend bool
-
-}
 
 func main() {
-	ctx := &PlaylogCtx{}
+	ctx := &context.PlaylogCtx{}
 
 	help := getopt.BoolLong("help", 'h', "display help")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
@@ -128,14 +112,14 @@ func main() {
 	}
 }
 
-func updateLoop(ctx *PlaylogCtx) {
+func updateLoop(ctx *context.PlaylogCtx) {
 	for {
 		update.Update(ctx.Playdb, ctx.AccessCode, ctx.ApiInterval)
 		time.Sleep(ctx.UpdateInterval)
 	}
 }
 
-func backendLoop(ctx *PlaylogCtx) {
+func backendLoop(ctx *context.PlaylogCtx) {
 	for {
 		time.Sleep(time.Hour)
 	}
