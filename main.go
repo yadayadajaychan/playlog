@@ -90,7 +90,7 @@ func main() {
 		}
 
 		if ctx.UpdateOnly {
-			update.Update(ctx.Playdb, ctx.AccessCode, ctx.ApiInterval)
+			update.Update(ctx)
 		} else {
 			go updateLoop(ctx)
 		}
@@ -114,7 +114,7 @@ func main() {
 
 func updateLoop(ctx *context.PlaylogCtx) {
 	for {
-		update.Update(ctx.Playdb, ctx.AccessCode, ctx.ApiInterval)
+		update.Update(ctx)
 		time.Sleep(ctx.UpdateInterval)
 	}
 }

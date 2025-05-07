@@ -30,6 +30,7 @@ import (
 	"errors"
 
 	"github.com/yadayadajaychan/playlog/database"
+	"github.com/yadayadajaychan/playlog/internal/context"
 )
 
 const (
@@ -122,9 +123,11 @@ type maimaiPlaylogDetail struct {
 
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
-// delaying by apiDelay between requests. It then adds them to the database.
-func Update(playdb *database.PlayDB, accessCode string, apiDelay time.Duration) error {
-	playlog, err := getPlaylog(accessCode)
+// delaying by ctx.ApiInterval between requests.
+// It then adds them to the database.
+// ctx requires Playdb, AccessCode, ApiInterval
+func Update(ctx *context.PlaylogCtx) error {
+	playlog, err := getPlaylog(ctx.AccessCode)
 	if err != nil {
 		return err
 	}
@@ -140,9 +143,9 @@ func Update(playdb *database.PlayDB, accessCode string, apiDelay time.Duration) 
 			return err
 		}
 
-		_, err = playdb.GetPlay(playdate.Unix())
+		_, err = ctx.Playdb.GetPlay(playdate.Unix())
 		if _, ok := err.(*database.PlayNotFoundError); ok {
-			playlogDetail, err := getPlaylogDetail(accessCode, entry.PlaylogApiId)
+			playlogDetail, err := getPlaylogDetail(ctx.AccessCode, entry.PlaylogApiId)
 			if err != nil {
 				return err
 			}
@@ -152,13 +155,13 @@ func Update(playdb *database.PlayDB, accessCode string, apiDelay time.Duration) 
 				return err
 			}
 
-			err = addMaimaiPlaylogDetailToPlayDB(playdb, playlogDetail.MaimaiPlaylogDetail)
+			err = addMaimaiPlaylogDetailToPlayDB(ctx.Playdb, playlogDetail.MaimaiPlaylogDetail)
 			if err != nil {
 				return err
 			}
 
 			log.Printf("play %d: added to db\n", playdate.Unix())
-			time.Sleep(apiDelay)
+			time.Sleep(ctx.ApiInterval)
 
 		} else if err != nil {
 			return err
