@@ -27,42 +27,116 @@ import (
 	"github.com/pborman/getopt/v2"
 )
 
+type PlaylogCtx struct {
+	AccessCode string
+
+	Playdb *database.PlayDB
+	Songdb *database.SongDB
+
+	Verbose        int
+	ListenPort     int
+
+	UpdateInterval time.Duration
+	ApiInterval    time.Duration
+
+	UpdateOnly       bool
+	BackendOnly      bool
+	UpdateAndBackend bool
+
+}
+
 func main() {
+	ctx := &PlaylogCtx{}
+
 	help := getopt.BoolLong("help", 'h', "display help")
-	verbose := getopt.CounterLong("verbose", 'v', "verbosity level (errors only, info, debug)")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
 	playdbFilename := getopt.StringLong("playdb", 'p', "plays.db", "filename of play db")
-	updateOnly := getopt.BoolLong("update-only", 'u', "only update the play db")
-	backendOnly := getopt.BoolLong("backend-only", 'b', "only run the backend")
+
+	verbose := getopt.CounterLong("verbose", 'v', "verbosity level (errors only, info, debug)")
+	listenPort := getopt.IntLong("listen-port", 'l', 5000, "port to listen on")
+
+	updateInterval := getopt.IntLong("update-interval", 't', 900, "seconds to wait between updates")
+	apiInterval := getopt.IntLong("api-interval", 'a', 3, "seconds to wait between api requests")
+
+	getopt.FlagLong(&ctx.UpdateOnly, "update-only", 'u', "only update the play db & exit").SetGroup("action")
+	getopt.FlagLong(&ctx.BackendOnly, "backend-only", 'b', "only run the backend").SetGroup("action")
+
 	getopt.Parse()
 
-	// TODO
-	_=verbose
-	_=songdbFilename
-	_=playdbFilename
-	_=updateOnly
-	_=backendOnly
+	ctx.Verbose = *verbose
+	ctx.ListenPort = *listenPort
+
+	ctx.UpdateInterval = time.Duration(*updateInterval) * time.Second
+	ctx.ApiInterval = time.Duration(*apiInterval) * time.Second
+
+	if !ctx.UpdateOnly && !ctx.BackendOnly {
+		ctx.UpdateAndBackend = true
+	} else {
+		ctx.UpdateAndBackend = false
+	}
 
 	if *help {
 		getopt.Usage()
 		os.Exit(0)
 	}
 
-	accessCode := os.Getenv("PLAYLOG_ACCESS_CODE")
-	if accessCode == "" {
-		log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
+	if ctx.UpdateInterval <= 0 {
+		log.Fatal("update interval must be greater than 0")
+	}
+	if ctx.ApiInterval <= 0 {
+		log.Fatal("api interval must be greater than 0")
 	}
 
-	db, err := sql.Open("sqlite3", "tmp.db")
+
+	db, err := sql.Open("sqlite3", *playdbFilename)
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
-	playdb, err := database.NewPlayDB(db)
+	ctx.Playdb, err = database.NewPlayDB(db)
 	if err != nil {
 		panic(err)
 	}
 
-	update.Update(playdb, accessCode, 1 * time.Second)
+	if ctx.UpdateAndBackend || ctx.UpdateOnly {
+		ctx.AccessCode = os.Getenv("PLAYLOG_ACCESS_CODE")
+		if ctx.AccessCode == "" {
+			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
+		}
+
+		if ctx.UpdateOnly {
+			update.Update(ctx.Playdb, ctx.AccessCode, ctx.ApiInterval)
+		} else {
+			go updateLoop(ctx)
+		}
+	}
+
+	if ctx.UpdateAndBackend || ctx.BackendOnly {
+		db2, err := sql.Open("sqlite3", *songdbFilename)
+		if err != nil {
+			panic(err)
+		}
+		defer db2.Close()
+
+		ctx.Songdb, err = database.NewSongDB(db2)
+		if err != nil {
+			panic(err)
+		}
+
+		backendLoop(ctx)
+	}
+}
+
+func updateLoop(ctx *PlaylogCtx) {
+	for {
+		update.Update(ctx.Playdb, ctx.AccessCode, ctx.ApiInterval)
+		time.Sleep(ctx.UpdateInterval)
+	}
+}
+
+func backendLoop(ctx *PlaylogCtx) {
+	for {
+		time.Sleep(time.Hour)
+	}
 }
