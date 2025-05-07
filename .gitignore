@@ -1,1 +1,3 @@
 .env
+plays.db
+*.bak
