@@ -127,6 +127,10 @@ type maimaiPlaylogDetail struct {
 // It then adds them to the database.
 // ctx requires Playdb, AccessCode, ApiInterval, Verbose
 func Update(ctx *context.PlaylogCtx) error {
+	if ctx.Verbose >= 1 {
+		log.Print("starting update...")
+	}
+
 	playlog, err := getPlaylog(ctx.AccessCode)
 	if err != nil {
 		return err
