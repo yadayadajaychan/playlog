@@ -26,10 +26,13 @@ import (
 	"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
 	"github.com/pborman/getopt/v2"
+	"github.com/joho/godotenv"
 )
 
 
 func main() {
+	godotenv.Load()
+
 	ctx := &context.PlaylogCtx{}
 
 	help := getopt.BoolLong("help", 'h', "display help")
