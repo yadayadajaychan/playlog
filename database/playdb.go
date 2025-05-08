@@ -256,6 +256,7 @@ func (playdb *PlayDB) AddPlay(play PlayInfo) error {
 	return tx.Commit()
 }
 
+// GetPlay returns a PlayInfo that corresponds to date
 func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 	rows, err := playdb.db.Query(`
 	SELECT * FROM plays WHERE user_play_date=?`, date)
@@ -273,6 +274,35 @@ func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 	}
 
 	return plays[0], nil
+}
+
+// GetPlays returns a slice of PlayInfos.
+// ascending: whether dates are ascending or descending
+// limit: the maximum length of the slice
+// offset: offset in the database
+func (playdb *PlayDB) GetPlays(ascending bool, limit, offset int) ([]PlayInfo, error) {
+	var asc string
+	if ascending {
+		asc = "ASC"
+	} else {
+		asc = "DESC"
+	}
+
+	query := fmt.Sprintf(`
+	SELECT * FROM plays ORDER BY user_play_date %s
+	LIMIT ? OFFSET ?`, asc)
+
+	rows, err := playdb.db.Query(query, limit, offset)
+	if err != nil {
+		return nil, err
+	}
+
+	plays, err := rowsToPlayInfos(rows)
+	if err != nil {
+		return nil, err
+	}
+
+	return plays, nil
 }
 
 type PlayNotFoundError struct {

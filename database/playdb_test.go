@@ -127,6 +127,79 @@ func TestAddAndGetPlay(t *testing.T) {
 	if !reflect.DeepEqual(play1, play1g) {
 		t.Log(play1)
 		t.Log(play1g)
-		t.Error("play1 not equal")
+		t.Error("play1 not equal to play1g")
+	}
+
+	plays2, err := playdb.GetPlays(false, 1, 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(plays2) != 1 {
+		t.Fatal("len(plays2) != 1")
+	}
+
+	if !reflect.DeepEqual(play1, plays2[0]) {
+		t.Log(play1)
+		t.Log(plays2[0])
+		t.Error("play1 not equal to plays2[0]")
+	}
+}
+
+func TestGetPlays(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	plays1, err := playdb.GetPlays(true, 3, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(plays1) != 3 {
+		t.Fatal("len(plays1) != 3")
+	}
+
+	if plays1[0].UserPlayDate != 1743108219 ||
+	   plays1[1].UserPlayDate != 1743109338 ||
+	   plays1[2].UserPlayDate != 1743109538 {
+		t.Fatal("plays1 incorrect")
+	}
+
+	plays2, err := playdb.GetPlays(false, 4, 5)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(plays2) != 4 {
+		t.Fatal("len(plays2) != 4")
+	}
+
+	if plays2[0].UserPlayDate != 1746509521 ||
+	   plays2[1].UserPlayDate != 1746509145 ||
+	   plays2[2].UserPlayDate != 1746508978 ||
+	   plays2[3].UserPlayDate != 1746508788 {
+		t.Fatal("plays2 incorrect")
+	}
+
+	plays3, err := playdb.GetPlays(false, 5, 198)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(plays3) != 2 {
+		t.Fatal("len(plays3) != 2")
+	}
+
+	if plays3[0].UserPlayDate != 1743108219 ||
+	   plays3[1].UserPlayDate != 1743108003 {
+		t.Fatal("plays3 incorrect")
 	}
 }
