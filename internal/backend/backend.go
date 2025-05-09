@@ -37,14 +37,14 @@ func Entrypoint(c context.PlaylogCtx) {
 	http.ListenAndServe(fmt.Sprintf(":%d", ctx.ListenPort), nil)
 }
 
-func logRequest(r *http.Request) {
+func logRequest(r *http.Request, statusCode int) {
 	if ctx.Verbose >= 1 {
-		log.Printf("%s %s %s", r.RemoteAddr, r.Method, r.URL.String())
+		log.Printf(`%s "%s %s %s" %d "%s" "%s"`, r.RemoteAddr, r.Method, r.RequestURI, r.Proto, statusCode, r.Host, r.UserAgent())
 	}
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
-	logRequest(r)
-
-	fmt.Fprintln(w, "hello world")
+	w.WriteHeader(404)
+	fmt.Fprintln(w, "404 Not Found")
+	logRequest(r, 404)
 }

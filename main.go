@@ -119,6 +119,9 @@ func main() {
 func updateLoop(ctx context.PlaylogCtx) {
 	for {
 		update.Update(ctx)
+		if ctx.Verbose >= 1 {
+			log.Print("finished update")
+		}
 		time.Sleep(ctx.UpdateInterval)
 	}
 }
