@@ -32,11 +32,19 @@ func Entrypoint(c context.PlaylogCtx) {
 		log.Printf("starting backend server on port %d", ctx.ListenPort)
 	}
 
-	http.HandleFunc("/{$}", rootHandler)
+	http.HandleFunc("/", rootHandler)
 
 	http.ListenAndServe(fmt.Sprintf(":%d", ctx.ListenPort), nil)
 }
 
+func logRequest(r *http.Request) {
+	if ctx.Verbose >= 1 {
+		log.Printf("%s %s %s", r.RemoteAddr, r.Method, r.URL.String())
+	}
+}
+
 func rootHandler(w http.ResponseWriter, r *http.Request) {
+	logRequest(r)
+
 	fmt.Fprintln(w, "hello world")
 }
