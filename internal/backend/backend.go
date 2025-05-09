@@ -56,6 +56,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type playlog struct {
+	// TODO include number of pages for given count
 	Playlog []playlogEntry
 }
 
