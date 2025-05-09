@@ -1,10 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
 
-	let playlog = null;
-	let loading = true;
-	let error = null;
+	let playlog = $state(null);
+	let loading = $state(true);
+	let error = $state(null);
 
+	let selectedDate = $state(null);
 
 	onMount(async () => {
 		try {
@@ -72,6 +73,10 @@
 
 		return `${year}-${month}-${day} ${hours}:${minutes}`;
 	}
+
+	function selectDate(date) {
+		selectedDate = (date === selectedDate) ? null : date;
+	}
 </script>
 
 {#if loading}
@@ -79,13 +84,25 @@
 {:else if error}
 	<p>Error: {error}</p>
 {:else}
-	<div class="w-screen max-w-128 flex flex-col">
+
+<div class="w-screen max-w-128 flex flex-col">
 	{#each playlog.Playlog as entry}
+
+	<div class="flex flex-col">
+
 		<div class="flex flex-row p-4 space-x-4">
 			<img class="self-start" width="75" height="75" src="https://nijika.org/maimai/{entry.PlayInfo.SongId}.png" loading="lazy" alt="song jacket">
 			<div class="w-1/2">
 				<strong>{entry.SongInfo.Name}</strong><br>
-				{entry.SongInfo.Artist}
+				{entry.SongInfo.Artist}<br>
+				<button class="underline text-blue-500" onclick={() => selectDate(entry.PlayInfo.UserPlayDate)}>
+					{#if selectedDate === entry.PlayInfo.UserPlayDate}
+						Hide
+					{:else}
+						Show
+					{/if}
+					Details
+				</button>
 			</div>
 
 			<div>
@@ -108,6 +125,15 @@
 				{formatDate(entry.PlayInfo.UserPlayDate)}
 			</div>
 		</div>
-	{/each}
+
+		{#if selectedDate === entry.PlayInfo.UserPlayDate}
+		<div>
+		Hello
+		</div>
+		{/if}
+
 	</div>
+
+	{/each}
+</div>
 {/if}
