@@ -33,6 +33,7 @@ func Entrypoint(c context.PlaylogCtx) {
 	}
 
 	http.HandleFunc("/", rootHandler)
+	http.HandleFunc("/api/playlog", playlogHandler)
 
 	http.ListenAndServe(fmt.Sprintf(":%d", ctx.ListenPort), nil)
 }
@@ -44,7 +45,31 @@ func logRequest(r *http.Request, statusCode int) {
 }
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain")
 	w.WriteHeader(404)
 	fmt.Fprintln(w, "404 Not Found")
 	logRequest(r, 404)
+}
+
+
+func playlogHandler(w http.ResponseWriter, r *http.Request) {
+	defer func() {
+		if err := recover(); err != nil {
+			w.Header().Set("Content-Type", "text/plain")
+			w.WriteHeader(500)
+			fmt.Fprintln(w, err)
+			logRequest(r, 500)
+			log.Print(err)
+			return
+		}
+	}()
+
+	plays, err := ctx.Playdb.GetPlays(false, 100, 0)
+	if err != nil {
+		panic(err)
+	}
+
+	_ = plays
+
+	w.Header().Set("Content-Type", "application/json")
 }
