@@ -94,7 +94,10 @@ func main() {
 		}
 
 		if ctx.UpdateOnly {
-			update.Update(ctx)
+			err = update.Update(ctx)
+			if err != nil {
+				log.Fatal(err)
+			}
 		} else {
 			go updateLoop(ctx)
 		}
@@ -118,7 +121,11 @@ func main() {
 
 func updateLoop(ctx context.PlaylogCtx) {
 	for {
-		update.Update(ctx)
+		err := update.Update(ctx)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		if ctx.Verbose >= 1 {
 			log.Print("finished update")
 		}
