@@ -20,6 +20,7 @@ import (
 	"log"
 	"fmt"
 	"strings"
+	"strconv"
 	"encoding/json"
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
@@ -80,8 +81,6 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 	var asc bool
 	ascending := strings.ToLower(values.Get("ascending"))
 	switch (ascending) {
-	case "":
-		asc = false
 	case "true":
 		asc = true
 	case "false":
@@ -90,7 +89,17 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 		asc = false
 	}
 
-	plays, err := ctx.Playdb.GetPlays(asc, 100, 0)
+	page, err := strconv.Atoi(values.Get("page"))
+	if err != nil || page < 1 {
+		page = 1
+	}
+	count, err := strconv.Atoi(values.Get("count"))
+	if err != nil || count < 0 {
+		count = 50
+	}
+	offset := (page - 1) * count
+
+	plays, err := ctx.Playdb.GetPlays(asc, count, offset)
 	if err != nil {
 		panic(err)
 	}
