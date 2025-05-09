@@ -19,6 +19,7 @@ package backend
 import (
 	"log"
 	"fmt"
+	"strings"
 	"encoding/json"
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
@@ -74,7 +75,22 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 
-	plays, err := ctx.Playdb.GetPlays(false, 100, 0)
+	values := r.URL.Query()
+
+	var asc bool
+	ascending := strings.ToLower(values.Get("ascending"))
+	switch (ascending) {
+	case "":
+		asc = false
+	case "true":
+		asc = true
+	case "false":
+		asc = false
+	default:
+		asc = false
+	}
+
+	plays, err := ctx.Playdb.GetPlays(asc, 100, 0)
 	if err != nil {
 		panic(err)
 	}
