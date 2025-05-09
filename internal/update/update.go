@@ -126,9 +126,9 @@ type maimaiPlaylogDetail struct {
 // delaying by ctx.ApiInterval between requests.
 // It then adds them to the database.
 // ctx requires Playdb, AccessCode, ApiInterval, Verbose
-func Update(ctx *context.PlaylogCtx) error {
+func Update(ctx context.PlaylogCtx) error {
 	if ctx.Verbose >= 1 {
-		log.Print("starting update...")
+		log.Print("starting update")
 	}
 
 	playlog, err := getPlaylog(ctx.AccessCode)

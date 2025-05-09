@@ -25,6 +25,7 @@ import (
 	"github.com/yadayadajaychan/playlog/internal/update"
 	"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
+	"github.com/yadayadajaychan/playlog/internal/backend"
 	"github.com/pborman/getopt/v2"
 	"github.com/joho/godotenv"
 )
@@ -33,7 +34,7 @@ import (
 func main() {
 	godotenv.Load()
 
-	ctx := &context.PlaylogCtx{}
+	ctx := context.PlaylogCtx{}
 
 	help := getopt.BoolLong("help", 'h', "display help")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
@@ -111,19 +112,13 @@ func main() {
 			panic(err)
 		}
 
-		backendLoop(ctx)
+		backend.Entrypoint(ctx)
 	}
 }
 
-func updateLoop(ctx *context.PlaylogCtx) {
+func updateLoop(ctx context.PlaylogCtx) {
 	for {
 		update.Update(ctx)
 		time.Sleep(ctx.UpdateInterval)
-	}
-}
-
-func backendLoop(ctx *context.PlaylogCtx) {
-	for {
-		time.Sleep(time.Hour)
 	}
 }
