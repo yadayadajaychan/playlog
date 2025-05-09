@@ -19,8 +19,10 @@ package backend
 import (
 	"log"
 	"fmt"
+	"encoding/json"
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
+	"github.com/yadayadajaychan/playlog/database"
 )
 
 var ctx context.PlaylogCtx
@@ -51,6 +53,14 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	logRequest(r, 404)
 }
 
+type playlog struct {
+	Playlog []playlogEntry
+}
+
+type playlogEntry struct {
+	SongInfo database.SongInfo
+	PlayInfo database.PlayInfo
+}
 
 func playlogHandler(w http.ResponseWriter, r *http.Request) {
 	defer func() {
@@ -69,7 +79,32 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	_ = plays
+	pl := playlog{
+		Playlog: make([]playlogEntry, 0, 100),
+	}
+
+	for _, play := range plays {
+		song, err := ctx.Songdb.GetSong(play.SongId)
+		if err != nil {
+			panic(err)
+		}
+
+		entry := playlogEntry{
+			SongInfo: song,
+			PlayInfo: play,
+		}
+
+		pl.Playlog = append(pl.Playlog, entry)
+	}
+
+	j, err := json.Marshal(pl)
+	if err != nil {
+		panic(err)
+	}
 
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
+	fmt.Fprintln(w, string(j))
+	logRequest(r, 200)
+	return
 }
