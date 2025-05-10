@@ -5,11 +5,20 @@
 	let loading = $state(true);
 	let error = $state(null);
 
+	let ascending = $state(false);
+	let page = $state(1);
+	let count = $state(50);
+	$effect(() => {
+		getPlaylog(ascending, page, count);
+	});
+
 	let selectedDate = $state(null);
 
-	onMount(async () => {
+	// onMount(async () => getPlaylog(ascending, page, count));
+
+	async function getPlaylog(ascending, page, count) {
 		try {
-			const res = await fetch('/api/playlog?count=300');
+			const res = await fetch(`/api/playlog?ascending=${ascending}&page=${page}&count=${count}`);
 			if (!res.ok) throw new Error('Failed to fetch data');
 			playlog = await res.json();
 		} catch (err) {
@@ -17,7 +26,7 @@
 		} finally {
 			loading = false;
 		}
-	});
+	}
 
 	function difficultyToString(difficulty) {
 		switch (difficulty) {
@@ -85,7 +94,22 @@
 	<p>Error: {error}</p>
 {:else}
 
-<div class="w-screen max-w-128 flex flex-col">
+<div id="top" class="w-screen max-w-128 flex flex-col">
+	<div class="pt-4 pl-4 pr-4 pb-1 place-self-start">
+		<label for="page">Page:</label>
+		<input id="page" type="number" bind:value={page} min="1" max={playlog.MaxPage} />
+		/ {playlog.MaxPage}
+	</div>
+	<div class="pt-1 pl-4 pr-4 pb-1 place-self-start">
+		<label for="count">Count:</label>
+		<input id="count" type="number" bind:value={count} min="1" />
+	</div>
+	<div class="pt-1 pl-4 pr-4 pb-1 place-self-start">
+		<label for="ascending">Ascending:</label>
+		<input id="ascending" type="checkbox" bind:checked={ascending}/>
+	</div>
+
+
 	{#each playlog.Playlog as entry}
 
 	<div class="flex flex-col">
@@ -209,5 +233,7 @@
 	</div>
 
 	{/each}
+
+	<a href="#top">Back to Top</a>
 </div>
 {/if}
