@@ -97,12 +97,12 @@
 <div id="top" class="w-screen max-w-128 flex flex-col">
 	<div class="pt-4 pl-4 pr-4 pb-1 place-self-start">
 		<label for="page">Page:</label>
-		<input id="page" type="number" bind:value={page} min="1" max={playlog.MaxPage} />
+		<input class="bg-gray-200" id="page" type="number" bind:value={page} min="1" max={playlog.MaxPage} />
 		/ {playlog.MaxPage}
 	</div>
 	<div class="pt-1 pl-4 pr-4 pb-1 place-self-start">
 		<label for="count">Count:</label>
-		<input id="count" type="number" bind:value={count} min="1" />
+		<input class="bg-gray-200" id="count" type="number" bind:value={count} min="1" />
 	</div>
 	<div class="pt-1 pl-4 pr-4 pb-1 place-self-start">
 		<label for="ascending">Ascending:</label>
@@ -233,6 +233,6 @@
 
 	{/each}
 
-	<a href="#top">Back to Top</a>
+	<a class="p-4" href="#top">Back to Top</a>
 </div>
 {/if}
