@@ -203,3 +203,25 @@ func TestGetPlays(t *testing.T) {
 		t.Fatal("plays3 incorrect")
 	}
 }
+
+func TestGetCount(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	count, err := playdb.GetCount()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if count != 200 {
+		t.Error("count != 200")
+	}
+}

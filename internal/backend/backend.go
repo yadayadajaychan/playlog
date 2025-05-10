@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"strings"
 	"strconv"
+	"math"
 	"encoding/json"
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
@@ -56,7 +57,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type playlog struct {
-	// TODO include number of pages for given count
+	MaxPage int
 	Playlog []playlogEntry
 }
 
@@ -100,12 +101,19 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	offset := (page - 1) * count
 
+	numberOfEntries, err := ctx.Playdb.GetCount()
+	if err != nil {
+		panic(err)
+	}
+	maxPage := int(math.Ceil(float64(numberOfEntries) / float64(count)))
+
 	plays, err := ctx.Playdb.GetPlays(asc, count, offset)
 	if err != nil {
 		panic(err)
 	}
 
 	pl := playlog{
+		MaxPage: maxPage,
 		Playlog: make([]playlogEntry, 0, 100),
 	}
 

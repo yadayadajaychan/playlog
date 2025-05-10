@@ -313,6 +313,27 @@ func (e *PlayNotFoundError) Error() string {
 	return fmt.Sprintf("Playlog entry with date %d not found in database", e.UserPlayDate)
 }
 
+// GetCount returns the number of plays in the database
+func (playdb *PlayDB) GetCount() (int, error) {
+	var count int
+
+	rows, err := playdb.db.Query(`SELECT COUNT(*) FROM plays`)
+	if err != nil {
+		return count, err
+	}
+
+	if rows.Next() {
+		err := rows.Scan(&count)
+		if err != nil {
+			return count, err
+		}
+	} else {
+		return count, errors.New("failed to get count of plays")
+	}
+
+	return count, nil
+}
+
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
 	plays := make([]PlayInfo, 0, 1)
 
