@@ -9,7 +9,7 @@
 
 	onMount(async () => {
 		try {
-			const res = await fetch('/api/playlog?count=100');
+			const res = await fetch('/api/playlog?count=300');
 			if (!res.ok) throw new Error('Failed to fetch data');
 			playlog = await res.json();
 		} catch (err) {
@@ -106,90 +106,103 @@
 			</div>
 
 			<div>
-				{difficultyToString(entry.PlayInfo.Difficulty)}
+				<div class="whitespace-nowrap">
+					{difficultyToString(entry.PlayInfo.Difficulty)}
 
-				{#each entry.SongInfo.Charts as chart}
-					{#if chart.Difficulty === entry.PlayInfo.Difficulty}
-						{chart.InternalLevel / 10}
-					{/if}
-				{/each}
-				<br>
+					{#each entry.SongInfo.Charts as chart}
+						{#if chart.Difficulty === entry.PlayInfo.Difficulty}
+							{chart.InternalLevel / 10}
+						{/if}
+					{/each}
+				</div>
 
-				<strong>
-				{entry.PlayInfo.Score/10000}%
+				<div class="whitespace-nowrap">
+					<strong>
+					{entry.PlayInfo.Score/10000}%
 
-				{scoreToRank(entry.PlayInfo.Score)}
-				</strong>
-				<br>
+					{scoreToRank(entry.PlayInfo.Score)}
+					</strong>
+				</div>
 
 				{formatDate(entry.PlayInfo.UserPlayDate)}
 			</div>
 		</div>
 
 		{#if selectedDate === entry.PlayInfo.UserPlayDate}
-		<div>
-			<table class="table-auto text-right">
+		<div class="flex flex-row p-4 space-x-4">
+			<table class="table-auto text-right text-sm">
 			<thead>
 				<tr>
-					<th class="p-2 border border-gray-400"></th>
-					<th class="p-2 border border-gray-400">Critical<br>Perfect</th>
-					<th class="p-2 border border-gray-400">Perfect</th>
-					<th class="p-2 border border-gray-400">Great</th>
-					<th class="p-2 border border-gray-400">Good</th>
-					<th class="p-2 border border-gray-400">Miss</th>
+					<th class="p-1 border border-gray-400"></th>
+					<th class="p-1 border border-gray-400">Critical<br>Perfect</th>
+					<th class="p-1 border border-gray-400">Perfect</th>
+					<th class="p-1 border border-gray-400">Great</th>
+					<th class="p-1 border border-gray-400">Good</th>
+					<th class="p-1 border border-gray-400">Miss</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th class="p-2 border border-gray-400">Tap</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapMiss}</td>
+					<th class="p-1 border border-gray-400">Tap</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TapCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TapPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TapGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TapGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TapMiss}</td>
 				</tr>
 				<tr>
-					<th class="p-2 border border-gray-400">Hold</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldMiss}</td>
+					<th class="p-1 border border-gray-400">Hold</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.HoldCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.HoldPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.HoldGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.HoldGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.HoldMiss}</td>
 				</tr>
 				<tr>
-					<th class="p-2 border border-gray-400">Slide</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlidePerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideMiss}</td>
+					<th class="p-1 border border-gray-400">Slide</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.SlideCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.SlidePerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.SlideGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.SlideGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.SlideMiss}</td>
 				</tr>
 				<tr>
-					<th class="p-2 border border-gray-400">Touch</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchMiss}</td>
+					<th class="p-1 border border-gray-400">Touch</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TouchCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TouchPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TouchGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TouchGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TouchMiss}</td>
 				</tr>
 				<tr>
-					<th class="p-2 border border-gray-400">Break</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakMiss}</td>
+					<th class="p-1 border border-gray-400">Break</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.BreakCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.BreakPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.BreakGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.BreakGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.BreakMiss}</td>
 				</tr>
 				<tr>
-					<th class="p-2 border border-gray-400">Total</th>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalCriticalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalPerfect}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalGreat}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalGood}</td>
-					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalMiss}</td>
+					<th class="p-1 border border-gray-400">Total</th>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TotalCriticalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TotalPerfect}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TotalGreat}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TotalGood}</td>
+					<td class="p-1 border border-gray-400">{entry.PlayInfo.TotalMiss}</td>
 				</tr>
 			</tbody>
 			</table>
+
+			<div>
+				<strong>Fast:</strong> {entry.PlayInfo.FastCount}<br>
+				<strong>Late:</strong> {entry.PlayInfo.LateCount}<br>
+				<strong>Max Combo:</strong> {entry.PlayInfo.MaxCombo}/{entry.PlayInfo.TotalCombo}<br>
+				<strong>Rating:</strong> {entry.PlayInfo.AfterRating} (+{entry.PlayInfo.AfterRating-entry.PlayInfo.BeforeRating})<br>
+				<strong>Played with:</strong>
+				{#each entry.PlayInfo.MatchingUsers as user}
+					<div class="whitespace-nowrap">{user}</div>
+				{/each}
+			</div>
 		</div>
 		{/if}
 
