@@ -128,7 +128,68 @@
 
 		{#if selectedDate === entry.PlayInfo.UserPlayDate}
 		<div>
-		Hello
+			<table class="table-auto text-right">
+			<thead>
+				<tr>
+					<th class="p-2 border border-gray-400"></th>
+					<th class="p-2 border border-gray-400">Critical<br>Perfect</th>
+					<th class="p-2 border border-gray-400">Perfect</th>
+					<th class="p-2 border border-gray-400">Great</th>
+					<th class="p-2 border border-gray-400">Good</th>
+					<th class="p-2 border border-gray-400">Miss</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="p-2 border border-gray-400">Tap</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TapMiss}</td>
+				</tr>
+				<tr>
+					<th class="p-2 border border-gray-400">Hold</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.HoldMiss}</td>
+				</tr>
+				<tr>
+					<th class="p-2 border border-gray-400">Slide</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlidePerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.SlideMiss}</td>
+				</tr>
+				<tr>
+					<th class="p-2 border border-gray-400">Touch</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TouchMiss}</td>
+				</tr>
+				<tr>
+					<th class="p-2 border border-gray-400">Break</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.BreakMiss}</td>
+				</tr>
+				<tr>
+					<th class="p-2 border border-gray-400">Total</th>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalCriticalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalPerfect}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalGreat}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalGood}</td>
+					<td class="p-2 border border-gray-400">{entry.PlayInfo.TotalMiss}</td>
+				</tr>
+			</tbody>
+			</table>
 		</div>
 		{/if}
 
