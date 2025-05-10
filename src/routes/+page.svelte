@@ -114,7 +114,7 @@
 	<div class="flex flex-col">
 
 		<div class="flex flex-row p-4 space-x-4">
-			<img class="self-start" width="75" height="75" src="https://nijika.org/maimai/{entry.PlayInfo.SongId}.png" loading="lazy" alt="song jacket">
+			<img class="self-start" width="75" height="75" src="/jacket/{entry.PlayInfo.SongId}.png" loading="lazy" alt="song jacket">
 			<div class="w-1/2">
 				<strong>{entry.SongInfo.Name}</strong><br>
 				{entry.SongInfo.Artist}<br>
