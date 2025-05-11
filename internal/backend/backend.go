@@ -40,7 +40,8 @@ func Entrypoint(c context.PlaylogCtx) {
 	http.HandleFunc("/", rootHandler)
 	http.HandleFunc("/api/playlog", playlogHandler)
 
-	http.ListenAndServe(fmt.Sprintf(":%d", ctx.ListenPort), nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", ctx.ListenPort), nil)
+	log.Print(err)
 }
 
 func logRequest(r *http.Request, statusCode int) {
