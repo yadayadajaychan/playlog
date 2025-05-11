@@ -334,6 +334,30 @@ func (playdb *PlayDB) GetCount() (int, error) {
 	return count, nil
 }
 
+func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, date int64) (int, error) {
+	var score int
+
+	rows, err := playdb.db.Query(`
+		SELECT score FROM plays WHERE song_id=? AND difficulty=? AND user_play_date<? ORDER BY score DESC LIMIT 1`,
+		songId, difficulty, date)
+	if err != nil {
+		return score, err
+	}
+
+	if rows.Next() {
+		err := rows.Scan(&score)
+		if err != nil {
+			return score, err
+		}
+	} else if err = rows.Err(); err != nil {
+		return score, err
+	} else {
+		score = 0
+	}
+
+	return score, nil
+}
+
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
 	plays := make([]PlayInfo, 0, 1)
 

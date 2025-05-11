@@ -225,3 +225,88 @@ func TestGetCount(t *testing.T) {
 		t.Error("count != 200")
 	}
 }
+
+func TestGetBestScoreBeforeDate(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// Aibao Dance Hall
+	score1, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1744485640)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score1 != 0 {
+		t.Error("score1 != 0")
+	}
+
+	// Aibao Dance Hall
+	score2, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1745707467)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score2 != 971931 {
+		t.Error("score2 != 971931")
+	}
+
+	// Aibao Dance Hall
+	score3, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1746506710)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score3 != 971931 {
+		t.Error("score3 != 971931")
+	}
+
+	// Override
+	score4, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1743569808)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score4 != 0 {
+		t.Error("score4 != 0")
+	}
+
+	// Override
+	score5, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744401821)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score5 != 981938 {
+		t.Error("score5 != 981938")
+	}
+
+	// Override
+	score6, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744922642)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score6 != 985903 {
+		t.Error("score6 != 985903")
+	}
+
+	// Override
+	score7, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701086)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score7 != 985903 {
+		t.Error("score7 != 985903")
+	}
+
+	// Override
+	score8, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701087)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if score8 != 988921 {
+		t.Error("score8 != 988921")
+	}
+}
