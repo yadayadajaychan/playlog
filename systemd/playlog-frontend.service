@@ -1,0 +1,15 @@
+[Unit]
+Description=playlog frontend
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=playlog
+Type=simple
+WorkingDirectory=/var/lib/playlog/playlog
+Environment=PORT=3001
+ExecStart=/usr/bin/node build
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
