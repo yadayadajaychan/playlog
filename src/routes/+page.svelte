@@ -233,6 +233,7 @@
 				<strong>Max Combo:</strong> {entry.PlayInfo.MaxCombo}/{entry.PlayInfo.TotalCombo}<br>
 				<strong>Rating:</strong> {entry.PlayInfo.AfterRating} (+{entry.PlayInfo.AfterRating-entry.PlayInfo.BeforeRating})<br>
 				<strong>Prev. Best:</strong> {entry.PreviousBestScore/10000}% ({scoreDiff(entry.PreviousBestScore, entry.PlayInfo.Score)}%)<br>
+				<strong>Track:</strong> {entry.PlayInfo.Track}<br>
 				<strong>Played with:</strong>
 				{#each entry.PlayInfo.MatchingUsers as user}
 					<div class="whitespace-nowrap">{user}</div>
