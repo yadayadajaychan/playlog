@@ -159,7 +159,7 @@
 		</div>
 
 		{#if selectedDate === entry.PlayInfo.UserPlayDate}
-		<div class="flex flex-row p-4 space-x-4">
+		<div class="flex flex-col p-4 space-y-2">
 			<table class="table-auto text-right text-sm">
 			<thead>
 				<tr>
