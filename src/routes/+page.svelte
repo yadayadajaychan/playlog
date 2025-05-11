@@ -236,7 +236,7 @@
 				{#each entry.PlayInfo.MatchingUsers as user}
 					<div class="whitespace-nowrap">{user}</div>
 				{/each}
-				<strong>Best Score:</strong> {entry.PreviousBestScore/10000}% ({scoreDiff(entry.PreviousBestScore, entry.PlayInfo.Score)}%)
+				<strong>Prev. Best:</strong> {entry.PreviousBestScore/10000}% ({scoreDiff(entry.PreviousBestScore, entry.PlayInfo.Score)}%)
 			</div>
 		</div>
 		{/if}
