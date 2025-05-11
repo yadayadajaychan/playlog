@@ -86,6 +86,13 @@
 	function selectDate(date) {
 		selectedDate = (date === selectedDate) ? null : date;
 	}
+
+	function scoreDiff(score1, score2) {
+		if (score2 >= score1)
+			return "+" + ((score2-score1)/10000);
+		else
+			return "-" + ((score1-score2)/10000);
+	}
 </script>
 
 {#if loading}
@@ -225,6 +232,7 @@
 				{#each entry.PlayInfo.MatchingUsers as user}
 					<div class="whitespace-nowrap">{user}</div>
 				{/each}
+				<strong>Best Score:</strong> {entry.PreviousBestScore/10000}% ({scoreDiff(entry.PreviousBestScore, entry.PlayInfo.Score)}%)
 			</div>
 		</div>
 		{/if}
