@@ -334,6 +334,7 @@ func (playdb *PlayDB) GetCount() (int, error) {
 	return count, nil
 }
 
+// GetBestScoreBeforeDate returns the best score for a given song and difficulty before the specified date
 func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, date int64) (int, error) {
 	var score int
 

@@ -64,6 +64,7 @@ type playlog struct {
 type playlogEntry struct {
 	SongInfo database.SongInfo
 	PlayInfo database.PlayInfo
+	PreviousBestScore int
 }
 
 func playlogHandler(w http.ResponseWriter, r *http.Request) {
@@ -123,9 +124,15 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
+		previousBestScore, err := ctx.Playdb.GetBestScoreBeforeDate(play.SongId, play.Difficulty, play.UserPlayDate)
+		if err != nil {
+			panic(err)
+		}
+
 		entry := playlogEntry{
 			SongInfo: song,
 			PlayInfo: play,
+			PreviousBestScore: previousBestScore,
 		}
 
 		pl.Playlog = append(pl.Playlog, entry)
