@@ -7,7 +7,7 @@ After=network-online.target
 User=playlog
 Type=simple
 WorkingDirectory=/var/lib/playlog/playlog
-ExecStart=./playlog -vl3002
+ExecStart=/var/lib/playlog/playlog/playlog -vl3002
 Restart=on-failure
 
 [Install]
