@@ -54,14 +54,92 @@ ChartInfo
 | NotesDesigner | string                  |
 | MaxNotes      | int                     |
 
-Difficulty
-----------
+Difficulty (int)
+----------------
 
 | Value | Description |
 |-------|-------------|
-|     0 | basic       |
-|     1 | advanced    |
-|     2 | expert      |
-|     3 | master      |
-|     4 | remaster    |
-|     5 | utage       |
+|     0 | Basic       |
+|     1 | Advanced    |
+|     2 | Expert      |
+|     3 | Master      |
+|     4 | Remaster    |
+|     5 | Utage       |
+
+PlayInfo
+--------
+
+|        Field         |          Type           |
+|----------------------|-------------------------|
+| UserPlayDate         | int64 // Unix timestamp |
+| SongId               | int                     |
+| Difficulty           | Difficulty              |
+| Score                | int                     |
+| DxScore              | int                     |
+| ComboStatus          | ComboStatus             |
+| SyncStatus           | SyncStatus              |
+| IsClear              | bool                    |
+| IsNewRecord          | bool                    |
+| IsDxNewRecord        | bool                    |
+| Track                | int                     |
+| MatchingUsers        | []string                |
+| MaxCombo             | int                     |
+| TotalCombo           | int                     |
+| MaxSync              | int                     |
+| TotalSync            | int                     |
+| FastCount            | int                     |
+| LateCount            | int                     |
+| BeforeRating         | int                     |
+| AfterRating          | int                     |
+| TapCriticalPerfect   | int                     |
+| TapPerfect           | int                     |
+| TapGreat             | int                     |
+| TapGood              | int                     |
+| TapMiss              | int                     |
+| HoldCriticalPerfect  | int                     |
+| HoldPerfect          | int                     |
+| HoldGreat            | int                     |
+| HoldGood             | int                     |
+| HoldMiss             | int                     |
+| SlideCriticalPerfect | int                     |
+| SlidePerfect         | int                     |
+| SlideGreat           | int                     |
+| SlideGood            | int                     |
+| SlideMiss            | int                     |
+| TouchCriticalPerfect | int                     |
+| TouchPerfect         | int                     |
+| TouchGreat           | int                     |
+| TouchGood            | int                     |
+| TouchMiss            | int                     |
+| BreakCriticalPerfect | int                     |
+| BreakPerfect         | int                     |
+| BreakGreat           | int                     |
+| BreakGood            | int                     |
+| BreakMiss            | int                     |
+| TotalCriticalPerfect | int                     |
+| TotalPerfect         | int                     |
+| TotalGreat           | int                     |
+| TotalGood            | int                     |
+| TotalMiss            | int                     |
+
+ComboStatus (int)
+-----------------
+
+| Value |  Description   |
+|-------|----------------|
+|     0 | NoCombo        |
+|     1 | FullCombo      |
+|     2 | FullComboPlus  |
+|     3 | AllPerfect     |
+|     4 | AllPerfectPlus |
+
+SyncStatus (int)
+----------------
+
+| Value |  Description   |
+|-------|----------------|
+|     0 | NoSync         |
+|     1 | FullSync       |
+|     2 | FullSyncPlus   |
+|     3 | FullSyncDx     |
+|     4 | FullSyncDxPlus |
