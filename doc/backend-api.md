@@ -25,3 +25,43 @@
 | SongInfo          | SongInfo |
 | PlayInfo          | PlayInfo |
 | PreviousBestScore | int      |
+
+# Types
+
+SongInfo
+--------
+
+|  Field   |    Type     |
+|----------|-------------|
+| SongId   | int         |
+| Name     | string      |
+| Artist   | string      |
+| Type     | string      |
+| Bpm      | int         |
+| Category | string      |
+| Version  | string      |
+| Sort     | string      |
+| Charts   | []ChartInfo |
+
+ChartInfo
+---------
+
+|     Field     |          Type           |
+|---------------|-------------------------|
+| Difficulty    | Difficulty              |
+| Level         | int                     |
+| InternalLevel | int // multiplied by 10 |
+| NotesDesigner | string                  |
+| MaxNotes      | int                     |
+
+Difficulty
+----------
+
+| Value | Description |
+|-------|-------------|
+|     0 | basic       |
+|     1 | advanced    |
+|     2 | expert      |
+|     3 | master      |
+|     4 | remaster    |
+|     5 | utage       |
