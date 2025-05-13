@@ -1,0 +1,28 @@
+@startuml
+
+cloud solips.app
+[update]
+solips.app --> update : " JSON"
+
+package Database {
+	[PlayDB]
+	[SongDB]
+}
+update --> PlayDB
+
+database SQL {
+	folder SQLite {
+		[plays.db]
+		[songs.db]
+	}
+}
+Database - SQL
+
+[backend]
+SongDB --> backend
+PlayDB --> backend
+
+() HTTP
+backend --> HTTP : " JSON"
+
+@enduml
