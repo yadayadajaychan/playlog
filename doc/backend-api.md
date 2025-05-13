@@ -143,3 +143,12 @@ SyncStatus (int)
 |     2 | FullSyncPlus   |
 |     3 | FullSyncDx     |
 |     4 | FullSyncDxPlus |
+
+# Errors
+
+| Status Code | Description  |
+|-------------|--------------|
+|         200 | OK           |
+|         400 | Bad Request  |
+|         404 | Not Found    |
+|         500 | Server Error |
