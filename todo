@@ -1,2 +1,2 @@
-document backend api
 song not found error
+frontend: check status code after fetch
