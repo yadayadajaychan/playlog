@@ -263,6 +263,7 @@ func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 	if err != nil {
 		return PlayInfo{}, err
 	}
+	defer rows.Close()
 
 	plays, err := rowsToPlayInfos(rows)
 	if err != nil {
@@ -296,6 +297,7 @@ func (playdb *PlayDB) GetPlays(ascending bool, limit, offset int) ([]PlayInfo, e
 	if err != nil {
 		return nil, err
 	}
+	defer rows.Close()
 
 	plays, err := rowsToPlayInfos(rows)
 	if err != nil {
@@ -321,6 +323,7 @@ func (playdb *PlayDB) GetCount() (int, error) {
 	if err != nil {
 		return count, err
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		err := rows.Scan(&count)
@@ -344,6 +347,7 @@ func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, 
 	if err != nil {
 		return score, err
 	}
+	defer rows.Close()
 
 	if rows.Next() {
 		err := rows.Scan(&score)
