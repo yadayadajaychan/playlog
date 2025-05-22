@@ -132,6 +132,7 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 		return song, errors.New("no song found")
 	}
 	// TODO: custom error type
+	rows.Close()
 
 	rows, err = songdb.db.Query(`
 	SELECT difficulty, level, internal_level,
@@ -150,6 +151,7 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 
 		song.Charts = append(song.Charts, chart)
 	}
+	rows.Close()
 
 	if song.Charts == nil {
 		return song, errors.New("no chart found")

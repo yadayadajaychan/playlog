@@ -25,6 +25,8 @@ import (
 
 type PlayDB struct {
 	db *sql.DB
+	ascStmt  *sql.Stmt // used to query playlog entries by ascending order
+	descStmt *sql.Stmt // used to query playlog entries by descending order
 }
 
 func NewPlayDB(db *sql.DB) (*PlayDB, error) {
@@ -106,7 +108,26 @@ func (playdb *PlayDB) initDB() error {
 		return err
 	}
 
-	return tx.Commit()
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+
+	playdb.ascStmt, err = playdb.db.Prepare(
+		`SELECT * FROM plays ORDER BY user_play_date ASC
+		LIMIT ? OFFSET ?`)
+	if err != nil {
+		return err
+	}
+
+	playdb.descStmt, err = playdb.db.Prepare(
+		`SELECT * FROM plays ORDER BY user_play_date DESC
+		LIMIT ? OFFSET ?`)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func validatePlay(play PlayInfo) error {
@@ -282,18 +303,14 @@ func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 // limit: the maximum length of the slice
 // offset: offset in the database
 func (playdb *PlayDB) GetPlays(ascending bool, limit, offset int) ([]PlayInfo, error) {
-	var asc string
+	var stmt *sql.Stmt
 	if ascending {
-		asc = "ASC"
+		stmt = playdb.ascStmt
 	} else {
-		asc = "DESC"
+		stmt = playdb.descStmt
 	}
 
-	query := fmt.Sprintf(`
-	SELECT * FROM plays ORDER BY user_play_date %s
-	LIMIT ? OFFSET ?`, asc)
-
-	rows, err := playdb.db.Query(query, limit, offset)
+	rows, err := stmt.Query(limit, offset)
 	if err != nil {
 		return nil, err
 	}
