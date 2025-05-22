@@ -19,6 +19,7 @@ package database
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 )
 
 type SongDB struct {
@@ -129,9 +130,8 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 			return song, err
 		}
 	} else {
-		return song, errors.New("no song found")
+		return song, &SongNotFoundError{SongId: songId}
 	}
-	// TODO: custom error type
 	rows.Close()
 
 	rows, err = songdb.db.Query(`
@@ -158,4 +158,12 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	}
 
 	return song, nil
+}
+
+type SongNotFoundError struct {
+	SongId	int
+}
+
+func (e *SongNotFoundError) Error() string {
+	return fmt.Sprintf("Song with id %d not found in database", e.SongId)
 }

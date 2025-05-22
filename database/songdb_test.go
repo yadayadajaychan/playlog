@@ -91,8 +91,10 @@ func TestAddAndGetSong(t *testing.T) {
 	}
 
 	_, err = songdb.GetSong(2)
-	if err != nil {
-		t.Log("correctly returned non-nil error:", err)
+	if _, ok := err.(*database.SongNotFoundError); ok {
+		t.Log("correctly returned SongNotFoundError:", err)
+	} else if err != nil {
+		t.Log("returned non-nil error, but not SongNotFoundError:", err)
 	} else {
 		t.Error("expected non-nil error for non-existant songId")
 	}
