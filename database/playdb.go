@@ -381,7 +381,7 @@ func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, 
 }
 
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
-	plays := make([]PlayInfo, 0, 1)
+	plays := make([]PlayInfo, 0, 50)
 
 	for rows.Next() {
 		var matchingUsersJSON []byte
