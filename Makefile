@@ -17,7 +17,3 @@ clean:
 .PHONY: test
 test:
 	go test -cover -count=1 ./...
-
-.PHONY: sync
-sync: all
-	rsync -av --delete-after playlog build playlog@blackbox:playlog
