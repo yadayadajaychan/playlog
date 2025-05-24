@@ -91,5 +91,5 @@ See [doc/backend-api.md](doc/backend-api.md) for details.
 The play database file SHALL remain compatible with future versions of this software.
 Future versions of the play database MAY be compatible with older versions of this software.
 
-The backend HTTP API, the Go API, and the command line interface
+The backend HTTP API, the Go API, and the backend command line interface
 SHALL be backwards compatible until the next major release.
