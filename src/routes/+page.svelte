@@ -101,7 +101,7 @@
 	<p>Error: {error}</p>
 {:else}
 
-<div id="top" class="w-screen max-w-128 flex flex-col">
+<div class="w-screen max-w-128 flex flex-col">
 	<div class="pt-4 pl-4 pr-4 pb-1 place-self-start">
 		<label for="page">Page:</label>
 		<input class="bg-gray-200" id="page" type="number" bind:value={page} min="1" max={playlog.MaxPage} />

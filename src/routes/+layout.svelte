@@ -4,7 +4,7 @@
 	let { children } = $props();
 </script>
 
-<nav>
+<nav id="top">
 <ul class="pt-4 pl-4 pr-4 space-x-2 flex flex-row text-blue-500 underline">
 	<li>
 		<a href="/">Playlog</a>
