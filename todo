@@ -1,3 +1,8 @@
-frontend: check status code after fetch
+frontend: check status code after fetch and display error
 backend: create unit tests for endpoints
 update: verify songId
+
+v1.1
+----
+- store previous best score in playdb
+- get song history
