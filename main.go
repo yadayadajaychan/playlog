@@ -19,6 +19,7 @@ import (
 	"time"
 	"os"
 	"log"
+	"fmt"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 
@@ -30,6 +31,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var programVersion = "0.0.0" // default version
 
 func main() {
 	godotenv.Load()
@@ -37,6 +39,7 @@ func main() {
 	ctx := context.PlaylogCtx{}
 
 	help := getopt.BoolLong("help", 'h', "display help")
+	version := getopt.BoolLong("version", 'V', "display version")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
 	playdbFilename := getopt.StringLong("playdb", 'p', "plays.db", "filename of play db")
 
@@ -65,6 +68,9 @@ func main() {
 
 	if *help {
 		getopt.Usage()
+		os.Exit(0)
+	} else if *version {
+		printVersion()
 		os.Exit(0)
 	}
 
@@ -131,4 +137,13 @@ func updateLoop(ctx context.PlaylogCtx) {
 		}
 		time.Sleep(ctx.UpdateInterval)
 	}
+}
+
+func printVersion() {
+	fmt.Printf("Playlog version %s\n", programVersion)
+	fmt.Println(`
+Copyright (C) 2025 Ethan Cheng <ethan@nijika.org>
+License: GNU AGPLv3+ <http://gnu.org/licenses/agpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.`)
 }
