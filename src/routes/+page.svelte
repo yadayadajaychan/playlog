@@ -242,6 +242,6 @@
 
 	{/each}
 
-	<a class="p-4" href="#top">Back to Top</a>
+	<a class="pl-4 pr-4 pb-4 pt-2 text-blue-500 underline" href="#top">Back to Top</a>
 </div>
 {/if}
