@@ -310,3 +310,220 @@ func TestGetBestScoreBeforeDate(t *testing.T) {
 		t.Error("score8 != 988921")
 	}
 }
+
+func TestAddInvalidPlays(t *testing.T) {
+	tmpFile, err := os.CreateTemp("", "playdb-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	db, err := sql.Open("sqlite3", tmpFile.Name())
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	play1 := database.PlayInfo{
+		UserPlayDate	: 1743108003,
+		SongId		: 11441,
+		Difficulty	: database.Master,
+
+		Score		: 971017,
+		DxScore		: 1841,
+		ComboStatus	: database.NoCombo,
+		SyncStatus	: database.NoSync,
+		IsClear		: true,
+		IsNewRecord	: true,
+		IsDxNewRecord	: true,
+		Track		: 3,
+		MatchingUsers	: []string{"ＳＵＰＡＩＤＯＬ"},
+
+		MaxCombo	: 385,
+		TotalCombo	: 783,
+		MaxSync		: 559,
+		TotalSync	: 1566,
+
+		FastCount	: 53,
+		LateCount	: 66,
+		BeforeRating	: 13085,
+		AfterRating	: 13085,
+
+		TapCriticalPerfect	: 222,
+	        TapPerfect		: 239,
+		TapGreat		: 67,
+		TapGood			: 8,
+		TapMiss			: 3,
+
+		HoldCriticalPerfect	: 44,
+	        HoldPerfect		: 27,
+		HoldGreat		: 6,
+		HoldGood		: 1,
+		HoldMiss		: 1,
+
+		SlideCriticalPerfect	: 93,
+	        SlidePerfect		: 0,
+		SlideGreat		: 3,
+		SlideGood		: 3,
+		SlideMiss		: 0,
+
+		TouchCriticalPerfect	: 19,
+	        TouchPerfect		: 0,
+		TouchGreat		: 0,
+		TouchGood		: 0,
+		TouchMiss		: 1,
+
+		BreakCriticalPerfect	: 15,
+	        BreakPerfect		: 24,
+		BreakGreat		: 6,
+		BreakGood		: 1,
+		BreakMiss		: 0,
+
+		TotalCriticalPerfect	: 393,
+	        TotalPerfect		: 290,
+		TotalGreat		: 82,
+		TotalGood		: 13,
+		TotalMiss		: 5,
+	}
+
+	err = playdb.AddPlay(play1)
+	if err != nil {
+		t.Error("non-nil error for play1")
+	}
+
+	play2 := play1
+	play2.TotalCriticalPerfect += 1
+	err = playdb.AddPlay(play2)
+	if err == nil {
+		t.Error("expected non-nil error for play2")
+	} else {
+		t.Log("edited crit. perfects:", err)
+	}
+
+	play3 := play1
+	play3.TotalPerfect += 1
+	err = playdb.AddPlay(play3)
+	if err == nil {
+		t.Error("expected non-nil error for play3")
+	} else {
+		t.Log("edited perfects:", err)
+	}
+
+	play4 := play1
+	play4.TotalGreat += 1
+	err = playdb.AddPlay(play4)
+	if err == nil {
+		t.Error("expected non-nil error for play4")
+	} else {
+		t.Log("edited greats:", err)
+	}
+
+	play5 := play1
+	play5.TotalGood += 1
+	err = playdb.AddPlay(play5)
+	if err == nil {
+		t.Error("expected non-nil error for play5")
+	} else {
+		t.Log("edited goods:", err)
+	}
+
+	play6 := play1
+	play6.TotalMiss += 1
+	err = playdb.AddPlay(play6)
+	if err == nil {
+		t.Error("expected non-nil error for play6")
+	} else {
+		t.Log("edited misses:", err)
+	}
+}
+
+func TestAddPlayWithNoDetailedJudgement(t *testing.T) {
+	tmpFile, err := os.CreateTemp("", "playdb-")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	db, err := sql.Open("sqlite3", tmpFile.Name())
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	play1 := database.PlayInfo{
+		UserPlayDate	: 1743108003,
+		SongId		: 11441,
+		Difficulty	: database.Master,
+
+		Score		: 971017,
+		DxScore		: 1841,
+		ComboStatus	: database.NoCombo,
+		SyncStatus	: database.NoSync,
+		IsClear		: true,
+		IsNewRecord	: true,
+		IsDxNewRecord	: true,
+		Track		: 3,
+		MatchingUsers	: []string{"ＳＵＰＡＩＤＯＬ"},
+
+		MaxCombo	: 385,
+		TotalCombo	: 783,
+		MaxSync		: 559,
+		TotalSync	: 1566,
+
+		FastCount	: 53,
+		LateCount	: 66,
+		BeforeRating	: 13085,
+		AfterRating	: 13085,
+
+		TapCriticalPerfect	: 0,
+	        TapPerfect		: 0,
+		TapGreat		: 0,
+		TapGood			: 0,
+		TapMiss			: 0,
+
+		HoldCriticalPerfect	: 0,
+	        HoldPerfect		: 0,
+		HoldGreat		: 0,
+		HoldGood		: 0,
+		HoldMiss		: 0,
+
+		SlideCriticalPerfect	: 0,
+	        SlidePerfect		: 0,
+		SlideGreat		: 0,
+		SlideGood		: 0,
+		SlideMiss		: 0,
+
+		TouchCriticalPerfect	: 0,
+	        TouchPerfect		: 0,
+		TouchGreat		: 0,
+		TouchGood		: 0,
+		TouchMiss		: 0,
+
+		BreakCriticalPerfect	: 0,
+	        BreakPerfect		: 0,
+		BreakGreat		: 0,
+		BreakGood		: 0,
+		BreakMiss		: 0,
+
+		TotalCriticalPerfect	: 393,
+	        TotalPerfect		: 290,
+		TotalGreat		: 82,
+		TotalGood		: 13,
+		TotalMiss		: 5,
+	}
+
+	err = playdb.AddPlay(play1)
+	if err != nil {
+		t.Error("non-nil error for play1")
+	}
+}

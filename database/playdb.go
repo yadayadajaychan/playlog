@@ -132,34 +132,40 @@ func (playdb *PlayDB) initDB() error {
 
 func validatePlay(play PlayInfo) error {
 	// check note counts add up to total
-	if play.TapCriticalPerfect + play.HoldCriticalPerfect +
-	   play.SlideCriticalPerfect + play.TouchCriticalPerfect +
-	   play.BreakCriticalPerfect != play.TotalCriticalPerfect {
-		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Critical Perfects does not add up", play.UserPlayDate))
+
+	totalCriticalPerfect := play.TapCriticalPerfect + play.HoldCriticalPerfect +
+				play.SlideCriticalPerfect + play.TouchCriticalPerfect +
+				play.BreakCriticalPerfect
+	if totalCriticalPerfect != play.TotalCriticalPerfect && totalCriticalPerfect != 0 {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: no. of Critical Perfects does not add up", play.UserPlayDate))
 	}
 
-	if play.TapPerfect + play.HoldPerfect +
-	   play.SlidePerfect + play.TouchPerfect +
-	   play.BreakPerfect != play.TotalPerfect {
-		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Perfects does not add up", play.UserPlayDate))
+	totalPerfect := play.TapPerfect + play.HoldPerfect +
+			play.SlidePerfect + play.TouchPerfect +
+			play.BreakPerfect
+	if totalPerfect != play.TotalPerfect && totalPerfect != 0 {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: no. of Perfects does not add up", play.UserPlayDate))
 	}
 
-	if play.TapGreat + play.HoldGreat +
-	   play.SlideGreat + play.TouchGreat +
-	   play.BreakGreat != play.TotalGreat {
-		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Greats does not add up", play.UserPlayDate))
+	totalGreat := play.TapGreat + play.HoldGreat +
+			play.SlideGreat + play.TouchGreat +
+			play.BreakGreat
+	if totalGreat != play.TotalGreat && totalGreat != 0 {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: no. of Greats does not add up", play.UserPlayDate))
 	}
 
-	if play.TapGood + play.HoldGood +
-	   play.SlideGood + play.TouchGood +
-	   play.BreakGood != play.TotalGood {
-		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Goods does not add up", play.UserPlayDate))
+	totalGood := play.TapGood + play.HoldGood +
+			play.SlideGood + play.TouchGood +
+			play.BreakGood
+	if totalGood != play.TotalGood && totalGood != 0 {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: no. of Goods does not add up", play.UserPlayDate))
 	}
 
-	if play.TapMiss + play.HoldMiss +
-	   play.SlideMiss + play.TouchMiss +
-	   play.BreakMiss != play.TotalMiss {
-		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: # of Misses does not add up", play.UserPlayDate))
+	totalMiss := play.TapMiss + play.HoldMiss +
+			play.SlideMiss + play.TouchMiss +
+			play.BreakMiss
+	if totalMiss != play.TotalMiss && totalMiss != 0 {
+		   return errors.New(fmt.Sprintf("error validating PlayInfo %d: no. of Misses does not add up", play.UserPlayDate))
 	}
 
 	// TODO: more validation on combo status, score, etc.
