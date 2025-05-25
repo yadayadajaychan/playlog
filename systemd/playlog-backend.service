@@ -9,6 +9,7 @@ Type=simple
 WorkingDirectory=/var/lib/playlog/playlog
 ExecStart=/var/lib/playlog/playlog/playlog -vl3002
 Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
