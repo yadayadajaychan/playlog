@@ -4,5 +4,6 @@ update: verify songId
 
 v1.1
 ----
+- add kamai as data source
 - store previous best score in playdb
 - get song history
