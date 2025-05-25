@@ -125,7 +125,7 @@ type maimaiPlaylogDetail struct {
 // and makes an api request per new song that's not in the database,
 // delaying by ctx.ApiInterval between requests.
 // It then adds them to the database.
-// ctx requires Playdb, AccessCode, ApiInterval, Verbose
+// ctx requires Playdb, Songdb, AccessCode, ApiInterval, Verbose
 func Update(ctx context.PlaylogCtx) error {
 	if ctx.Verbose >= 1 {
 		log.Print("starting update")

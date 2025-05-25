@@ -81,7 +81,7 @@ func main() {
 		log.Fatal("api interval must be greater than 0")
 	}
 
-
+	// open playdb
 	db, err := sql.Open("sqlite3", *playdbFilename)
 	if err != nil {
 		panic(err)
@@ -92,6 +92,19 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// open songdb
+	db2, err := sql.Open("sqlite3", *songdbFilename)
+	if err != nil {
+		panic(err)
+	}
+	defer db2.Close()
+
+	ctx.Songdb, err = database.NewSongDB(db2)
+	if err != nil {
+		panic(err)
+	}
+
 
 	if ctx.UpdateAndBackend || ctx.UpdateOnly {
 		ctx.AccessCode = os.Getenv("PLAYLOG_ACCESS_CODE")
@@ -104,23 +117,16 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
+
+			if ctx.Verbose >= 1 {
+				log.Print("finished update")
+			}
 		} else {
 			go updateLoop(ctx)
 		}
 	}
 
 	if ctx.UpdateAndBackend || ctx.BackendOnly {
-		db2, err := sql.Open("sqlite3", *songdbFilename)
-		if err != nil {
-			panic(err)
-		}
-		defer db2.Close()
-
-		ctx.Songdb, err = database.NewSongDB(db2)
-		if err != nil {
-			panic(err)
-		}
-
 		backend.Entrypoint(ctx)
 	}
 }
