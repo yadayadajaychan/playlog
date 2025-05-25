@@ -154,7 +154,7 @@ func Update(ctx context.PlaylogCtx) error {
 				return err
 			}
 
-			err = validatePlaylogDetail(playlogDetail)
+			err = validatePlaylogDetail(playlogDetail, ctx.Songdb)
 			if err != nil {
 				return err
 			}
@@ -182,14 +182,9 @@ func Update(ctx context.PlaylogCtx) error {
 	return nil
 }
 
-func addMaimaiPlaylogDetailToPlayDB(playdb *database.PlayDB, maimai maimaiPlaylogDetail) error {
-	playdate, err := time.Parse(time.RFC3339, maimai.Info.UserPlayDate)
-	if err != nil {
-		return err
-	}
-
+func levelToDifficulty(lvl string) (database.Difficulty, error) {
 	var difficulty database.Difficulty
-	switch maimai.Info.Level {
+	switch lvl {
 	case "MAIMAI_LEVEL_BASIC":
 		difficulty = database.Basic
 	case "MAIMAI_LEVEL_ADVANCED":
@@ -203,7 +198,21 @@ func addMaimaiPlaylogDetailToPlayDB(playdb *database.PlayDB, maimai maimaiPlaylo
 	case "MAIMAI_LEVEL_UTAGE":
 		difficulty = database.Utage
 	default:
-		return errors.New("addMaimaiPlaylogDetailToPlayDB: invalid level: " + maimai.Info.Level)
+		return difficulty, errors.New("invalid level: " + lvl)
+	}
+
+	return difficulty, nil
+}
+
+func addMaimaiPlaylogDetailToPlayDB(playdb *database.PlayDB, maimai maimaiPlaylogDetail) error {
+	playdate, err := time.Parse(time.RFC3339, maimai.Info.UserPlayDate)
+	if err != nil {
+		return err
+	}
+
+	difficulty, err := levelToDifficulty(maimai.Info.Level)
+	if err != nil {
+		return err
 	}
 
 	var comboStatus database.ComboStatus
@@ -468,10 +477,32 @@ func getPlaylogDetail(accessCode, playlogApiId string) (*apiPlaylogDetail, error
 	return playlogDetail, nil
 }
 
-func validatePlaylogDetail(playlogDetail *apiPlaylogDetail) error {
-	if len(playlogDetail.MaimaiPlaylogDetail.Info.UserPlayDate) <= 0 {
+func validatePlaylogDetail(playlogDetail *apiPlaylogDetail, songdb *database.SongDB) error {
+	detail := playlogDetail.MaimaiPlaylogDetail
+
+	if len(detail.Info.UserPlayDate) <= 0 {
 		return errors.New("error validating playlogDetail, userPlayDate not found")
 	}
 
-	return nil
+	song, err := songdb.GetSong(detail.Info.MusicId)
+	if err != nil {
+		return err
+	}
+
+	difficulty, err := levelToDifficulty(detail.Info.Level)
+	if err != nil {
+		return err
+	}
+
+	totalCombo := detail.Detail.TotalCombo
+
+	for _, chart := range song.Charts {
+		if chart.Difficulty == difficulty {
+			if chart.MaxNotes == totalCombo {
+				return nil
+			}
+		}
+	}
+
+	return errors.New(fmt.Sprintf("error validating playlogDetail, invalid songId: %d", detail.Info.MusicId))
 }

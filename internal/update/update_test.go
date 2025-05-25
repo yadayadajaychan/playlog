@@ -20,6 +20,11 @@ package update
 import (
 	"os"
 	"testing"
+
+	"database/sql"
+	_ "github.com/mattn/go-sqlite3"
+
+	"github.com/yadayadajaychan/playlog/database"
 )
 
 // TestGetPlaylog tests that the returned playlog has 100 entries
@@ -28,6 +33,17 @@ func TestGetPlaylog(t *testing.T) {
 	accessCode := os.Getenv("PLAYLOG_ACCESS_CODE")
 	if accessCode == "" {
 		t.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
+	}
+
+	db, err := sql.Open("sqlite3", "../../songs.db")
+	if err != nil {
+	        t.Fatal(err)
+	}
+	defer db.Close()
+
+	songdb, err := database.NewSongDB(db)
+	if err != nil {
+		t.Fatal(err)
 	}
 
 	playlog, err := getPlaylog(accessCode)
@@ -45,7 +61,7 @@ func TestGetPlaylog(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	err = validatePlaylogDetail(playlogDetail)
+	err = validatePlaylogDetail(playlogDetail, songdb)
 	if err != nil {
 		t.Fatal(err)
 	}
