@@ -1,6 +1,5 @@
 frontend: check status code after fetch and display error
 backend: create unit tests for endpoints
-update: verify songId
 
 v1.1
 ----
