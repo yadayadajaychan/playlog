@@ -6,4 +6,4 @@ then
 	exit 1
 fi
 
-sqlite3 "$1" ".backup \"$2/$1.$(date +%s).bak\""
+sqlite3 "$1" ".backup \"$2/$(basename "$1").$(date "+%s").bak\""
