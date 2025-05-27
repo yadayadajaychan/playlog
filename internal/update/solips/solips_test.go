@@ -15,7 +15,7 @@
 
 // Package update handles making api requests to solips.app and
 // updating the database
-package update
+package solips
 
 import (
 	"os"
@@ -35,7 +35,7 @@ func TestGetPlaylog(t *testing.T) {
 		t.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
 	}
 
-	db, err := sql.Open("sqlite3", "../../songs.db")
+	db, err := sql.Open("sqlite3", "../../../songs.db")
 	if err != nil {
 	        t.Fatal(err)
 	}
