@@ -29,3 +29,57 @@ const (
 func Update(ctx context.PlaylogCtx) error {
 	return nil
 }
+
+type activityJSON struct {
+	Success bool
+	Body struct {
+		RecentSessions []sessionJSON
+	}
+}
+
+type sessionJSON struct {
+	ScoreIDs    []string
+	TimeStarted int
+}
+
+type scoreJSON struct {
+	Success bool
+	Body struct {
+		Score struct {
+			TimeAchieved int // unix time in milliseconds
+			ScoreData scoreDataJSON
+		}
+		Song  songDataJSON
+		Chart chartDataJSON
+	}
+}
+
+type scoreDataJSON struct {
+	Percent float64
+	Lamp    string
+	Judgements struct {
+		Pcrit   int
+		Perfect int
+		Great   int
+		Good    int
+		Miss    int
+	}
+	Optional struct {
+		Fast int
+		Slow int
+		MaxCombo int
+	}
+	EnumIndexes struct {
+		Lamp  int
+		Grade int
+	}
+}
+
+type songDataJSON struct {
+	Title string
+}
+
+type chartDataJSON struct {
+	Difficulty string
+	LevelNum   float64
+}
