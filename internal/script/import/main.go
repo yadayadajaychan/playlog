@@ -22,7 +22,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 
 	"github.com/yadayadajaychan/playlog/database"
-	"github.com/yadayadajaychan/playlog/internal/update"
+	"github.com/yadayadajaychan/playlog/internal/update/solips"
 )
 
 func main() {
@@ -43,7 +43,7 @@ func main() {
 	}
 	defer file.Close()
 
-	err = update.Import(playdb, file)
+	err = solips.Import(playdb, file)
 	if err != nil {
 		panic(err)
 	}
