@@ -13,36 +13,19 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Package update handles updating the play database based on DataSource
-package update
+// Package kamai handles making api requests to kamai.tachi.ac and
+// updating the play database
+package kamai
 
 import (
-	"log"
-	"os"
-	"errors"
-
+	//"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
-	"github.com/yadayadajaychan/playlog/internal/update/solips"
-	"github.com/yadayadajaychan/playlog/internal/update/kamai"
 )
 
-// Update requires ctx.DataSource
+const (
+	apiUrl = "https://kamai.tachi.ac/api/v1"
+)
+
 func Update(ctx context.PlaylogCtx) error {
-	if ctx.Verbose >= 1 {
-		log.Print("starting update")
-	}
-
-	switch (ctx.DataSource) {
-	case context.Solips:
-		ctx.AccessCode = os.Getenv("PLAYLOG_ACCESS_CODE")
-		if ctx.AccessCode == "" {
-			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
-		}
-
-		return solips.Update(ctx)
-	case context.Kamai:
-		return kamai.Update(ctx)
-	default:
-		return errors.New("invalid data source")
-	}
+	return nil
 }
