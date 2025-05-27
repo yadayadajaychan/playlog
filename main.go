@@ -42,6 +42,7 @@ func main() {
 	version := getopt.BoolLong("version", 'V', "display version")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
 	playdbFilename := getopt.StringLong("playdb", 'p', "plays.db", "filename of play db")
+	dataSource := getopt.StringLong("data-source", 'd', "solips", "valid options: solips, kamai")
 
 	verbose := getopt.CounterLong("verbose", 'v', "verbosity level (errors only, info, debug)")
 	listenPort := getopt.IntLong("listen-port", 'l', 5000, "port to listen on")
@@ -81,6 +82,15 @@ func main() {
 		log.Fatal("api interval must be greater than 0")
 	}
 
+	switch (*dataSource) {
+	case "solips":
+		ctx.DataSource = context.Solips
+	case "kamai":
+		ctx.DataSource = context.Kamai
+	default:
+		log.Fatal("invalid data source")
+	}
+
 	// open playdb
 	db, err := sql.Open("sqlite3", *playdbFilename)
 	if err != nil {
@@ -107,11 +117,6 @@ func main() {
 
 
 	if ctx.UpdateAndBackend || ctx.UpdateOnly {
-		ctx.AccessCode = os.Getenv("PLAYLOG_ACCESS_CODE")
-		if ctx.AccessCode == "" {
-			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
-		}
-
 		if ctx.UpdateOnly {
 			err = update.Update(ctx)
 			if err != nil {

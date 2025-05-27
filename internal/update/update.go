@@ -21,6 +21,7 @@ import (
 	"fmt"
 	"log"
 	"io"
+	"os"
 	"time"
 	"strings"
 	"net/url"
@@ -121,16 +122,34 @@ type maimaiPlaylogDetail struct {
 	}
 }
 
-// Update uses the Mythos access code to get the most recent 100 songs played
-// and makes an api request per new song that's not in the database,
-// delaying by ctx.ApiInterval between requests.
-// It then adds them to the database.
-// ctx requires Playdb, Songdb, AccessCode, ApiInterval, Verbose
+// Update requires ctx.DataSource
 func Update(ctx context.PlaylogCtx) error {
 	if ctx.Verbose >= 1 {
 		log.Print("starting update")
 	}
 
+	switch (ctx.DataSource) {
+	case context.Solips:
+		ctx.AccessCode = os.Getenv("PLAYLOG_ACCESS_CODE")
+		if ctx.AccessCode == "" {
+			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
+		}
+
+		return update(ctx)
+	case context.Kamai:
+		//return kamai.Update(ctx)
+		return nil
+	default:
+		return errors.New("invalid data source")
+	}
+}
+
+// update uses the Mythos access code to get the most recent 100 songs played
+// and makes an api request per new song that's not in the database,
+// delaying by ctx.ApiInterval between requests.
+// It then adds them to the database.
+// ctx requires Playdb, Songdb, AccessCode, ApiInterval, Verbose
+func update(ctx context.PlaylogCtx) error {
 	playlog, err := getPlaylog(ctx.AccessCode)
 	if err != nil {
 		return err

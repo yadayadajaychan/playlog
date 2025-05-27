@@ -20,8 +20,16 @@ import (
 	"github.com/yadayadajaychan/playlog/database"
 )
 
+type DataSource int
+const (
+	Solips DataSource = iota
+	Kamai
+)
+
 type PlaylogCtx struct {
-	AccessCode string
+	DataSource DataSource
+	AccessCode string // Mythos Access Code
+	KamaiUser string // kamaitachi username
 
 	Playdb *database.PlayDB
 	Songdb *database.SongDB
@@ -35,5 +43,4 @@ type PlaylogCtx struct {
 	UpdateOnly       bool
 	BackendOnly      bool
 	UpdateAndBackend bool
-
 }
