@@ -112,34 +112,28 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 	return tx.Commit()
 }
 
-// GetSong gets a song from the database using the songId
-func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
+// takes row with one item
+// caller's responsibility to call Close() on rows
+func (songdb *SongDB) rowsToSongInfo(rows *sql.Rows) (SongInfo, error) {
 	song := SongInfo{}
 
-	rows, err := songdb.db.Query(`
-	SELECT song_id, name, artist, type,
-		bpm, category, version, sort FROM songs WHERE song_id=?`, songId)
-	if err != nil {
-		return song, err
-	}
-
 	if rows.Next() {
-		err = rows.Scan(&song.SongId, &song.Name, &song.Artist, &song.Type,
+		err := rows.Scan(&song.SongId, &song.Name, &song.Artist, &song.Type,
 				&song.Bpm, &song.Category, &song.Version, &song.Sort)
 		if err != nil {
 			return song, err
 		}
 	} else {
-		return song, &SongNotFoundError{SongId: songId}
+		return song, &SongNotFoundError{} // fields set by caller
 	}
-	rows.Close()
 
-	rows, err = songdb.db.Query(`
+	rows, err := songdb.db.Query(`
 	SELECT difficulty, level, internal_level,
-		notes_designer, max_notes FROM charts WHERE song_id=?`, songId)
+		notes_designer, max_notes FROM charts WHERE song_id=?`, song.SongId)
 	if err != nil {
 		return song, err
 	}
+	defer rows.Close()
 
 	for rows.Next() {
 		chart := ChartInfo{}
@@ -151,7 +145,6 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 
 		song.Charts = append(song.Charts, chart)
 	}
-	rows.Close()
 
 	if song.Charts == nil {
 		return song, errors.New("no chart found")
@@ -160,10 +153,34 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	return song, nil
 }
 
+// GetSong gets a song from the database using the songId
+func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
+	song := SongInfo{}
+
+	rows, err := songdb.db.Query(`
+		SELECT song_id, name, artist, type,
+		bpm, category, version, sort FROM songs WHERE song_id=?`, songId)
+	if err != nil {
+		return song, err
+	}
+	defer rows.Close()
+
+	song, err = songdb.rowsToSongInfo(rows)
+	if e, ok := err.(*SongNotFoundError); ok {
+		e.SongId = songId
+		return song, e
+	} else if err != nil {
+		return song, err
+	}
+
+	return song, nil
+}
+
 type SongNotFoundError struct {
 	SongId	int
+	Name    string
 }
 
 func (e *SongNotFoundError) Error() string {
-	return fmt.Sprintf("Song with id %d not found in database", e.SongId)
+	return fmt.Sprintf("Song with id %d / name '%s' not found in database", e.SongId, e.Name)
 }
