@@ -10,6 +10,8 @@ WorkingDirectory=/var/lib/playlog/playlog
 ExecStart=/var/lib/playlog/playlog/playlog -vl3002
 Restart=on-failure
 RestartSec=10
+RestartSteps=60
+RestartMaxDelaySec=900
 
 [Install]
 WantedBy=multi-user.target
