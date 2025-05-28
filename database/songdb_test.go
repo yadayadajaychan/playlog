@@ -134,4 +134,12 @@ func TestGetSongByName(t *testing.T) {
 	} else {
 		t.Error("expected SongNotFoundError for non-existant song name")
 	}
+
+	song2, err := songdb.GetSongByName("Scatman (Ski Ba Bop Ba Dop Bop)")
+	if err != nil {
+		t.Fatal("error retrieving song2")
+	}
+	if song2.SongId != 502 {
+		t.Error("song2: incorrect song retrieved")
+	}
 }
