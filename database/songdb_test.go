@@ -94,14 +94,44 @@ func TestAddAndGetSong(t *testing.T) {
 	if _, ok := err.(*database.SongNotFoundError); ok {
 		t.Log("correctly returned SongNotFoundError:", err)
 	} else if err != nil {
-		t.Log("returned non-nil error, but not SongNotFoundError:", err)
+		t.Error("returned non-nil error, but not SongNotFoundError:", err)
 	} else {
-		t.Error("expected non-nil error for non-existant songId")
+		t.Error("expected SongNotFoundError for non-existant songId")
 	}
 
 	if !reflect.DeepEqual(song1, song1g) {
 		t.Log(song1)
 		t.Log(song1g)
 		t.Error("song1 not equal")
+	}
+}
+
+func TestGetSongByName(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../songs.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	songdb, err := database.NewSongDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	song1, err := songdb.GetSongByName("終焉逃避行")
+	if err != nil {
+		t.Fatal("error retrieving song1")
+	}
+	if song1.SongId != 11441 {
+		t.Error("song1: incorrect song retrieved")
+	}
+
+	_, err = songdb.GetSongByName("i went to ur mom's house")
+	if _, ok := err.(*database.SongNotFoundError); ok {
+		t.Log("correctly returned SongNotFoundError:", err)
+	} else if err != nil {
+		t.Error("returned non-nil error, but not SongNotFoundError:", err)
+	} else {
+		t.Error("expected SongNotFoundError for non-existant song name")
 	}
 }

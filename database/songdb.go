@@ -155,19 +155,36 @@ func (songdb *SongDB) rowsToSongInfo(rows *sql.Rows) (SongInfo, error) {
 
 // GetSong gets a song from the database using the songId
 func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
-	song := SongInfo{}
-
 	rows, err := songdb.db.Query(`
-		SELECT song_id, name, artist, type,
-		bpm, category, version, sort FROM songs WHERE song_id=?`, songId)
+		SELECT * FROM songs WHERE song_id=?`, songId)
 	if err != nil {
-		return song, err
+		return SongInfo{}, err
 	}
 	defer rows.Close()
 
-	song, err = songdb.rowsToSongInfo(rows)
+	song, err := songdb.rowsToSongInfo(rows)
 	if e, ok := err.(*SongNotFoundError); ok {
 		e.SongId = songId
+		return song, e
+	} else if err != nil {
+		return song, err
+	}
+
+	return song, nil
+}
+
+// GetSongByName gets a song from the database using the Name
+func (songdb *SongDB) GetSongByName(name string) (SongInfo, error) {
+	rows, err := songdb.db.Query(`
+		SELECT * FROM songs WHERE name=?`, name)
+	if err != nil {
+		return SongInfo{}, err
+	}
+	defer rows.Close()
+
+	song, err := songdb.rowsToSongInfo(rows)
+	if e, ok := err.(*SongNotFoundError); ok {
+		e.Name = name
 		return song, e
 	} else if err != nil {
 		return song, err
