@@ -106,7 +106,7 @@ func TestAddAndGetSong(t *testing.T) {
 	}
 }
 
-func TestGetSongByName(t *testing.T) {
+func TestGetSongsByName(t *testing.T) {
 	db, err := sql.Open("sqlite3", "../songs.db")
 	if err != nil {
 		t.Fatal(err)
@@ -118,15 +118,15 @@ func TestGetSongByName(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	song1, err := songdb.GetSongByName("終焉逃避行")
+	song1, err := songdb.GetSongsByName("終焉逃避行")
 	if err != nil {
 		t.Fatal("error retrieving song1")
 	}
-	if song1.SongId != 11441 {
+	if song1[0].SongId != 11441 {
 		t.Error("song1: incorrect song retrieved")
 	}
 
-	_, err = songdb.GetSongByName("i went to ur mom's house")
+	_, err = songdb.GetSongsByName("i went to ur mom's house")
 	if _, ok := err.(*database.SongNotFoundError); ok {
 		t.Log("correctly returned SongNotFoundError:", err)
 	} else if err != nil {
@@ -135,11 +135,25 @@ func TestGetSongByName(t *testing.T) {
 		t.Error("expected SongNotFoundError for non-existant song name")
 	}
 
-	song2, err := songdb.GetSongByName("Scatman (Ski Ba Bop Ba Dop Bop)")
+	song2, err := songdb.GetSongsByName("Scatman (Ski Ba Bop Ba Dop Bop)")
 	if err != nil {
 		t.Fatal("error retrieving song2")
 	}
-	if song2.SongId != 502 {
+	if song2[0].SongId != 502 {
 		t.Error("song2: incorrect song retrieved")
+	}
+
+	song3, err := songdb.GetSongsByName("天ノ弱")
+	if err != nil {
+		t.Fatal("error retrieving song3")
+	}
+	if len(song3) != 2 {
+		t.Fatal("song3: incorrect no. of songs returned")
+	}
+	if song3[0].SongId != 188 && song3[0].SongId != 10188 {
+		t.Error("song3: incorrect song retrieved")
+	}
+	if song3[1].SongId != 188 && song3[1].SongId != 10188 {
+		t.Error("song3: incorrect song retrieved")
 	}
 }

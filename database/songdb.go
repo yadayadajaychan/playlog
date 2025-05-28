@@ -114,43 +114,48 @@ func (songdb *SongDB) AddSong(song SongInfo) error {
 
 // takes row with one item
 // caller's responsibility to call Close() on rows
-func (songdb *SongDB) rowsToSongInfo(rows *sql.Rows) (SongInfo, error) {
-	song := SongInfo{}
+func (songdb *SongDB) rowsToSongInfos(rows *sql.Rows) ([]SongInfo, error) {
+	songs := make([]SongInfo, 0, 1)
 
-	if rows.Next() {
+	for rows.Next() {
+		song := SongInfo{}
 		err := rows.Scan(&song.SongId, &song.Name, &song.Artist, &song.Type,
 				&song.Bpm, &song.Category, &song.Version, &song.Sort)
 		if err != nil {
-			return song, err
+			return songs, err
 		}
-	} else {
-		return song, &SongNotFoundError{} // fields set by caller
-	}
 
-	rows, err := songdb.db.Query(`
-	SELECT difficulty, level, internal_level,
-		notes_designer, max_notes FROM charts WHERE song_id=?`, song.SongId)
-	if err != nil {
-		return song, err
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		chart := ChartInfo{}
-		err = rows.Scan(&chart.Difficulty, &chart.Level, &chart.InternalLevel,
-				&chart.NotesDesigner, &chart.MaxNotes)
+		chartRows, err := songdb.db.Query(`
+			SELECT difficulty, level, internal_level,
+			notes_designer, max_notes FROM charts WHERE song_id=?`, song.SongId)
 		if err != nil {
-			return song, err
+			return songs, err
+		}
+		defer chartRows.Close()
+
+		for chartRows.Next() {
+			chart := ChartInfo{}
+			err = chartRows.Scan(&chart.Difficulty, &chart.Level, &chart.InternalLevel,
+					&chart.NotesDesigner, &chart.MaxNotes)
+			if err != nil {
+				return songs, err
+			}
+
+			song.Charts = append(song.Charts, chart)
 		}
 
-		song.Charts = append(song.Charts, chart)
+		if len(song.Charts) == 0 {
+			return songs, errors.New("no chart found")
+		}
+
+		songs = append(songs, song)
 	}
 
-	if song.Charts == nil {
-		return song, errors.New("no chart found")
+	if len(songs) <= 0 {
+		return songs, &SongNotFoundError{} // fields set by caller
 	}
 
-	return song, nil
+	return songs, nil
 }
 
 // GetSong gets a song from the database using the songId
@@ -162,35 +167,36 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	}
 	defer rows.Close()
 
-	song, err := songdb.rowsToSongInfo(rows)
+	songs, err := songdb.rowsToSongInfos(rows)
 	if e, ok := err.(*SongNotFoundError); ok {
 		e.SongId = songId
-		return song, e
+		return SongInfo{}, e
 	} else if err != nil {
-		return song, err
+		return SongInfo{}, err
 	}
 
-	return song, nil
+	return songs[0], nil
 }
 
-// GetSongByName gets a song from the database using the Name
-func (songdb *SongDB) GetSongByName(name string) (SongInfo, error) {
+// GetSongByName returns songs from the database using 'name'
+// Can return both the std and dx versions
+func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	rows, err := songdb.db.Query(`
 		SELECT * FROM songs WHERE name=?`, name)
 	if err != nil {
-		return SongInfo{}, err
+		return nil, err
 	}
 	defer rows.Close()
 
-	song, err := songdb.rowsToSongInfo(rows)
+	songs, err := songdb.rowsToSongInfos(rows)
 	if e, ok := err.(*SongNotFoundError); ok {
 		e.Name = name
-		return song, e
+		return nil, e
 	} else if err != nil {
-		return song, err
+		return nil, err
 	}
 
-	return song, nil
+	return songs, nil
 }
 
 type SongNotFoundError struct {
