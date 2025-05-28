@@ -26,7 +26,7 @@ import (
 	"time"
 	"errors"
 
-	//"github.com/yadayadajaychan/playlog/database"
+	"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
 )
 
@@ -56,13 +56,69 @@ func Update(ctx context.PlaylogCtx) error {
 		return sess.Err()
 	}
 
-	//for _, scoreId := range allScoreIds {
-	//	scoreData, songData, chartData, err := getScoreData(scoreId)
+	for _, scoreId := range allScoreIds {
+		score, err := getScore(scoreId)
+		if err != nil {
+			return err
+		}
 
-	//	time.Sleep(ctx.ApiInterval)
-	//}
+		err = addScoreToPlayDB(score, ctx.Playdb, ctx.Songdb)
+		if err != nil {
+			return err
+		}
+
+		if ctx.Verbose >= 1 {
+			log.Printf("added play %d to database", score.Body.Score.TimeAchieved / 1000)
+		}
+		time.Sleep(ctx.ApiInterval)
+	}
 
 	return nil
+}
+
+//func kamaiDifficulty
+
+func addScoreToPlayDB(score scoreJSON, playdb *database.PlayDB, songdb *database.SongDB) error {
+	//scoreData := score.Body.Score.ScoreData
+
+	//song, err := songdb.GetSongByName(score.Body.Song.Title)
+	//if err != nil {
+	//	return err
+	//}
+
+	//play := database.PlayInfo{
+	//	UserPlayDate: score.Body.Score.TimeAchieved / 1000,
+	//	SongId: song.SongId,
+	//	Difficulty: difficulty,
+
+	//	Score: int(math.Round(scoreData.Percent * 10000)),
+	//	DxScore: 0,
+
+
+	return nil
+}
+
+func getScore(scoreId string) (scoreJSON, error) {
+	score := scoreJSON{}
+	url := apiUrl + "/scores/" + scoreId + "?getRelated"
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return score, err
+	}
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return score, err
+	}
+	resp.Body.Close()
+
+	err = json.Unmarshal(data, &score)
+	if err != nil {
+		return score, err
+	}
+
+	return score, nil
 }
 
 type sessions struct {
