@@ -18,6 +18,14 @@
 package kamai
 
 import (
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"encoding/json"
+	"time"
+	"errors"
+
 	//"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
 )
@@ -27,7 +35,94 @@ const (
 )
 
 func Update(ctx context.PlaylogCtx) error {
+	sess := &sessions{User: ctx.KamaiUser}
+	allScoreIds := make([]string, 0, 100)
+
+	for sess.Next() {
+		ss := sess.Get()
+		scoreIds := make([]string, 0, 30)
+		for _, s := range ss {
+			scoreIds = append(scoreIds, s.ScoreIDs...)
+		}
+		allScoreIds = append(allScoreIds, scoreIds...)
+
+		if ctx.Verbose >= 1 {
+			log.Printf("retrieved %d scoreIds", len(scoreIds))
+		}
+
+		time.Sleep(ctx.ApiInterval)
+	}
+	if sess.Err() != nil {
+		return sess.Err()
+	}
+
+	//for _, scoreId := range allScoreIds {
+	//	scoreData, songData, chartData, err := getScoreData(scoreId)
+
+	//	time.Sleep(ctx.ApiInterval)
+	//}
+
 	return nil
+}
+
+type sessions struct {
+	User      string
+	startTime int
+	sessions  []sessionJSON
+	err       error
+}
+
+// false if error or no more sessions.
+// Use Err to differentiate.
+func (s *sessions) Next() bool {
+	url := apiUrl + "/users/" + s.User + "/games/maimaidx/Single/activity"
+
+	var resp *http.Response
+	if s.startTime == 0 {
+		resp, s.err = http.Get(url)
+	} else {
+		resp, s.err = http.Get(url + fmt.Sprintf("?startTime=%d",s.startTime))
+	}
+	if s.err != nil {
+		return false
+	}
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		s.err = err
+		return false
+	}
+	resp.Body.Close()
+
+	var activity activityJSON
+	s.err = json.Unmarshal(data, &activity)
+	if s.err != nil {
+		return false
+	}
+
+	if !activity.Success {
+		s.err = errors.New("kamai: call to activity api failed")
+		return false
+	}
+
+	sessions := activity.Body.RecentSessions
+
+	if len(sessions) <= 0 {
+		return false
+	}
+
+	s.startTime = sessions[len(sessions)-1].TimeStarted
+	s.sessions = sessions
+
+	return true
+}
+
+func (s *sessions) Get() []sessionJSON {
+	return s.sessions
+}
+
+func (s *sessions) Err() error {
+	return s.err
 }
 
 type activityJSON struct {

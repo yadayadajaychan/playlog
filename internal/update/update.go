@@ -38,10 +38,15 @@ func Update(ctx context.PlaylogCtx) error {
 		if ctx.AccessCode == "" {
 			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
 		}
-
 		return solips.Update(ctx)
+
 	case context.Kamai:
+		ctx.KamaiUser = os.Getenv("PLAYLOG_KAMAI_USER")
+		if ctx.KamaiUser == "" {
+			log.Fatal("missing 'PLAYLOG_KAMAI_USER' environment variable")
+		}
 		return kamai.Update(ctx)
+
 	default:
 		return errors.New("invalid data source")
 	}
