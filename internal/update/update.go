@@ -495,10 +495,14 @@ func validatePlaylogDetail(playlogDetail *apiPlaylogDetail, songdb *database.Son
 	}
 
 	totalCombo := detail.Detail.TotalCombo
+	if totalCombo == 0 {
+		// TODO add up all the notes instead
+		return nil
+	}
 
 	for _, chart := range song.Charts {
 		if chart.Difficulty == difficulty {
-			if chart.MaxNotes == totalCombo {
+			if chart.MaxNotes == totalCombo || chart.MaxNotes == 0 {
 				return nil
 			}
 		}
