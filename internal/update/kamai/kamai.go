@@ -24,6 +24,8 @@ import (
 	"net/http"
 	"encoding/json"
 	"time"
+	"strings"
+	"math"
 	"errors"
 
 	"github.com/yadayadajaychan/playlog/database"
@@ -62,7 +64,7 @@ func Update(ctx context.PlaylogCtx) error {
 			return err
 		}
 
-		err = addScoreToPlayDB(score, ctx.Playdb, ctx.Songdb)
+		err = addScoreToPlayDB(score, ctx)
 		if err != nil {
 			return err
 		}
@@ -76,24 +78,99 @@ func Update(ctx context.PlaylogCtx) error {
 	return nil
 }
 
-//func kamaiDifficulty
+func kamaiDiffToDiff(kamaiDifficulty string) (database.Difficulty, error) {
+	kamaiDifficulty = strings.ToLower(kamaiDifficulty)
+	var difficulty database.Difficulty
+	switch kamaiDifficulty {
+	case "basic", "dx basic":
+		difficulty = database.Basic
+	case "advanced", "dx advanced":
+		difficulty = database.Advanced
+	case "expert", "dx expert":
+		difficulty = database.Expert
+	case "master", "dx master":
+		difficulty = database.Master
+	case "re:master", "dx re:master":
+		difficulty = database.ReMaster
+	default:
+		return difficulty, errors.New("invalid difficulty: " + kamaiDifficulty)
+	}
 
-func addScoreToPlayDB(score scoreJSON, playdb *database.PlayDB, songdb *database.SongDB) error {
-	//scoreData := score.Body.Score.ScoreData
+	return difficulty, nil
+}
 
-	//song, err := songdb.GetSongByName(score.Body.Song.Title)
-	//if err != nil {
-	//	return err
-	//}
+func toSongType(kamaiDifficulty string) string {
+	kamaiDifficulty = strings.ToLower(kamaiDifficulty)
+	if kamaiDifficulty[0:2] == "dx" {
+		return "dx"
+	}
 
-	//play := database.PlayInfo{
-	//	UserPlayDate: score.Body.Score.TimeAchieved / 1000,
-	//	SongId: song.SongId,
-	//	Difficulty: difficulty,
+	return "std"
+}
 
-	//	Score: int(math.Round(scoreData.Percent * 10000)),
-	//	DxScore: 0,
+func addScoreToPlayDB(score scoreJSON, ctx context.PlaylogCtx) error {
+	playDate := score.Body.Score.TimeAchieved / 1000
 
+	_, err := ctx.Playdb.GetPlay(playDate)
+	if err == nil {
+		if ctx.Verbose >= 2 {
+			log.Printf("play %d already exists in db\n", playDate)
+		}
+		return nil
+	} else if _, ok := err.(*database.PlayNotFoundError); !ok {
+		return err
+	}
+
+	scoreData := score.Body.Score.ScoreData
+
+	songs, err := ctx.Songdb.GetSongsByName(score.Body.Song.Title)
+	if err != nil {
+		return err
+	}
+
+	difficulty, err := kamaiDiffToDiff(score.Body.Chart.Difficulty)
+	if err != nil {
+		return err
+	}
+
+	songType := toSongType(score.Body.Chart.Difficulty)
+
+	var song *database.SongInfo
+	for _, s := range songs {
+		if songType == s.Type {
+			song = &s
+		}
+	}
+	if song == nil {
+		return errors.New(fmt.Sprintf("no song with name '%s' and type '%s' found", score.Body.Song.Title, songType))
+	}
+
+	var chart *database.ChartInfo
+	for _, c := range song.Charts {
+		if c.Difficulty == difficulty {
+			chart = &c
+		}
+	}
+	if chart == nil {
+		return errors.New(fmt.Sprintf("no chart with difficulty '%d' for song with name '%s' and type '%s' found", difficulty, score.Body.Song.Title, songType))
+	}
+
+	kamaiLevel := int(math.Round(score.Body.Chart.LevelNum * 10))
+	if kamaiLevel != chart.InternalLevel {
+		return errors.New(fmt.Sprintf("kamai level '%d' does not match internal level '%d' for song '%s'", kamaiLevel, chart.InternalLevel, score.Body.Song.Title))
+	}
+
+	play := database.PlayInfo{
+		UserPlayDate : playDate,
+		SongId       : song.SongId,
+		Difficulty   : difficulty,
+
+		Score: int(math.Round(scoreData.Percent * 10000)),
+		//DxScore: 0,
+		//ComboStatus: ,
+		//SyncStatus: 0,
+	}
+	_=play
 
 	return nil
 }
@@ -123,7 +200,7 @@ func getScore(scoreId string) (scoreJSON, error) {
 
 type sessions struct {
 	User      string
-	startTime int
+	startTime int64
 	sessions  []sessionJSON
 	err       error
 }
@@ -190,14 +267,14 @@ type activityJSON struct {
 
 type sessionJSON struct {
 	ScoreIDs    []string
-	TimeStarted int
+	TimeStarted int64
 }
 
 type scoreJSON struct {
 	Success bool
 	Body struct {
 		Score struct {
-			TimeAchieved int // unix time in milliseconds
+			TimeAchieved int64 // unix time in milliseconds
 			ScoreData scoreDataJSON
 		}
 		Song  songDataJSON
