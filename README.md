@@ -29,11 +29,13 @@ The backend output is `playlog` and the frontend output is `build/`
 Get usage info by specifying `-h`:
 ```
 $ ./playlog -h
-Usage: playlog [-bhuv] [-a value] [-l value] [-p value] [-s value] [-t value] [parameters ...]
+Usage: playlog [-bhuvV] [-a value] [-d value] [-l value] [-p value] [-s value] [-t value] [parameters ...]
  -a, --api-interval=value
                     seconds to wait between api requests [3]
  -b, --backend-only
                     only run the backend {action}
+ -d, --data-source=value
+                    valid options: solips, kamai [solips]
  -h, --help         display help
  -l, --listen-port=value
                     port to listen on [5000]
@@ -45,6 +47,7 @@ Usage: playlog [-bhuv] [-a value] [-l value] [-p value] [-s value] [-t value] [p
                     seconds to wait between updates [900]
  -u, --update-only  only update the play db & exit {action}
  -v, --verbose      verbosity level (errors only, info, debug) [0]
+ -V, --version      display version
 ```
 
 #### Examples
@@ -67,7 +70,12 @@ $ ./playlog -bvl 6969
 
 Use a different file for the play database:
 ```
-$ ./playlog -p plays2.db
+$ ./playlog -vp plays2.db
+```
+
+Get data from kamaitachi instead of solips:
+```
+$ ./playlog -vd kamai
 ```
 
 ### Frontend
