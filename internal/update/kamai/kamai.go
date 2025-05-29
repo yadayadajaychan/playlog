@@ -157,23 +157,92 @@ func addScoreToPlayDB(score scoreJSON, ctx context.PlaylogCtx) error {
 		log.Printf("warning: kamai level '%d' does not match internal level '%d' for song '%s' and type '%s'", kamaiLevel, chart.InternalLevel, score.Body.Song.Title, songType)
 	}
 
+	comboStatus, err := lampToComboStatus(scoreData.Lamp)
+	if err != nil {
+		return err
+	}
+
 	play := database.PlayInfo{
 		UserPlayDate : playDate,
 		SongId       : song.SongId,
 		Difficulty   : difficulty,
 
-		Score: int(math.Round(scoreData.Percent * 10000)),
-		//DxScore: 0,
-		//ComboStatus: ,
-		//SyncStatus: 0,
+		Score         : int(math.Round(scoreData.Percent * 10000)),
+		DxScore       : judgementsToDxScore(scoreData),
+		ComboStatus   : comboStatus,
+		SyncStatus    : 0,
+		IsClear       : lampIsClear(scoreData.Lamp),
+		IsNewRecord   : false,
+		IsDxNewRecord : false,
+		Track         : 0,
+		MatchingUsers : nil,
+
+		MaxCombo   : scoreData.Optional.MaxCombo,
+		TotalCombo : chart.MaxNotes,
+		MaxSync    : scoreData.Optional.MaxCombo,
+		TotalSync  : 0,
+
+		FastCount    : scoreData.Optional.Fast,
+		LateCount    : scoreData.Optional.Slow,
+		BeforeRating : 0,
+		AfterRating  : 0,
+
+		// no detailed judgement
+
+		TotalCriticalPerfect : scoreData.Judgements.Pcrit,
+		TotalPerfect         : scoreData.Judgements.Perfect,
+		TotalGreat           : scoreData.Judgements.Great,
+		TotalGood            : scoreData.Judgements.Good,
+		TotalMiss            : scoreData.Judgements.Miss,
 	}
-	_=play
+
+	err = ctx.Playdb.AddPlay(play)
+	if err != nil {
+		return err
+	}
 
 	if ctx.Verbose >= 1 {
 		log.Printf("added play %d to database", playDate)
 	}
 
 	return nil
+}
+
+func judgementsToDxScore(scoreData scoreDataJSON) int {
+	judge := scoreData.Judgements
+
+	return judge.Pcrit*3 + judge.Perfect*2 + judge.Great*1
+}
+
+func lampIsClear(lamp string) bool {
+	lamp = strings.ToLower(lamp)
+	if lamp == "failed" {
+		return false
+	}
+	return true
+}
+
+
+func lampToComboStatus(lamp string) (database.ComboStatus, error) {
+	lamp = strings.ToLower(lamp)
+	var combo database.ComboStatus
+
+	switch lamp {
+	case "failed", "clear":
+		combo = database.NoCombo
+	case "full combo":
+		combo = database.FullCombo
+	case "full combo+":
+		combo = database.FullComboPlus
+	case "all perfect":
+		combo = database.AllPerfect
+	case "all perfect+":
+		combo = database.AllPerfectPlus
+	default:
+		return combo, errors.New("invalid lamp: " + lamp)
+	}
+
+	return combo, nil
 }
 
 func getScore(scoreId string) (scoreJSON, error) {
