@@ -1,6 +1,7 @@
 /plays.db
 *.bak
 /sync.sh
+/playlog
 
 node_modules
 
