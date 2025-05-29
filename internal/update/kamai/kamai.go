@@ -120,6 +120,16 @@ func addScoreToPlayDB(score scoreJSON, ctx context.PlaylogCtx) error {
 
 	scoreData := score.Body.Score.ScoreData
 
+	// special cases
+	switch score.Body.Song.Title {
+	case "":
+		// songId 11422
+		score.Body.Song.Title = "\u3000"
+	case "PON PON PON":
+		// songId 59
+		score.Body.Song.Title = "PON PON PON "
+	}
+
 	songs, err := ctx.Songdb.GetSongsByName(score.Body.Song.Title)
 	if err != nil {
 		return err
