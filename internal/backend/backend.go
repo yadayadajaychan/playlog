@@ -98,7 +98,7 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 		page = 1
 	}
 	count, err := strconv.Atoi(values.Get("count"))
-	if err != nil || count < 0 {
+	if err != nil || count < 1 {
 		count = 50
 	}
 	offset := (page - 1) * count
