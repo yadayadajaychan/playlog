@@ -69,9 +69,6 @@ func Update(ctx context.PlaylogCtx) error {
 			return err
 		}
 
-		if ctx.Verbose >= 1 {
-			log.Printf("added play %d to database", score.Body.Score.TimeAchieved / 1000)
-		}
 		time.Sleep(ctx.ApiInterval)
 	}
 
@@ -157,7 +154,7 @@ func addScoreToPlayDB(score scoreJSON, ctx context.PlaylogCtx) error {
 
 	kamaiLevel := int(math.Round(score.Body.Chart.LevelNum * 10))
 	if kamaiLevel != chart.InternalLevel {
-		return errors.New(fmt.Sprintf("kamai level '%d' does not match internal level '%d' for song '%s'", kamaiLevel, chart.InternalLevel, score.Body.Song.Title))
+		log.Printf("warning: kamai level '%d' does not match internal level '%d' for song '%s' and type '%s'", kamaiLevel, chart.InternalLevel, score.Body.Song.Title, songType)
 	}
 
 	play := database.PlayInfo{
@@ -171,6 +168,10 @@ func addScoreToPlayDB(score scoreJSON, ctx context.PlaylogCtx) error {
 		//SyncStatus: 0,
 	}
 	_=play
+
+	if ctx.Verbose >= 1 {
+		log.Printf("added play %d to database", playDate)
+	}
 
 	return nil
 }
