@@ -1,7 +1,6 @@
 frontend: check status code after fetch and display error
 backend: create unit tests for endpoints
 
-v1.1
+v1.2
 ----
-- add kamai as data source
 - get song history
