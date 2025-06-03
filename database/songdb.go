@@ -154,7 +154,8 @@ func (songdb *SongDB) rowsToSongInfos(rows *sql.Rows) ([]SongInfo, error) {
 	return songs, nil
 }
 
-// GetSong gets a song from the database using the songId
+// GetSong gets a song from the database using the songId and
+// returns *SongNotFoundError if song isn't found.
 func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	rows, err := songdb.db.Query(`
 		SELECT * FROM songs WHERE song_id=?`, songId)
@@ -175,7 +176,7 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	return songs[0], nil
 }
 
-// GetSongsByName returns songs from the database using 'name'
+// GetSongsByName returns songs from the database using 'name'.
 // Can return both the std and dx versions
 func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	rows, err := songdb.db.Query(`
@@ -193,7 +194,8 @@ func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	return songs, nil
 }
 
-// GetSongsByVersion returns songs from the database with the same version
+// GetSongsByVersion returns songs from the database with the same version.
+// Search is case-insensitive.
 func (songdb *SongDB) GetSongsByVersion(version string) ([]SongInfo, error) {
 	rows, err := songdb.db.Query(`
 		SELECT * FROM songs WHERE version=? COLLATE NOCASE`, version)
