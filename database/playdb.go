@@ -305,9 +305,9 @@ func (playdb *PlayDB) GetPlay(date int64) (PlayInfo, error) {
 }
 
 // GetPlays returns a slice of PlayInfos.
-// ascending: whether dates are ascending or descending
-// limit: the maximum length of the slice
-// offset: offset in the database
+// ascending: whether dates are ascending or descending.
+// limit: the maximum length of the slice.
+// offset: offset in the database.
 func (playdb *PlayDB) GetPlays(ascending bool, limit, offset int) ([]PlayInfo, error) {
 	var stmt *sql.Stmt
 	if ascending {
