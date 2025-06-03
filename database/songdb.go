@@ -151,10 +151,6 @@ func (songdb *SongDB) rowsToSongInfos(rows *sql.Rows) ([]SongInfo, error) {
 		songs = append(songs, song)
 	}
 
-	if len(songs) <= 0 {
-		return songs, &SongNotFoundError{} // fields set by caller
-	}
-
 	return songs, nil
 }
 
@@ -168,17 +164,18 @@ func (songdb *SongDB) GetSong(songId int) (SongInfo, error) {
 	defer rows.Close()
 
 	songs, err := songdb.rowsToSongInfos(rows)
-	if e, ok := err.(*SongNotFoundError); ok {
-		e.SongId = songId
-		return SongInfo{}, e
-	} else if err != nil {
+	if err != nil {
 		return SongInfo{}, err
+	}
+
+	if len(songs) <= 0 {
+		return SongInfo{}, &SongNotFoundError{SongId: songId}
 	}
 
 	return songs[0], nil
 }
 
-// GetSongByName returns songs from the database using 'name'
+// GetSongsByName returns songs from the database using 'name'
 // Can return both the std and dx versions
 func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	rows, err := songdb.db.Query(`
@@ -189,10 +186,7 @@ func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	defer rows.Close()
 
 	songs, err := songdb.rowsToSongInfos(rows)
-	if e, ok := err.(*SongNotFoundError); ok {
-		e.Name = name
-		return nil, e
-	} else if err != nil {
+	if err != nil {
 		return nil, err
 	}
 

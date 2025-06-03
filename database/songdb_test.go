@@ -126,15 +126,6 @@ func TestGetSongsByName(t *testing.T) {
 		t.Error("song1: incorrect song retrieved")
 	}
 
-	_, err = songdb.GetSongsByName("i went to ur mom's house")
-	if _, ok := err.(*database.SongNotFoundError); ok {
-		t.Log("correctly returned SongNotFoundError:", err)
-	} else if err != nil {
-		t.Error("returned non-nil error, but not SongNotFoundError:", err)
-	} else {
-		t.Error("expected SongNotFoundError for non-existant song name")
-	}
-
 	song2, err := songdb.GetSongsByName("Scatman (Ski Ba Bop Ba Dop Bop)")
 	if err != nil {
 		t.Fatal("error retrieving song2")
@@ -155,5 +146,13 @@ func TestGetSongsByName(t *testing.T) {
 	}
 	if song3[1].SongId != 188 && song3[1].SongId != 10188 {
 		t.Error("song3: incorrect song retrieved")
+	}
+
+	song4, err := songdb.GetSongsByName("i went to ur mom's house")
+	if err != nil {
+		t.Fatal("error retrieving song4:", err)
+	}
+	if len(song4) != 0 {
+		t.Error("song4: incorrect no. of songs returned:", len(song4))
 	}
 }
