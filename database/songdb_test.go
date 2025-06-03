@@ -156,3 +156,39 @@ func TestGetSongsByName(t *testing.T) {
 		t.Error("song4: incorrect no. of songs returned:", len(song4))
 	}
 }
+
+func TestGetSongsByVersion(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../songs.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	songdb, err := database.NewSongDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	testCases := []struct {
+		version string
+		length  int
+	}{
+		{"BUDDiES PLUS", 84},
+		{"buddies plus", 84},
+		{"BUDDIES PLUS", 84},
+		{"BUDDiES", 101},
+		{"maimaiでらっくす", 97},
+		{"maimaiでらっくす PLUS", 67},
+	}
+
+	for i, tc := range testCases {
+		songs, err := songdb.GetSongsByVersion(tc.version)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if len(songs) != tc.length {
+			t.Errorf("tc %d: len(songs) expected %d, got %d", i, tc.length, len(songs))
+		}
+	}
+}

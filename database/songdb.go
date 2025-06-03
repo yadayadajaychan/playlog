@@ -193,6 +193,23 @@ func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 	return songs, nil
 }
 
+// GetSongsByVersion returns songs from the database with the same version
+func (songdb *SongDB) GetSongsByVersion(version string) ([]SongInfo, error) {
+	rows, err := songdb.db.Query(`
+		SELECT * FROM songs WHERE version=? COLLATE NOCASE`, version)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	songs, err := songdb.rowsToSongInfos(rows)
+	if err != nil {
+		return nil, err
+	}
+
+	return songs, nil
+}
+
 type SongNotFoundError struct {
 	SongId	int
 	Name    string
