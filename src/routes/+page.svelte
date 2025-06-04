@@ -47,29 +47,6 @@
 		}
 	}
 
-	function scoreToRank(score) {
-		if (score >= 1005000)
-			return "SSS+"
-		else if (score >= 1000000)
-			return "SSS"
-		else if (score >= 995000)
-			return "SS+"
-		else if (score >= 990000)
-			return "SS"
-		else if (score >= 980000)
-			return "S+"
-		else if (score >= 970000)
-			return "S"
-		else if (score >= 940000)
-			return "AAA"
-		else if (score >= 900000)
-			return "AA"
-		else if (score >= 800000)
-			return "A"
-		else
-			return "X"
-	}
-
 	function formatDate(ts) {
 		const date = new Date(ts * 1000);
 		const pad = n => n.toString().padStart(2, '0');
@@ -150,7 +127,7 @@
 					<strong>
 					{entry.PlayInfo.Score/10000}%
 
-					{scoreToRank(entry.PlayInfo.Score)}
+					{entry.Rank}
 					</strong>
 				</div>
 

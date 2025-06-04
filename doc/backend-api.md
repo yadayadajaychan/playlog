@@ -25,6 +25,7 @@
 | SongInfo          | SongInfo |
 | PlayInfo          | PlayInfo |
 | PreviousBestScore | int      |
+| Rank              | string   |
 
 # Types
 

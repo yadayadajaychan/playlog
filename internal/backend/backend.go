@@ -26,6 +26,7 @@ import (
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
 	"github.com/yadayadajaychan/playlog/database"
+	"github.com/yadayadajaychan/playlog/utils"
 )
 
 var ctx context.PlaylogCtx
@@ -66,6 +67,7 @@ type playlogEntry struct {
 	SongInfo database.SongInfo
 	PlayInfo database.PlayInfo
 	PreviousBestScore int
+	Rank              string
 }
 
 func playlogHandler(w http.ResponseWriter, r *http.Request) {
@@ -116,7 +118,7 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 
 	pl := playlog{
 		MaxPage: maxPage,
-		Playlog: make([]playlogEntry, 0, 100),
+		Playlog: make([]playlogEntry, 0, count),
 	}
 
 	for _, play := range plays {
@@ -130,10 +132,13 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
+		rank := utils.ScoreToRank(play.Score)
+
 		entry := playlogEntry{
 			SongInfo: song,
 			PlayInfo: play,
 			PreviousBestScore: previousBestScore,
+			Rank             : rank,
 		}
 
 		pl.Playlog = append(pl.Playlog, entry)
