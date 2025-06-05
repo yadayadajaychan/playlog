@@ -187,17 +187,8 @@ func TestGetSongsByVersion(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		songIds, err := songdb.GetSongIdsByVersion(tc.version)
-		if err != nil {
-			t.Fatal(err)
-		}
-
 		if len(songs) != tc.length {
 			t.Errorf("tc %d: len(songs) expected %d, got %d", i, tc.length, len(songs))
-		}
-
-		if len(songIds) != tc.length {
-			t.Errorf("tc %d: len(songIds) expected %d, got %d", i, tc.length, len(songIds))
 		}
 	}
 }

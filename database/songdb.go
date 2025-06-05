@@ -195,7 +195,7 @@ func (songdb *SongDB) GetSongsByName(name string) ([]SongInfo, error) {
 }
 
 // GetSongsByVersion returns songs from the database with the same version.
-// Version is case-insensitive.
+// Search is case-insensitive.
 func (songdb *SongDB) GetSongsByVersion(version string) ([]SongInfo, error) {
 	rows, err := songdb.db.Query(`
 		SELECT * FROM songs WHERE version=? COLLATE NOCASE`, version)
@@ -210,22 +210,6 @@ func (songdb *SongDB) GetSongsByVersion(version string) ([]SongInfo, error) {
 	}
 
 	return songs, nil
-}
-
-// GetSongIdsByVersion returns songIds from the database with the same version.
-// Version is case-insensitive.
-func (songdb *SongDB) GetSongIdsByVersion(version string) ([]int, error) {
-	songs, err := songdb.GetSongsByVersion(version)
-	if err != nil {
-		return nil, err
-	}
-
-	songIds := make([]int, len(songs))
-	for i, v := range songs {
-		songIds[i] = v.SongId
-	}
-
-	return songIds, nil
 }
 
 type SongNotFoundError struct {
