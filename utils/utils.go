@@ -15,6 +15,10 @@
 
 package utils
 
+import (
+	"math"
+)
+
 func ScoreToRank(score int) string {
 	var rank string
 
@@ -53,7 +57,7 @@ func ScoreToRank(score int) string {
 }
 
 // https://listed.to/@donmai/45107/exploring-the-algorithm-behind-maimai-dx-s-scoring-and-dx-rating-computation
-func ScoreToMultiplier(score int) float64 {
+func scoreToMultiplier(score int) float64 {
 	var mult float64
 
 	switch {
@@ -106,4 +110,13 @@ func ScoreToMultiplier(score int) float64 {
 	}
 
 	return mult
+}
+
+// https://silentblue.remywiki.com/maimai_DX:Rating
+func ScoreAndInternalLevelToDxRatingGen3(score int, internalLevel int) int {
+	mult := scoreToMultiplier(score)
+	sc := float64(score) / 1_000_000
+	lvl := float64(internalLevel) / 10
+
+	return int(math.Floor(mult * sc * lvl))
 }
