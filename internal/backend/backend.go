@@ -26,7 +26,7 @@ import (
 	"net/http"
 	"github.com/yadayadajaychan/playlog/internal/context"
 	"github.com/yadayadajaychan/playlog/database"
-	"github.com/yadayadajaychan/playlog/utils"
+	"github.com/yadayadajaychan/playlog/util"
 )
 
 var ctx context.PlaylogCtx
@@ -132,7 +132,7 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 			panic(err)
 		}
 
-		rank := utils.ScoreToRank(play.Score)
+		rank := util.ScoreToRank(play.Score)
 
 		entry := playlogEntry{
 			SongInfo: song,

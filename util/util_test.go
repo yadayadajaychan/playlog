@@ -13,11 +13,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-package utils_test
+package util_test
 
 import (
 	"testing"
-	"github.com/yadayadajaychan/playlog/utils"
+	"github.com/yadayadajaychan/playlog/util"
 )
 
 func TestScoreAndInternalLevelToDxRatingGen3(t *testing.T) {
@@ -33,7 +33,7 @@ func TestScoreAndInternalLevelToDxRatingGen3(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		rating := utils.ScoreAndInternalLevelToDxRatingGen3(tc.score, tc.internalLevel)
+		rating := util.ScoreAndInternalLevelToDxRatingGen3(tc.score, tc.internalLevel)
 		if rating != tc.dxRating {
 			t.Errorf("tc %d: expected %d, got %d", i, tc.dxRating, rating)
 		}
