@@ -114,6 +114,10 @@ func scoreToMultiplier(score int) float64 {
 
 // https://silentblue.remywiki.com/maimai_DX:Rating
 func ScoreAndInternalLevelToDxRatingGen3(score int, internalLevel int) int {
+	if score > 100_5000 {
+		score = 100_5000
+	}
+
 	mult := scoreToMultiplier(score)
 	sc := float64(score) / 1_000_000
 	lvl := float64(internalLevel) / 10

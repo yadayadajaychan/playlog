@@ -30,6 +30,7 @@ func TestScoreAndInternalLevelToDxRatingGen3(t *testing.T) {
 		{100_1379, 126, 272},
 		{99_2970,  131, 270},
 		{100_3532, 133, 288},
+		{100_7121, 134, 301},
 	}
 
 	for i, tc := range testCases {
