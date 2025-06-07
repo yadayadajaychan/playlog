@@ -74,28 +74,21 @@ func (playdb *PlayDB) initDB_v1_2() error {
 // It is usually unnecessary to call this function yourself since it is
 // automatically called when trying to access rating info.
 func (playdb *PlayDB) PopulateDxRatingGen3(songdb *SongDB) error {
-	// TODO: optimize
-	count1, err := playdb.getCount_v1_2()
-	if err != nil {
-		return err
-	}
-
-	count2, err := playdb.GetCount()
-	if err != nil {
-		return err
-	}
-
-	if count1 == count2 {
-		return nil
-	}
-
-	for i := 0; i < count2; i++ {
-		plays, err := playdb.GetPlays(true, 1, i)
+	for {
+		rows, err := playdb.db.Query(`
+			SELECT * FROM plays WHERE user_play_date NOT IN
+			(SELECT user_play_date FROM dx_rating_gen_3) LIMIT 1;`)
 		if err != nil {
 			return err
 		}
-		if len(plays) != 1 {
-			return errors.New("GetPlays returned incorrect no. of plays")
+		defer rows.Close()
+
+		plays, err := rowsToPlayInfos(rows)
+		if err != nil {
+			return err
+		}
+		if len(plays) == 0 {
+			break
 		}
 
 		play := plays[0]
