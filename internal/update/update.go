@@ -28,8 +28,6 @@ import (
 
 // Update requires ctx.DataSource
 func Update(ctx context.PlaylogCtx) error {
-	defer ctx.Playdb.PopulateDxRatingGen3(ctx.Songdb)
-
 	if ctx.Verbose >= 1 {
 		log.Print("starting update")
 	}
@@ -40,16 +38,22 @@ func Update(ctx context.PlaylogCtx) error {
 		if ctx.AccessCode == "" {
 			log.Fatal("missing 'PLAYLOG_ACCESS_CODE' environment variable")
 		}
-		return solips.Update(ctx)
+		if err := solips.Update(ctx); err != nil {
+			return err
+		}
 
 	case context.Kamai:
 		ctx.KamaiUser = os.Getenv("PLAYLOG_KAMAI_USER")
 		if ctx.KamaiUser == "" {
 			log.Fatal("missing 'PLAYLOG_KAMAI_USER' environment variable")
 		}
-		return kamai.Update(ctx)
+		if err := kamai.Update(ctx); err != nil {
+			return err
+		}
 
 	default:
 		return errors.New("invalid data source")
 	}
+
+	return ctx.Playdb.PopulateDxRatingGen3(ctx.Songdb)
 }
