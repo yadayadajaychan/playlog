@@ -618,6 +618,9 @@ func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
 
 		plays = append(plays, play)
 	}
+	if err := rows.Err(); err != nil {
+		return plays, err
+	}
 
 	return plays, nil
 }
