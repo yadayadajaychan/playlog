@@ -554,8 +554,8 @@ func TestGetVersion(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if major != 1 || minor != 0 {
-			t.Errorf("expected playdb version 1.0, got %d.%d", major, minor)
+		if major != 1 || minor != 2 {
+			t.Errorf("expected playdb version 1.2, got %d.%d", major, minor)
 		}
 	}
 }

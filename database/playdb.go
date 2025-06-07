@@ -21,6 +21,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+
+	"github.com/yadayadajaychan/playlog/util"
 )
 
 type PlayDB struct {
@@ -33,6 +35,96 @@ func NewPlayDB(db *sql.DB) (*PlayDB, error) {
 	playdb := &PlayDB{db: db}
 	err := playdb.initDB()
 	return playdb, err
+}
+
+// called by main init function
+func (playdb *PlayDB) initDB_v1_2() error {
+	tx, err := playdb.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	_, err = tx.Exec(`
+	CREATE TABLE IF NOT EXISTS dx_rating_gen_3 (
+		user_play_date INTEGER PRIMARY KEY NOT NULL,
+		internal_level INTEGER,
+		rating         INTEGER,
+		version        TEXT
+	);`)
+	if err != nil {
+		return err
+	}
+
+	_, err = tx.Exec(`
+	INSERT OR IGNORE INTO version (major, minor) VALUES (1, 2);`)
+	if err != nil {
+		return err
+	}
+
+	err = tx.Commit()
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// make sure to call this before accessing rating info
+func (playdb *PlayDB) populateDxRatingGen3(songdb *SongDB) error {
+	count1, err := playdb.getCount_v1_2()
+	if err != nil {
+		return err
+	}
+
+	count2, err := playdb.GetCount()
+	if err != nil {
+		return err
+	}
+
+	if count1 == count2 {
+		return nil
+	}
+
+	for i := 0; i < count2; i++ {
+		plays, err := playdb.GetPlays(true, 1, i)
+		if err != nil {
+			return err
+		}
+		if len(plays) != 1 {
+			return errors.New("GetPlays returned incorrect no. of plays")
+		}
+
+		play := plays[0]
+		song, err := songdb.GetSong(play.SongId)
+		if err != nil {
+			return err
+		}
+
+		var chart *ChartInfo
+		for _, c := range song.Charts {
+			if c.Difficulty == play.Difficulty {
+				chart = &c
+			}
+		}
+		if chart == nil {
+			return errors.New("no chart found")
+		}
+
+		rating := util.ScoreAndInternalLevelToDxRatingGen3(play.Score, chart.InternalLevel)
+
+		_, err = playdb.db.Exec(`
+			INSERT OR UPDATE INTO dx_rating_gen_3
+			(user_play_date, internal_level, rating, version)
+			VALUES (?, ?, ?, ?);`,
+			play.UserPlayDate, chart.InternalLevel,
+			rating, song.Version)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func (playdb *PlayDB) initDB() error {
@@ -139,6 +231,11 @@ func (playdb *PlayDB) initDB() error {
 	playdb.descStmt, err = playdb.db.Prepare(
 		`SELECT * FROM plays ORDER BY user_play_date DESC
 		LIMIT ? OFFSET ?`)
+	if err != nil {
+		return err
+	}
+
+	err = playdb.initDB_v1_2()
 	if err != nil {
 		return err
 	}
@@ -402,6 +499,28 @@ func (playdb *PlayDB) GetCount() (int, error) {
 	return count, nil
 }
 
+func (playdb *PlayDB) getCount_v1_2() (int, error) {
+	var count int
+
+	rows, err := playdb.db.Query(`
+		SELECT COUNT(*) FROM dx_rating_gen_3`)
+	if err != nil {
+		return count, err
+	}
+	defer rows.Close()
+
+	if rows.Next() {
+		err := rows.Scan(&count)
+		if err != nil {
+			return count, err
+		}
+	} else {
+		return count, errors.New("failed to get count of dx_rating_gen_3")
+	}
+
+	return count, nil
+}
+
 // GetBestScoreBeforeDate returns the best score for a given song and difficulty before the specified date
 func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, date int64) (int, error) {
 	var score int
@@ -427,6 +546,9 @@ func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, 
 
 	return score, nil
 }
+
+// GetBestPlaysInVersion returns the n best plays in version
+// GetBestPlaysOutVersion returns the n best plays not in version
 
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
 	plays := make([]PlayInfo, 0, 50)
