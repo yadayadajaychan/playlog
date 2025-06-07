@@ -25,6 +25,8 @@ import (
 	"github.com/yadayadajaychan/playlog/database"
 )
 
+var testPlaydb_v1_0 = []string{"../test/plays_v1.0.db"}
+
 func TestAddAndGetPlay(t *testing.T) {
 	tmpFile, err := os.CreateTemp("", "playdb-")
 	if err != nil {
@@ -147,167 +149,173 @@ func TestAddAndGetPlay(t *testing.T) {
 }
 
 func TestGetPlays(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer db.Close()
+	for _, testPlaydb := range testPlaydb_v1_0 {
+		db, err := sql.Open("sqlite3", testPlaydb)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer db.Close()
 
-	playdb, err := database.NewPlayDB(db)
-	if err != nil {
-		t.Fatal(err)
-	}
+		playdb, err := database.NewPlayDB(db)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	plays1, err := playdb.GetPlays(true, 3, 1)
-	if err != nil {
-		t.Fatal(err)
-	}
+		plays1, err := playdb.GetPlays(true, 3, 1)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if len(plays1) != 3 {
-		t.Fatal("len(plays1) != 3")
-	}
+		if len(plays1) != 3 {
+			t.Fatal("len(plays1) != 3")
+		}
 
-	if plays1[0].UserPlayDate != 1743108219 ||
-	   plays1[1].UserPlayDate != 1743109338 ||
-	   plays1[2].UserPlayDate != 1743109538 {
-		t.Fatal("plays1 incorrect")
-	}
+		if plays1[0].UserPlayDate != 1743108219 ||
+		   plays1[1].UserPlayDate != 1743109338 ||
+		   plays1[2].UserPlayDate != 1743109538 {
+			t.Fatal("plays1 incorrect")
+		}
 
-	plays2, err := playdb.GetPlays(false, 4, 5)
-	if err != nil {
-		t.Fatal(err)
-	}
+		plays2, err := playdb.GetPlays(false, 4, 5)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if len(plays2) != 4 {
-		t.Fatal("len(plays2) != 4")
-	}
+		if len(plays2) != 4 {
+			t.Fatal("len(plays2) != 4")
+		}
 
-	if plays2[0].UserPlayDate != 1746509521 ||
-	   plays2[1].UserPlayDate != 1746509145 ||
-	   plays2[2].UserPlayDate != 1746508978 ||
-	   plays2[3].UserPlayDate != 1746508788 {
-		t.Fatal("plays2 incorrect")
-	}
+		if plays2[0].UserPlayDate != 1746509521 ||
+		   plays2[1].UserPlayDate != 1746509145 ||
+		   plays2[2].UserPlayDate != 1746508978 ||
+		   plays2[3].UserPlayDate != 1746508788 {
+			t.Fatal("plays2 incorrect")
+		}
 
-	plays3, err := playdb.GetPlays(false, 5, 198)
-	if err != nil {
-		t.Fatal(err)
-	}
+		plays3, err := playdb.GetPlays(false, 5, 198)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if len(plays3) != 2 {
-		t.Fatal("len(plays3) != 2")
-	}
+		if len(plays3) != 2 {
+			t.Fatal("len(plays3) != 2")
+		}
 
-	if plays3[0].UserPlayDate != 1743108219 ||
-	   plays3[1].UserPlayDate != 1743108003 {
-		t.Fatal("plays3 incorrect")
+		if plays3[0].UserPlayDate != 1743108219 ||
+		   plays3[1].UserPlayDate != 1743108003 {
+			t.Fatal("plays3 incorrect")
+		}
 	}
 }
 
 func TestGetCount(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer db.Close()
+	for _, testPlaydb := range testPlaydb_v1_0 {
+		db, err := sql.Open("sqlite3", testPlaydb)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer db.Close()
 
-	playdb, err := database.NewPlayDB(db)
-	if err != nil {
-		t.Fatal(err)
-	}
+		playdb, err := database.NewPlayDB(db)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	count, err := playdb.GetCount()
-	if err != nil {
-		t.Fatal(err)
-	}
+		count, err := playdb.GetCount()
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if count != 200 {
-		t.Error("count != 200")
+		if count != 200 {
+			t.Error("count != 200")
+		}
 	}
 }
 
 func TestGetBestScoreBeforeDate(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer db.Close()
+	for _, testPlaydb := range testPlaydb_v1_0 {
+		db, err := sql.Open("sqlite3", testPlaydb)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer db.Close()
 
-	playdb, err := database.NewPlayDB(db)
-	if err != nil {
-		t.Fatal(err)
-	}
+		playdb, err := database.NewPlayDB(db)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	// Aibao Dance Hall
-	score1, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1744485640)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score1 != 0 {
-		t.Error("score1 != 0")
-	}
+		// Aibao Dance Hall
+		score1, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1744485640)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score1 != 0 {
+			t.Error("score1 != 0")
+		}
 
-	// Aibao Dance Hall
-	score2, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1745707467)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score2 != 971931 {
-		t.Error("score2 != 971931")
-	}
+		// Aibao Dance Hall
+		score2, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1745707467)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score2 != 971931 {
+			t.Error("score2 != 971931")
+		}
 
-	// Aibao Dance Hall
-	score3, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1746506710)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score3 != 971931 {
-		t.Error("score3 != 971931")
-	}
+		// Aibao Dance Hall
+		score3, err := playdb.GetBestScoreBeforeDate(11765, database.Master, 1746506710)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score3 != 971931 {
+			t.Error("score3 != 971931")
+		}
 
-	// Override
-	score4, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1743569808)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score4 != 0 {
-		t.Error("score4 != 0")
-	}
+		// Override
+		score4, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1743569808)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score4 != 0 {
+			t.Error("score4 != 0")
+		}
 
-	// Override
-	score5, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744401821)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score5 != 981938 {
-		t.Error("score5 != 981938")
-	}
+		// Override
+		score5, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744401821)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score5 != 981938 {
+			t.Error("score5 != 981938")
+		}
 
-	// Override
-	score6, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744922642)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score6 != 985903 {
-		t.Error("score6 != 985903")
-	}
+		// Override
+		score6, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1744922642)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score6 != 985903 {
+			t.Error("score6 != 985903")
+		}
 
-	// Override
-	score7, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701086)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score7 != 985903 {
-		t.Error("score7 != 985903")
-	}
+		// Override
+		score7, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701086)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score7 != 985903 {
+			t.Error("score7 != 985903")
+		}
 
-	// Override
-	score8, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701087)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if score8 != 988921 {
-		t.Error("score8 != 988921")
+		// Override
+		score8, err := playdb.GetBestScoreBeforeDate(11794, database.Master, 1745701087)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if score8 != 988921 {
+			t.Error("score8 != 988921")
+		}
 	}
 }
 
@@ -529,23 +537,25 @@ func TestAddPlayWithNoDetailedJudgement(t *testing.T) {
 }
 
 func TestGetVersion(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer db.Close()
+	for _, testPlaydb := range testPlaydb_v1_0 {
+		db, err := sql.Open("sqlite3", testPlaydb)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer db.Close()
 
-	playdb, err := database.NewPlayDB(db)
-	if err != nil {
-		t.Fatal(err)
-	}
+		playdb, err := database.NewPlayDB(db)
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	major, minor, err := playdb.GetVersion()
-	if err != nil {
-		t.Fatal(err)
-	}
+		major, minor, err := playdb.GetVersion()
+		if err != nil {
+			t.Fatal(err)
+		}
 
-	if major != 1 || minor != 0 {
-		t.Errorf("expected playdb version 1.0, got %d.%d", major, minor)
+		if major != 1 || minor != 0 {
+			t.Errorf("expected playdb version 1.0, got %d.%d", major, minor)
+		}
 	}
 }
