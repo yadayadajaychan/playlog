@@ -146,6 +146,8 @@ func (playdb *PlayDB) initDB() error {
 	return nil
 }
 
+// GetVersion gets the major and minor version of the play database
+// corresponding to the program version that last changed the schema
 func (playdb *PlayDB) GetVersion() (major, minor int, err error) {
 	rows, err := playdb.db.Query(`
 	SELECT * FROM version ORDER BY major DESC, minor DESC LIMIT 1;`)
@@ -160,7 +162,11 @@ func (playdb *PlayDB) GetVersion() (major, minor int, err error) {
 			return major, minor, err
 		}
 	} else {
-		return major, minor, errors.New("failed to get playdb version")
+		if err = rows.Err(); err != nil {
+			return major, minor, err
+		} else {
+			return 0, 0, nil
+		}
 	}
 
 	return major, minor, nil
