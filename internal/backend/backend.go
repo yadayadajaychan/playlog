@@ -68,6 +68,7 @@ type playlogEntry struct {
 	PlayInfo database.PlayInfo
 	PreviousBestScore int
 	Rank              string
+	DxRatingGen3      int
 }
 
 func playlogHandler(w http.ResponseWriter, r *http.Request) {
@@ -134,11 +135,18 @@ func playlogHandler(w http.ResponseWriter, r *http.Request) {
 
 		rank := util.ScoreToRank(play.Score)
 
+		rating, err := ctx.Playdb.GetDxRatingGen3(play.UserPlayDate, ctx.Songdb)
+		if err != nil {
+			panic(err)
+		}
+
 		entry := playlogEntry{
 			SongInfo: song,
 			PlayInfo: play,
+
 			PreviousBestScore: previousBestScore,
 			Rank             : rank,
+			DxRatingGen3     : rating,
 		}
 
 		pl.Playlog = append(pl.Playlog, entry)

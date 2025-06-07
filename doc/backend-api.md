@@ -26,6 +26,7 @@
 | PlayInfo          | PlayInfo |
 | PreviousBestScore | int      |
 | Rank              | string   |
+| DxRatingGen3      | int      |
 
 # Types
 
