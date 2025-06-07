@@ -70,8 +70,11 @@ func (playdb *PlayDB) initDB_v1_2() error {
 	return nil
 }
 
-// make sure to call this before accessing rating info
-func (playdb *PlayDB) populateDxRatingGen3(songdb *SongDB) error {
+// PopulateDxRatingGen3 populates the dx_rating_gen_3 table in the db.
+// It is usually unnecessary to call this function yourself since it is
+// automatically called when trying to access rating info.
+func (playdb *PlayDB) PopulateDxRatingGen3(songdb *SongDB) error {
+	// TODO: optimize
 	count1, err := playdb.getCount_v1_2()
 	if err != nil {
 		return err
@@ -114,7 +117,7 @@ func (playdb *PlayDB) populateDxRatingGen3(songdb *SongDB) error {
 		rating := util.ScoreAndInternalLevelToDxRatingGen3(play.Score, chart.InternalLevel)
 
 		_, err = playdb.db.Exec(`
-			INSERT OR UPDATE INTO dx_rating_gen_3
+			INSERT OR IGNORE INTO dx_rating_gen_3
 			(user_play_date, internal_level, rating, version)
 			VALUES (?, ?, ?, ?);`,
 			play.UserPlayDate, chart.InternalLevel,
@@ -267,6 +270,33 @@ func (playdb *PlayDB) GetVersion() (major, minor int, err error) {
 	}
 
 	return major, minor, nil
+}
+
+func (playdb *PlayDB) GetDxRatingGen3(date int64, songdb *SongDB) (int, error) {
+	var rating int
+
+	err := playdb.PopulateDxRatingGen3(songdb)
+	if err != nil {
+		return rating, err
+	}
+
+	rows, err := playdb.db.Query(`
+	SELECT rating FROM dx_rating_gen_3 WHERE user_play_date=?`, date)
+	if err != nil {
+		return rating, err
+	}
+	defer rows.Close()
+
+	if rows.Next() {
+		err = rows.Scan(&rating)
+		if err != nil {
+			return rating, err
+		}
+	} else {
+		return rating, errors.New(fmt.Sprintf("failed to get rating for play %d", date))
+	}
+
+	return rating, nil
 }
 
 func validatePlay(play PlayInfo) error {

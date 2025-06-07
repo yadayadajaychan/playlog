@@ -25,7 +25,11 @@ import (
 	"github.com/yadayadajaychan/playlog/database"
 )
 
-var testPlaydb_v1_0 = []string{"../test/plays_v1.0.db"}
+var testPlaydb_v1_0 = []string{
+			"../test/plays_v1.0.db",
+			"../test/plays_v1.2.db",
+			}
+var testPlaydb_v1_2 = []string{"../test/plays_v1.2.db"}
 
 func TestAddAndGetPlay(t *testing.T) {
 	tmpFile, err := os.CreateTemp("", "playdb-")
@@ -556,6 +560,41 @@ func TestGetVersion(t *testing.T) {
 
 		if major != 1 || minor != 2 {
 			t.Errorf("expected playdb version 1.2, got %d.%d", major, minor)
+		}
+	}
+}
+
+func TestDxRatingGen3(t *testing.T) {
+	db2, err := sql.Open("sqlite3", "../songs.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db2.Close()
+
+	songdb, err := database.NewSongDB(db2)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	for _, testPlaydb := range testPlaydb_v1_2 {
+		db, err := sql.Open("sqlite3", testPlaydb)
+		if err != nil {
+			t.Fatal(err)
+		}
+		defer db.Close()
+
+		playdb, err := database.NewPlayDB(db)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		rating, err := playdb.GetDxRatingGen3(1746506710, songdb)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		if rating != 261 {
+			t.Errorf("rating expected %d, got %d", 261, rating)
 		}
 	}
 }
