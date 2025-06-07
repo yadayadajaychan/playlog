@@ -578,7 +578,7 @@ func (playdb *PlayDB) GetBestScoreBeforeDate(songId int, difficulty Difficulty, 
 }
 
 // GetBestPlaysInVersion returns the n best plays in version
-// GetBestPlaysOutVersion returns the n best plays not in version
+// GetBestPlaysNotInVersion returns the n best plays not in version
 
 func rowsToPlayInfos(rows *sql.Rows) ([]PlayInfo, error) {
 	plays := make([]PlayInfo, 0, 50)

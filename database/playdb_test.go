@@ -25,6 +25,7 @@ import (
 	"github.com/yadayadajaychan/playlog/database"
 )
 
+// TODO: find a cleaner way to do this
 var testPlaydb_v1_0 = []string{
 			"../test/plays_v1.0.db",
 			"../test/plays_v1.2.db",

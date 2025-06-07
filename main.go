@@ -115,6 +115,18 @@ func main() {
 		panic(err)
 	}
 
+	// get & compare playdb version
+	major, minor, err := ctx.Playdb.GetVersion()
+	if err != nil {
+		panic(err)
+	}
+
+	if isNewerVersion(programVersion, major, minor) {
+		log.Printf("warning: playdb version %d.%d.0 is newer than program version %s", major, minor, programVersion)
+	} else if ctx.Verbose >= 2 {
+		log.Printf("playdb version %d.%d.0", major, minor)
+	}
+
 
 	if ctx.UpdateAndBackend || ctx.UpdateOnly {
 		if ctx.UpdateOnly {
@@ -157,4 +169,25 @@ Copyright (C) 2025 Ethan Cheng <ethan@nijika.org>
 License: GNU AGPLv3+ <http://gnu.org/licenses/agpl.html>
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.`)
+}
+
+func isNewerVersion(current string, major, minor int) bool {
+	var x, y int
+	n, err := fmt.Sscanf(current, "%d.%d", &x, &y)
+	if err != nil {
+		panic(err)
+	}
+	if n != 2 {
+		panic("failed to parse programVersion")
+	}
+
+	if major > x {
+		return true
+	} else if major == x {
+		if minor > y {
+			return true
+		}
+	}
+
+	return false
 }
