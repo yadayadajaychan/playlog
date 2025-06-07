@@ -28,6 +28,8 @@ import (
 
 // Update requires ctx.DataSource
 func Update(ctx context.PlaylogCtx) error {
+	defer ctx.Playdb.PopulateDxRatingGen3(ctx.Songdb)
+
 	if ctx.Verbose >= 1 {
 		log.Print("starting update")
 	}
