@@ -108,6 +108,22 @@ func (playdb *PlayDB) initDB() error {
 		return err
 	}
 
+	_, err = tx.Exec(`
+	CREATE TABLE IF NOT EXISTS version (
+		major INTEGER NOT NULL,
+		minor INTEGER NOT NULL,
+		PRIMARY KEY (major, minor)
+	);`)
+	if err != nil {
+		return err
+	}
+
+	_, err = tx.Exec(`
+	INSERT OR IGNORE INTO version (major, minor) VALUES (1, 0);`)
+	if err != nil {
+		return err
+	}
+
 	err = tx.Commit()
 	if err != nil {
 		return err
@@ -128,6 +144,26 @@ func (playdb *PlayDB) initDB() error {
 	}
 
 	return nil
+}
+
+func (playdb *PlayDB) GetVersion() (major, minor int, err error) {
+	rows, err := playdb.db.Query(`
+	SELECT * FROM version ORDER BY major DESC, minor DESC LIMIT 1;`)
+	if err != nil {
+		return major, minor, err
+	}
+	defer rows.Close()
+
+	if rows.Next() {
+		err = rows.Scan(&major, &minor)
+		if err != nil {
+			return major, minor, err
+		}
+	} else {
+		return major, minor, errors.New("failed to get playdb version")
+	}
+
+	return major, minor, nil
 }
 
 func validatePlay(play PlayInfo) error {

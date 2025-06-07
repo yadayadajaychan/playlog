@@ -147,7 +147,7 @@ func TestAddAndGetPlay(t *testing.T) {
 }
 
 func TestGetPlays(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -205,7 +205,7 @@ func TestGetPlays(t *testing.T) {
 }
 
 func TestGetCount(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -227,7 +227,7 @@ func TestGetCount(t *testing.T) {
 }
 
 func TestGetBestScoreBeforeDate(t *testing.T) {
-	db, err := sql.Open("sqlite3", "../test/test-plays.db")
+	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -525,5 +525,27 @@ func TestAddPlayWithNoDetailedJudgement(t *testing.T) {
 	err = playdb.AddPlay(play1)
 	if err != nil {
 		t.Error("non-nil error for play1")
+	}
+}
+
+func TestGetVersion(t *testing.T) {
+	db, err := sql.Open("sqlite3", "../test/plays_v1.0.db")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+
+	playdb, err := database.NewPlayDB(db)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	major, minor, err := playdb.GetVersion()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if major != 1 || minor != 0 {
+		t.Errorf("expected playdb version 1.0, got %d.%d", major, minor)
 	}
 }
