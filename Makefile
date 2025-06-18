@@ -7,7 +7,7 @@ frontend:
 
 .PHONY: backend
 backend:
-	go build -ldflags "-X main.programVersion=$$(<VERSION)" -o playlog main.go
+	go build -ldflags "-X main.programVersion=$$(cat VERSION)" -o playlog main.go
 
 .PHONY: clean
 clean:
