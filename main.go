@@ -140,10 +140,8 @@ func updateLoop(ctx context.PlaylogCtx) {
 	for {
 		err := update.Update(ctx)
 		if err != nil {
-			log.Fatal(err)
-		}
-
-		if ctx.Verbose >= 1 {
+			log.Print("ERROR: ", err) // do not exit program
+		} else if ctx.Verbose >= 1 {
 			log.Print("finished update")
 		}
 		time.Sleep(ctx.UpdateInterval)
