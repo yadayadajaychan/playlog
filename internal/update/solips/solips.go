@@ -23,7 +23,6 @@ import (
 	"io"
 	"time"
 	"strings"
-	"net/url"
 	"net/http"
 	"net/http/cookiejar"
 	"encoding/json"
@@ -34,9 +33,19 @@ import (
 )
 
 const (
-	apiUrl = "https://www.solips.app/maimai/profile?_data=routes%2Fmaimai.profile"
+	apiUrl = `https://www.solips.app/api/trpc/maimai.playlog,maimai.favorites?batch=1&input={"0":{"json":null,"meta":{"values":["undefined"]}},"1":{"json":null,"meta":{"values":["undefined"]}}}`
+	loginUrl = `https://www.solips.app/api/trpc/card.link?batch=1`
+	detailUrlFmt = `https://www.solips.app/api/trpc/maimai.playlogDetail,maimai.favorites?batch=1&input={"0":{"json":{"playlogId":"%s"}},"1":{"json":null,"meta":{"values":["undefined"]}}}`
 	playlogLength = 100
 )
+
+type apiPlaylogV2 struct {
+	Result	struct {
+		Data	struct {
+			Json	[]apiPlaylogEntry
+		}
+	}
+}
 
 type apiPlaylog struct {
 	Playlog	[]apiPlaylogEntry
@@ -46,6 +55,14 @@ type apiPlaylogEntry struct {
 	PlaylogApiId	string
 	Info		struct {
 		UserPlayDate	string
+	}
+}
+
+type apiPlaylogDetailV2 struct {
+	Result	struct {
+		Data	struct {
+			JSON	maimaiPlaylogDetail
+		}
 	}
 }
 
@@ -120,6 +137,8 @@ type maimaiPlaylogDetail struct {
 		UserName	string
 	}
 }
+
+var globalCookieJar, _ = cookiejar.New(nil)
 
 // Update uses the Mythos access code to get the most recent 100 songs played
 // and makes an api request per new song that's not in the database,
@@ -345,60 +364,60 @@ func addMaimaiPlaylogDetailToPlayDB(playdb *database.PlayDB, maimai maimaiPlaylo
 // getPlaylog gets the non-detailed playlog of the most recent 100 plays.
 // only the playlogApiId and userPlayDate values matter in this case.
 func getPlaylog(accessCode string) (*apiPlaylog, error) {
-	// POST to API and save cookie
-	jar, err := cookiejar.New(nil)
-	if err != nil {
-		return nil, err
-	}
-
+	// POST to loginUrl and save cookie
 	client := &http.Client{
-		Jar: jar,
+		Jar: globalCookieJar,
 	}
 
-	form := url.Values{
-		"accessCode": {accessCode},
-		"requestType": {"getUserApiId"},
-	}
-
-	req, err := http.NewRequest("POST", apiUrl, strings.NewReader(form.Encode()))
+	loginData := fmt.Sprintf(`{"0":{"json":"%s"}}`, accessCode)
+	req, err := http.NewRequest("POST", loginUrl, strings.NewReader(loginData))
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
 
-	data, err := io.ReadAll(resp.Body)
+	_, err = io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
 	resp.Body.Close()
 
 	// GET with authentication cookie
-	req.Method = "GET"
-	req.Body = nil
+	req, err = http.NewRequest("GET", apiUrl, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	resp, err = client.Do(req)
 	if err != nil {
 		return nil, err
 	}
-
-	data, err = io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	resp.Body.Close()
+	defer resp.Body.Close()
 
 	// Unmarshal JSON
-	playlog := &apiPlaylog{
-		Playlog: make([]apiPlaylogEntry, 0, 100),
-	}
-	err = json.Unmarshal(data, playlog)
+	var playlogV2 apiPlaylogV2
+	dec := json.NewDecoder(resp.Body)
+
+	tok, err := dec.Token()
 	if err != nil {
 		return nil, err
+	}
+	if delim, ok := tok.(json.Delim); !ok || delim != '[' {
+		return nil, fmt.Errorf("expected [")
+	}
+
+	if err = dec.Decode(&playlogV2); err != nil {
+		return nil, err
+	}
+
+	// convert from V2 to V1
+	playlog := &apiPlaylog{
+		Playlog: playlogV2.Result.Data.Json,
 	}
 
 	return playlog, nil
@@ -438,36 +457,43 @@ func printPlaylog(playlog *apiPlaylog) {
 	}
 }
 
+// getPlaylogDetail depends on globalCookieJar to work correctly.
 func getPlaylogDetail(accessCode, playlogApiId string) (*apiPlaylogDetail, error) {
-	form := url.Values{
-		"accessCode": {accessCode},
-		"requestType": {"getPlaylogDetail"},
-		"playlogApiId": {playlogApiId},
+	client := &http.Client{
+		Jar: globalCookieJar,
 	}
 
-	req, err := http.NewRequest("POST", apiUrl, strings.NewReader(form.Encode()))
+	url := fmt.Sprintf(detailUrlFmt, playlogApiId)
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	client := http.DefaultClient
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 
-	data, err := io.ReadAll(resp.Body)
+	// Unmarshal JSON
+	var playlogDetailV2 apiPlaylogDetailV2
+	dec := json.NewDecoder(resp.Body)
+
+	tok, err := dec.Token()
 	if err != nil {
 		return nil, err
 	}
-	resp.Body.Close()
+	if delim, ok := tok.(json.Delim); !ok || delim != '[' {
+		return nil, fmt.Errorf("expected [")
+	}
 
-	playlogDetail := &apiPlaylogDetail{}
-
-	err = json.Unmarshal(data, playlogDetail)
-	if err != nil {
+	if err = dec.Decode(&playlogDetailV2); err != nil {
 		return nil, err
+	}
+
+	// convert from V2 to V1
+	playlogDetail := &apiPlaylogDetail{
+		MaimaiPlaylogDetail: playlogDetailV2.Result.Data.JSON,
 	}
 
 	return playlogDetail, nil
