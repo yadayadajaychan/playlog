@@ -9,7 +9,7 @@
 	<br>
 
 	<p>
-	Copyright (C) 2025 Ethan Cheng &lt;ethan@nijika.org&gt;<br>
+	Copyright (C) 2025, 2026 Ethan Cheng &lt;ethan@nijika.org&gt;<br>
 	License: GNU AGPLv3+ &lt;http://gnu.org/licenses/agpl.html&gt;<br>
 	This is free software: you are free to change and redistribute it.<br>
 	There is NO WARRANTY, to the extent permitted by law.<br>
