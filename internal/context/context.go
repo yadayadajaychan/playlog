@@ -24,12 +24,15 @@ type DataSource int
 const (
 	Solips DataSource = iota
 	Kamai
+	Maimaidx
 )
 
 type PlaylogCtx struct {
 	DataSource DataSource
 	AccessCode string // Mythos Access Code
 	KamaiUser string // kamaitachi username
+	SegaID string // for maimaidx
+	SegaPassword string // for maimaidx
 
 	Playdb *database.PlayDB
 	Songdb *database.SongDB

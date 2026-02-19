@@ -24,6 +24,7 @@ import (
 	"github.com/yadayadajaychan/playlog/internal/context"
 	"github.com/yadayadajaychan/playlog/internal/update/solips"
 	"github.com/yadayadajaychan/playlog/internal/update/kamai"
+	"github.com/yadayadajaychan/playlog/internal/update/maimaidx"
 )
 
 // Update requires ctx.DataSource
@@ -46,6 +47,17 @@ func Update(ctx context.PlaylogCtx) error {
 			log.Fatal("missing 'PLAYLOG_KAMAI_USER' environment variable")
 		}
 		return kamai.Update(ctx)
+
+	case context.Maimaidx:
+		ctx.SegaID = os.Getenv("PLAYLOG_SEGA_ID")
+		if ctx.SegaID == "" {
+			log.Fatal("missing 'PLAYLOG_SEGA_ID' environment variable")
+		}
+		ctx.SegaPassword = os.Getenv("PLAYLOG_SEGA_PASSWORD")
+		if ctx.SegaPassword == "" {
+			log.Fatal("missing 'PLAYLOG_SEGA_PASSWORD' environment variable")
+		}
+		return maimaidx.Update(ctx)
 
 	default:
 		return errors.New("invalid data source")

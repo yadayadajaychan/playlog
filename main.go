@@ -42,7 +42,7 @@ func main() {
 	version := getopt.BoolLong("version", 'V', "display version")
 	songdbFilename := getopt.StringLong("songdb", 's', "songs.db", "filename of song db")
 	playdbFilename := getopt.StringLong("playdb", 'p', "plays.db", "filename of play db")
-	dataSource := getopt.StringLong("data-source", 'd', "solips", "valid options: solips, kamai")
+	dataSource := getopt.StringLong("data-source", 'd', "solips", "valid options: solips, kamai, maimaidx")
 
 	verbose := getopt.CounterLong("verbose", 'v', "verbosity level (errors only, info, debug)")
 	listenPort := getopt.IntLong("listen-port", 'l', 5000, "port to listen on")
@@ -87,6 +87,8 @@ func main() {
 		ctx.DataSource = context.Solips
 	case "kamai":
 		ctx.DataSource = context.Kamai
+	case "maimaidx":
+		ctx.DataSource = context.Maimaidx
 	default:
 		log.Fatal("invalid data source")
 	}
