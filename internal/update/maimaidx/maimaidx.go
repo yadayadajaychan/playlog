@@ -19,11 +19,12 @@ package maimaidx
 
 import (
 	"io"
-	"fmt"
 	"log"
+	"time"
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"golang.org/x/net/html"
 
 
 	//"github.com/yadayadajaychan/playlog/database"
@@ -55,16 +56,25 @@ var globalCookieJar, _ = cookiejar.New(nil)
 // It then adds them to the database.
 // ctx requires Playdb, Songdb, AccessCode, ApiInterval, Verbose
 func Update(ctx context.PlaylogCtx) error {
-	_, err := getPlaylog(ctx)
+	playlog, err := getPlaylog(ctx)
 	if err != nil {return err}
+
+	//for _, v := range playlog {
+	//	log.Println(v.UserPlayDate)
+	//	log.Println(v.Idx)
+	//}
 
 	return nil
 }
 
+type playlogEntry struct {
+	UserPlayDate int64
+	Idx          string
+}
+
 // getPlaylog gets the non-detailed playlog of the most recent 50 plays.
 // only the idx and user play date matter in this case.
-// It returns a slice of the idx's not already in the play database.
-func getPlaylog(ctx context.PlaylogCtx) ([]string, error) {
+func getPlaylog(ctx context.PlaylogCtx) ([]playlogEntry, error) {
 	client := &http.Client{
 		Jar: globalCookieJar,
 		Transport: &headerTransport{
@@ -115,10 +125,69 @@ func getPlaylog(ctx context.PlaylogCtx) ([]string, error) {
 	if err != nil {return nil, err}
 	defer resp.Body.Close()
 
-	test3, _ := io.ReadAll(resp.Body)
-	fmt.Println(string(test3))
+	//test3, _ := io.ReadAll(resp.Body)
+	//fmt.Println(string(test3))
 
-	return nil, nil
+	// parse html for play date and idx
+	var playlog []playlogEntry
+	z := html.NewTokenizer(resp.Body)
+	var isDate bool
+	var userPlayDate int64
+
+	for {
+		tt := z.Next()
+		switch tt {
+		case html.ErrorToken:
+			if z.Err() == io.EOF {
+				return playlog, nil
+			} else {
+				return playlog, z.Err()
+			}
+
+		case html.StartTagToken:
+			name, hasAttr := z.TagName()
+
+			if string(name) == "span" && hasAttr {
+				key, val, _ := z.TagAttr()
+				if string(key) == "class" && string(val) == "v_b" {
+					isDate = true
+				}
+			}
+
+		case html.SelfClosingTagToken:
+			name, hasAttr := z.TagName()
+
+			if string(name) == "input" && hasAttr {
+				var key, val []byte
+				moreAttr := true
+				for moreAttr {
+					key, val, moreAttr = z.TagAttr()
+					if string(key) == "value" {
+						p := playlogEntry{
+							UserPlayDate : userPlayDate,
+							Idx : string(val),
+						}
+						playlog = append(playlog, p)
+						userPlayDate = 0
+					}
+				}
+			}
+
+		case html.TextToken:
+			if isDate {
+				date, err := time.Parse("2006/01/02 15:04", string(z.Text()))
+				if err != nil {return playlog, err}
+
+				// correct for JST timezone
+				date = date.Add(-9 * time.Hour)
+
+				userPlayDate = date.Unix()
+				isDate = false
+			}
+		}
+	}
+
+	return playlog, nil
 }
 
 type headerTransport struct {

@@ -7,3 +7,5 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.28
 	github.com/pborman/getopt/v2 v2.1.0
 )
+
+require golang.org/x/net v0.50.0 // indirect
