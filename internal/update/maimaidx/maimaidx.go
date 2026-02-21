@@ -190,6 +190,21 @@ func getPlaylog(ctx context.PlaylogCtx) ([]playlogEntry, error) {
 	return playlog, nil
 }
 
+// deleteOldEntries takes a slice of playlog entries and returns
+// a slice of playlog entries that aren't already in the play db
+func deleteOldEntries(playdb database.PlayDB, playlog []playlogEntries) ([]playlogEntries, err) {
+	var output []playlogEntries
+
+	for _, entry := range playlog {
+		_, err := playdb.GetPlay(entry.UserPlayDate)
+		if _, ok := err.(*database.PlayNotFoundError); ok {
+			output = append(output, entry)
+		}
+	}
+
+	return output, nil
+}
+
 type headerTransport struct {
 	base    http.RoundTripper
 	headers map[string]string
