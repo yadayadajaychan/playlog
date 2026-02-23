@@ -59,7 +59,7 @@ func Update(ctx context.PlaylogCtx) error {
 	playlog, err := getPlaylog(ctx)
 	if err != nil {return err}
 
-	playlog, err = deleteOldEntries(ctx.Playdb, playlog)
+	playlog, err = deleteOldEntries(ctx, playlog)
 	if err != nil {return err}
 
 	for _, v := range playlog {
@@ -202,13 +202,18 @@ func getPlaylog(ctx context.PlaylogCtx) ([]playlogEntry, error) {
 
 // deleteOldEntries takes a slice of playlog entries and returns
 // a slice of playlog entries that aren't already in the play db
-func deleteOldEntries(playdb *database.PlayDB, playlog []playlogEntry) ([]playlogEntry, error) {
+func deleteOldEntries(ctx context.PlaylogCtx, playlog []playlogEntry) ([]playlogEntry, error) {
+	playdb := ctx.Playdb
 	var output []playlogEntry
 
 	for _, entry := range playlog {
 		_, err := playdb.GetPlay(entry.UserPlayDate)
 		if _, ok := err.(*database.PlayNotFoundError); ok {
 			output = append(output, entry)
+		} else if err == nil && ctx.Verbose >= 2 {
+			log.Printf("%v already in play db", entry.UserPlayDate)
+		} else if err != nil {
+			return output, err
 		}
 	}
 
