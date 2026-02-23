@@ -424,10 +424,10 @@ func getPlaylog(accessCode string) (*apiPlaylog, error) {
 }
 
 func validatePlaylog(playlog *apiPlaylog) error {
-	// verify there are playlogLength items
+	// verify there are at most playlogLength items
 	n := len(playlog.Playlog)
-	if n != playlogLength {
-		return errors.New(fmt.Sprintf("len(playlog): expected %d, got %d", playlogLength, n))
+	if n > playlogLength {
+		return errors.New(fmt.Sprintf("len(playlog): expected <= %d, got %d", playlogLength, n))
 	}
 
 	// check for duplicates
