@@ -24,7 +24,11 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"net/url"
+	"errors"
+	"strings"
+	"strconv"
 	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 
 
 	"github.com/yadayadajaychan/playlog/database"
@@ -66,10 +70,9 @@ func Update(ctx context.PlaylogCtx) error {
 		play, err := getPlaylogDetail(ctx, v)
 		if err != nil {return err}
 
-		_ = play
-
-		log.Println(v.UserPlayDate)
-		log.Println(v.Idx)
+		log.Println(play)
+		//log.Println(v.UserPlayDate)
+		//log.Println(v.Idx)
 
 		time.Sleep(ctx.ApiInterval)
 	}
@@ -223,6 +226,7 @@ func deleteOldEntries(ctx context.PlaylogCtx, playlog []playlogEntry) ([]playlog
 // getPlaylogDetail gets the detailed playlog 
 func getPlaylogDetail(ctx context.PlaylogCtx, play playlogEntry) (database.PlayInfo, error) {
 	output := database.PlayInfo{}
+	output.UserPlayDate = play.UserPlayDate
 
 	client := &http.Client{
 		Jar: globalCookieJar,
@@ -238,16 +242,116 @@ func getPlaylogDetail(ctx context.PlaylogCtx, play playlogEntry) (database.PlayI
 	if ctx.Verbose >= 2 {
 		log.Printf("getting idx %s", play.Idx)
 	}
-	resp, err := client.Get(url5)
+	resp, err := client.Get(url5 + "?idx=" + play.Idx)
 	if err != nil {return output, err}
 	defer resp.Body.Close()
 
-	test, _ := io.ReadAll(resp.Body)
-	log.Println(string(test))
+	//test, _ := io.ReadAll(resp.Body)
+	//log.Println(string(test))
+
+	doc, err := html.Parse(resp.Body)
+	if err != nil {return output, err}
+
+	// find the playlog_top_container div
+	var top *html.Node
+	top_loop:
+	for n := range doc.Descendants() {
+		if n.Type == html.ElementNode && n.DataAtom == atom.Div {
+			for _, a := range n.Attr {
+				if a.Key == "class" && a.Val == "playlog_top_container p_r" {
+					top = n
+					break top_loop
+				}
+			}
+		}
+	}
+	if top == nil {
+		return output, errors.New("playlogDetail: failed to find playlog_top_container")
+	}
+
+	err = parseTop(top, &output)
+	if err != nil {return output, err}
+
 
 	return output, nil
 }
 
+func parseTop(top *html.Node, play *database.PlayInfo) error {
+	//parseError := errors.New("playlogDetail: failed to parse playlog_top_container")
+
+	// img
+	if top.FirstChild == nil {
+		return errors.New("playlogDetail: failed to find difficulty image")
+	}
+	diff := top.FirstChild.NextSibling
+	if diff == nil {
+		return errors.New("playlogDetail: failed to find difficulty image")
+	}
+
+	diffFound := false
+	for _, a := range diff.Attr {
+		if a.Key == "src" {
+			switch a.Val {
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_basic.png":
+				play.Difficulty = database.Basic
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_advanced.png":
+				play.Difficulty = database.Advanced
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_expert.png":
+				play.Difficulty = database.Expert
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_master.png":
+				play.Difficulty = database.Master
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_remaster.png":
+				play.Difficulty = database.ReMaster
+			case "https://maimaidx-eng.com/maimai-mobile/img/diff_utage.png":
+				play.Difficulty = database.Utage
+			default:
+				return errors.New("playlogDetail: invalid difficulty: " + a.Val)
+			}
+			diffFound = true
+		}
+	}
+	if !diffFound {
+		return errors.New("playlogDetail: failed to find difficulty image source")
+	}
+
+	// div
+	if diff.NextSibling == nil {
+		return errors.New("playlogDetail: failed to find sub_title div")
+	}
+	subtitle := diff.NextSibling.NextSibling
+	if subtitle == nil {
+		return errors.New("playlogDetail: failed to find sub_title div")
+	}
+
+	// span
+	if subtitle.FirstChild == nil {
+		return errors.New("playlogDetail: failed to find track span")
+	}
+	track := subtitle.FirstChild.NextSibling
+	if track == nil {
+		return errors.New("playlogDetail: failed to find track span")
+	}
+
+	// text
+	t := track.FirstChild
+	if t == nil {
+		return errors.New("playlogDetail: failed to find track")
+	}
+
+	_, tt, ok := strings.Cut(t.Data, " ")
+	if !ok {
+		return errors.New("playlogDetail: failed to cut track")
+	}
+
+	trackNumber, err := strconv.Atoi(tt)
+	if err != nil {
+		return errors.New("playlogDetail: failed to convert track to int")
+	}
+
+	play.Track = trackNumber
+
+	return nil
+}
 
 type headerTransport struct {
 	base    http.RoundTripper
