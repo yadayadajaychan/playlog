@@ -60,6 +60,15 @@ var globalCookieJar, _ = cookiejar.New(nil)
 // It then adds them to the database.
 // ctx requires Playdb, Songdb, AccessCode, ApiInterval, Verbose
 func Update(ctx context.PlaylogCtx) error {
+	// check time to see if servers are under maintenance
+	t := time.Now().In(time.FixedZone("Asia/Tokyo", 9*3600))
+	if 4 <= t.Hour() && t.Hour() <= 7 {
+		if ctx.Verbose >= 1 {
+			log.Println("maimaidx server under maintenance")
+		}
+		return nil
+	}
+
 	playlog, err := getPlaylog(ctx)
 	if err != nil {return err}
 
