@@ -27,7 +27,7 @@ import (
 	"golang.org/x/net/html"
 
 
-	//"github.com/yadayadajaychan/playlog/database"
+	"github.com/yadayadajaychan/playlog/database"
 	"github.com/yadayadajaychan/playlog/internal/context"
 )
 
@@ -59,10 +59,20 @@ func Update(ctx context.PlaylogCtx) error {
 	playlog, err := getPlaylog(ctx)
 	if err != nil {return err}
 
-	//for _, v := range playlog {
-	//	log.Println(v.UserPlayDate)
-	//	log.Println(v.Idx)
-	//}
+	playlog, err = deleteOldEntries(ctx.Playdb, playlog)
+	if err != nil {return err}
+
+	for _, v := range playlog {
+		play, err := getPlaylogDetail(ctx, v)
+		if err != nil {return err}
+
+		_ = play
+
+		log.Println(v.UserPlayDate)
+		log.Println(v.Idx)
+
+		time.Sleep(ctx.ApiInterval)
+	}
 
 	return nil
 }
@@ -192,8 +202,8 @@ func getPlaylog(ctx context.PlaylogCtx) ([]playlogEntry, error) {
 
 // deleteOldEntries takes a slice of playlog entries and returns
 // a slice of playlog entries that aren't already in the play db
-func deleteOldEntries(playdb database.PlayDB, playlog []playlogEntries) ([]playlogEntries, err) {
-	var output []playlogEntries
+func deleteOldEntries(playdb *database.PlayDB, playlog []playlogEntry) ([]playlogEntry, error) {
+	var output []playlogEntry
 
 	for _, entry := range playlog {
 		_, err := playdb.GetPlay(entry.UserPlayDate)
@@ -204,6 +214,35 @@ func deleteOldEntries(playdb database.PlayDB, playlog []playlogEntries) ([]playl
 
 	return output, nil
 }
+
+// getPlaylogDetail gets the detailed playlog 
+func getPlaylogDetail(ctx context.PlaylogCtx, play playlogEntry) (database.PlayInfo, error) {
+	output := database.PlayInfo{}
+
+	client := &http.Client{
+		Jar: globalCookieJar,
+		Transport: &headerTransport{
+			base: http.DefaultTransport,
+			headers: map[string]string{
+			"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+			},
+		},
+	}
+
+	// url5
+	if ctx.Verbose >= 2 {
+		log.Printf("getting idx %s", play.Idx)
+	}
+	resp, err := client.Get(url5)
+	if err != nil {return output, err}
+	defer resp.Body.Close()
+
+	test, _ := io.ReadAll(resp.Body)
+	log.Println(string(test))
+
+	return output, nil
+}
+
 
 type headerTransport struct {
 	base    http.RoundTripper
