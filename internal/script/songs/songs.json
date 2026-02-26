@@ -708,7 +708,7 @@
       {
         "difficulty": "master",
         "level": 12,
-        "internal_level": 12.8,
+        "internal_level": 12.9,
         "notes_designer": "ニャイン",
         "max_notes": 344
       }
@@ -1394,8 +1394,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.8,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "ニャイン",
         "max_notes": 398
       },
@@ -1742,8 +1742,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "ニャイン",
         "max_notes": 464
       },
@@ -2499,7 +2499,7 @@
         "difficulty": "expert",
         "level": 10,
         "internal_level": 10.5,
-        "notes_designer": "合作だよ",
+        "notes_designer": "譜面-100号とはっぴー",
         "max_notes": 335
       },
       {
@@ -2798,8 +2798,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.8,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "はっぴー",
         "max_notes": 502
       }
@@ -3000,7 +3000,7 @@
         "difficulty": "expert",
         "level": 12,
         "internal_level": 12,
-        "notes_designer": "合作だよ",
+        "notes_designer": "ニャインとはっぴー",
         "max_notes": 446
       },
       {
@@ -3052,8 +3052,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "mai-Star",
         "max_notes": 500
       }
@@ -4174,8 +4174,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "譜面-100号",
         "max_notes": 512
       },
@@ -5270,7 +5270,7 @@
         "difficulty": "master",
         "level": 13,
         "internal_level": 13.3,
-        "notes_designer": "合作だよ",
+        "notes_designer": "mai-Starとはっぴー",
         "max_notes": 588
       }
     ]
@@ -5383,7 +5383,7 @@
         "difficulty": "expert",
         "level": 12,
         "internal_level": 12.7,
-        "notes_designer": "合作だよ",
+        "notes_designer": "譜面-100号とはっぴー",
         "max_notes": 448
       },
       {
@@ -5595,8 +5595,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.3,
         "notes_designer": "某S氏",
         "max_notes": 526
       }
@@ -5604,7 +5604,7 @@
   },
   {
     "song_id": 200,
-    "name": "Bad Apple!! feat nomico",
+    "name": "Bad Apple!! feat.nomico",
     "artist": "Masayoshi Minoshima",
     "type": "std",
     "bpm": 138,
@@ -5644,7 +5644,7 @@
         "difficulty": "remaster",
         "level": 13,
         "internal_level": 13.3,
-        "notes_designer": "合作だよ",
+        "notes_designer": "Jack vs 某S氏",
         "max_notes": 698
       }
     ]
@@ -5731,7 +5731,7 @@
   },
   {
     "song_id": 203,
-    "name": "Help me, ERINNNNNN!!",
+    "name": "Help me, ERINNNNNN!!（Band ver.）",
     "artist": "ビートまりお(COOL＆CREATE)",
     "type": "std",
     "bpm": 183,
@@ -6044,7 +6044,7 @@
         "difficulty": "expert",
         "level": 12,
         "internal_level": 12.2,
-        "notes_designer": "合作だよ",
+        "notes_designer": "譜面-100号とはっぴー",
         "max_notes": 123
       },
       {
@@ -6336,8 +6336,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.8,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "はっぴー",
         "max_notes": 368
       }
@@ -6785,7 +6785,7 @@
         "difficulty": "expert",
         "level": 12,
         "internal_level": 12.2,
-        "notes_designer": "合作だよ",
+        "notes_designer": "Jack vs 譜面-100号",
         "max_notes": 462
       },
       {
@@ -6845,7 +6845,7 @@
     "bpm": 216,
     "category": "maimai",
     "version": "GreeN PLUS",
-    "sort": "130061",
+    "sort": "130000",
     "charts": [
       {
         "difficulty": "basic",
@@ -6992,7 +6992,7 @@
         "difficulty": "master",
         "level": 13,
         "internal_level": 13.8,
-        "notes_designer": "合作だよ",
+        "notes_designer": "ニャインとはっぴー",
         "max_notes": 680
       }
     ]
@@ -7032,7 +7032,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.4,
-        "notes_designer": "合作だよ",
+        "notes_designer": "譜面-100号とはっぴー",
         "max_notes": 777
       },
       {
@@ -7204,8 +7204,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.8,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "譜面-100号",
         "max_notes": 529
       }
@@ -7854,7 +7854,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.3,
         "notes_designer": "mai-Star",
         "max_notes": 591
       }
@@ -8435,7 +8435,7 @@
       {
         "difficulty": "remaster",
         "level": 12,
-        "internal_level": 12.8,
+        "internal_level": 12.9,
         "notes_designer": "はっぴー",
         "max_notes": 567
       }
@@ -9102,8 +9102,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "某S氏",
         "max_notes": 622
       }
@@ -10818,7 +10818,7 @@
     "bpm": 178,
     "category": "maimai",
     "version": "ORANGE",
-    "sort": "140061",
+    "sort": "140000",
     "charts": [
       {
         "difficulty": "basic",
@@ -11163,8 +11163,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.4,
         "notes_designer": "mai-Star",
         "max_notes": 599
       }
@@ -11739,7 +11739,7 @@
         "difficulty": "expert",
         "level": 11,
         "internal_level": 11.1,
-        "notes_designer": "合作だよ",
+        "notes_designer": "Revo@LC vs Jack",
         "max_notes": 567
       },
       {
@@ -11819,7 +11819,7 @@
         "difficulty": "expert",
         "level": 11,
         "internal_level": 11.2,
-        "notes_designer": "合作だよ",
+        "notes_designer": "rioNとはっぴー",
         "max_notes": 420
       },
       {
@@ -11866,7 +11866,7 @@
         "difficulty": "expert",
         "level": 12,
         "internal_level": 12.9,
-        "notes_designer": "合作だよ",
+        "notes_designer": "Jack vs mai-Star",
         "max_notes": 680
       },
       {
@@ -12233,7 +12233,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.2,
-        "notes_designer": "合作だよ",
+        "notes_designer": "譜面-100号とはっぴー",
         "max_notes": 840
       }
     ]
@@ -13447,7 +13447,7 @@
         "difficulty": "master",
         "level": 13,
         "internal_level": 13.3,
-        "notes_designer": "合作だよ",
+        "notes_designer": "rioNとはっぴー",
         "max_notes": 780
       }
     ]
@@ -14487,7 +14487,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.8,
-        "notes_designer": "合作だよ",
+        "notes_designer": "チャン@DP皆伝 vs Jack",
         "max_notes": 1150
       }
     ]
@@ -16035,7 +16035,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.7,
-        "notes_designer": "合作だよ",
+        "notes_designer": "ぴちネコ vs Jack",
         "max_notes": 1126
       },
       {
@@ -16080,8 +16080,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "rioN",
         "max_notes": 756
       }
@@ -16487,8 +16487,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "Revo@LC",
         "max_notes": 741
       }
@@ -16522,14 +16522,14 @@
         "difficulty": "expert",
         "level": 10,
         "internal_level": 10,
-        "notes_designer": "合作だよ",
+        "notes_designer": "畳返しとはっぴー",
         "max_notes": 393
       },
       {
         "difficulty": "master",
         "level": 11,
         "internal_level": 11.8,
-        "notes_designer": "合作だよ",
+        "notes_designer": "しろいろとはっぴー",
         "max_notes": 632
       }
     ]
@@ -16774,8 +16774,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "小鳥遊さん",
         "max_notes": 553
       }
@@ -18470,7 +18470,7 @@
         "difficulty": "master",
         "level": 13,
         "internal_level": 13.7,
-        "notes_designer": "合作だよ",
+        "notes_designer": "Revo@LC vs Jack",
         "max_notes": 887
       }
     ]
@@ -24164,8 +24164,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "玉子豆腐",
         "max_notes": 752
       }
@@ -25488,7 +25488,7 @@
         "difficulty": "master",
         "level": 13,
         "internal_level": 13.9,
-        "notes_designer": "合作だよ",
+        "notes_designer": "はっぴー vs Jack",
         "max_notes": 777
       }
     ]
@@ -25935,7 +25935,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.3,
-        "notes_designer": "合作だよ",
+        "notes_designer": "ぴちネコ vs Moon Strix",
         "max_notes": 876
       },
       {
@@ -26267,8 +26267,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "玉子豆腐",
         "max_notes": 620
       }
@@ -28642,7 +28642,7 @@
         "difficulty": "master",
         "level": 14,
         "internal_level": 14.6,
-        "notes_designer": "合作だよ",
+        "notes_designer": "小鳥遊さん vs LabiLabi",
         "max_notes": 1122
       }
     ]
@@ -28680,8 +28680,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "Jack",
         "max_notes": 697
       }
@@ -29008,6 +29008,86 @@
     ]
   },
   {
+    "song_id": 1736,
+    "name": "プリズム△▽リズム",
+    "artist": "Shoichiro Hirata feat.Sana",
+    "type": "std",
+    "bpm": 155,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 213
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 284
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.5,
+        "notes_designer": "はっぴー",
+        "max_notes": 419
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "譜面-100号",
+        "max_notes": 685
+      }
+    ]
+  },
+  {
+    "song_id": 1819,
+    "name": "AFTER PANDORA",
+    "artist": "削除",
+    "type": "std",
+    "bpm": 85,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 183
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 298
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.5,
+        "notes_designer": "Jack",
+        "max_notes": 333
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.2,
+        "notes_designer": "はっぴー",
+        "max_notes": 576
+      }
+    ]
+  },
+  {
     "song_id": 10021,
     "name": "コネクト",
     "artist": "ClariS　「魔法少女まどか☆マギカ」",
@@ -29051,6 +29131,46 @@
         "internal_level": 12.8,
         "notes_designer": "チャン@DP皆伝",
         "max_notes": 552
+      }
+    ]
+  },
+  {
+    "song_id": 10030,
+    "name": "ネコ日和。",
+    "artist": "Kai/能登有沙",
+    "type": "dx",
+    "bpm": 171,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 126
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 218
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.5,
+        "notes_designer": "Luxizhel",
+        "max_notes": 319
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "サファ太",
+        "max_notes": 631
       }
     ]
   },
@@ -29168,9 +29288,49 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13,
+        "internal_level": 13.2,
         "notes_designer": "Luxizhel",
         "max_notes": 527
+      }
+    ]
+  },
+  {
+    "song_id": 10122,
+    "name": "ゴーゴー幽霊船",
+    "artist": "米津玄師",
+    "type": "dx",
+    "bpm": 180,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 124
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 264
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10,
+        "notes_designer": "Luxizhel",
+        "max_notes": 432
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 543
       }
     ]
   },
@@ -29247,8 +29407,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "Luxizhel",
         "max_notes": 504
       }
@@ -29288,7 +29448,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.4,
         "notes_designer": "Starlight Disco Festa",
         "max_notes": 439
       }
@@ -29411,6 +29571,46 @@
         "internal_level": 12.8,
         "notes_designer": "鳩ホルダー",
         "max_notes": 538
+      }
+    ]
+  },
+  {
+    "song_id": 10187,
+    "name": "ローリンガール",
+    "artist": "wowaka",
+    "type": "dx",
+    "bpm": 195,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 199
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 322
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.9,
+        "notes_designer": "サファ太",
+        "max_notes": 520
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "Luxizhel",
+        "max_notes": 688
       }
     ]
   },
@@ -29975,6 +30175,46 @@
     ]
   },
   {
+    "song_id": 10303,
+    "name": "Endless, Sleepless Night",
+    "artist": "samfree feat.(V)・∀・(V)かにぱん。(A-ONE)",
+    "type": "dx",
+    "bpm": 165,
+    "category": "東方Project",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 186
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 281
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.7,
+        "notes_designer": "サファ太",
+        "max_notes": 452
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "Luxizhel",
+        "max_notes": 732
+      }
+    ]
+  },
+  {
     "song_id": 10315,
     "name": "深海少女",
     "artist": "ゆうゆ",
@@ -30175,6 +30415,46 @@
     ]
   },
   {
+    "song_id": 10367,
+    "name": "Dragoon",
+    "artist": "Shandy kubota",
+    "type": "dx",
+    "bpm": 175,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 166
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 308
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11,
+        "notes_designer": "サファ太",
+        "max_notes": 502
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "Luxizhel",
+        "max_notes": 707
+      }
+    ]
+  },
+  {
     "song_id": 10375,
     "name": "One Step Ahead",
     "artist": "伊東歌詞太郎",
@@ -30342,7 +30622,7 @@
     "bpm": 156,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -30422,7 +30702,7 @@
     "bpm": 145,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -30647,8 +30927,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.2,
         "notes_designer": "Jack",
         "max_notes": 673
       }
@@ -31102,7 +31382,7 @@
     "bpm": 160,
     "category": "東方Project",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -31295,6 +31575,46 @@
     ]
   },
   {
+    "song_id": 10835,
+    "name": "Believe the Rainbow",
+    "artist": "Shoichiro Hirata feat.Sana",
+    "type": "dx",
+    "bpm": 133,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 168
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 254
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.9,
+        "notes_designer": "Jack",
+        "max_notes": 386
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "チャン@DP皆伝",
+        "max_notes": 531
+      }
+    ]
+  },
+  {
     "song_id": 11001,
     "name": "BLACK ROSE",
     "artist": "S!N・+α/あるふぁきゅん。×ALI PROJECT",
@@ -31367,8 +31687,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.3,
         "notes_designer": "某S氏",
         "max_notes": 726
       },
@@ -31896,8 +32216,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "7.3Hz＋Jack",
         "max_notes": 871
       }
@@ -35364,8 +35684,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.2,
         "notes_designer": "Techno Kitchen",
         "max_notes": 652
       }
@@ -35892,7 +36212,7 @@
       {
         "difficulty": "master",
         "level": 12,
-        "internal_level": 12.8,
+        "internal_level": 12.9,
         "notes_designer": "シチミヘルツ",
         "max_notes": 652
       }
@@ -37019,7 +37339,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13,
+        "internal_level": 13.1,
         "notes_designer": "譜面-100号",
         "max_notes": 811
       }
@@ -41409,7 +41729,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.2,
         "notes_designer": "サファ太",
         "max_notes": 844
       }
@@ -42649,7 +42969,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.3,
         "notes_designer": "シチミヘルツ",
         "max_notes": 637
       }
@@ -43209,7 +43529,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.2,
         "notes_designer": "Redarrow",
         "max_notes": 998
       }
@@ -43829,8 +44149,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13.1,
         "notes_designer": "ものくろっく",
         "max_notes": 759
       }
@@ -44157,7 +44477,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13,
+        "internal_level": 13.1,
         "notes_designer": "はっぴー",
         "max_notes": 658
       }
@@ -44211,7 +44531,7 @@
     "bpm": 186,
     "category": "東方Project",
     "version": "UNiVERSE",
-    "sort": "220061",
+    "sort": "220000",
     "charts": [
       {
         "difficulty": "basic",
@@ -44258,7 +44578,7 @@
     "bpm": 190,
     "category": "東方Project",
     "version": "UNiVERSE",
-    "sort": "220061",
+    "sort": "220000",
     "charts": [
       {
         "difficulty": "basic",
@@ -45377,8 +45697,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.8,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "シチミヘルツ",
         "max_notes": 695
       }
@@ -46458,7 +46778,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13,
+        "internal_level": 13.2,
         "notes_designer": "隅田川星人",
         "max_notes": 903
       }
@@ -49979,8 +50299,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "じゃこレモン",
         "max_notes": 653
       }
@@ -50179,8 +50499,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "はっぴー",
         "max_notes": 899
       }
@@ -50860,7 +51180,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.2,
         "notes_designer": "Redarrow",
         "max_notes": 796
       }
@@ -53961,7 +54281,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.2,
         "notes_designer": "じゃこレモン",
         "max_notes": 612
       }
@@ -56301,8 +56621,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13.1,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "サファ太",
         "max_notes": 705
       }
@@ -56468,8 +56788,8 @@
       },
       {
         "difficulty": "master",
-        "level": 13,
-        "internal_level": 13,
+        "level": 12,
+        "internal_level": 12.9,
         "notes_designer": "アマリリス",
         "max_notes": 670
       }
@@ -56589,7 +56909,7 @@
       {
         "difficulty": "master",
         "level": 12,
-        "internal_level": 12.8,
+        "internal_level": 12.7,
         "notes_designer": "はっぴー",
         "max_notes": 709
       }
@@ -56829,7 +57149,7 @@
       {
         "difficulty": "master",
         "level": 14,
-        "internal_level": 14.7,
+        "internal_level": 14.6,
         "notes_designer": "The Dove",
         "max_notes": 949
       }
@@ -57029,7 +57349,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.8,
+        "internal_level": 13.9,
         "notes_designer": "カマボコ君",
         "max_notes": 1049
       }
@@ -57635,8 +57955,8 @@
       },
       {
         "difficulty": "master",
-        "level": 12,
-        "internal_level": 12.9,
+        "level": 13,
+        "internal_level": 13,
         "notes_designer": "アマリリス",
         "max_notes": 769
       }
@@ -57756,7 +58076,7 @@
       {
         "difficulty": "master",
         "level": 11,
-        "internal_level": 11.4,
+        "internal_level": 11.5,
         "notes_designer": "緑風 犬三郎",
         "max_notes": 629
       },
@@ -57897,7 +58217,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.7,
+        "internal_level": 13.6,
         "notes_designer": "Luxizhel",
         "max_notes": 1056
       }
@@ -57977,7 +58297,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13,
         "notes_designer": "じゃこレモン",
         "max_notes": 760
       }
@@ -58057,7 +58377,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.7,
+        "internal_level": 13.6,
         "notes_designer": "サファ太",
         "max_notes": 825
       }
@@ -58177,7 +58497,7 @@
       {
         "difficulty": "master",
         "level": 14,
-        "internal_level": 14.4,
+        "internal_level": 14.5,
         "notes_designer": "サファ太",
         "max_notes": 1257
       }
@@ -58217,7 +58537,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.5,
+        "internal_level": 13.4,
         "notes_designer": "Jack",
         "max_notes": 1049
       }
@@ -58297,7 +58617,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.6,
+        "internal_level": 13.7,
         "notes_designer": "みぞれヤナギ & サファ太",
         "max_notes": 770
       }
@@ -58497,7 +58817,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.2,
+        "internal_level": 13.1,
         "notes_designer": "はっぴー",
         "max_notes": 940
       }
@@ -58537,7 +58857,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.7,
+        "internal_level": 13.6,
         "notes_designer": "はっぴー",
         "max_notes": 997
       }
@@ -58577,7 +58897,7 @@
       {
         "difficulty": "master",
         "level": 12,
-        "internal_level": 12.7,
+        "internal_level": 12.6,
         "notes_designer": "サファ太",
         "max_notes": 549
       }
@@ -58617,7 +58937,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.1,
+        "internal_level": 13.3,
         "notes_designer": "ロシェ@ペンギン",
         "max_notes": 609
       }
@@ -58657,7 +58977,7 @@
       {
         "difficulty": "master",
         "level": 14,
-        "internal_level": 14.6,
+        "internal_level": 14.7,
         "notes_designer": "アミノハバキリ",
         "max_notes": 1189
       }
@@ -58817,7 +59137,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.5,
+        "internal_level": 13.6,
         "notes_designer": "Jack",
         "max_notes": 921
       }
@@ -59137,7 +59457,7 @@
       {
         "difficulty": "master",
         "level": 13,
-        "internal_level": 13.5,
+        "internal_level": 13.7,
         "notes_designer": "Luxizhel",
         "max_notes": 980
       }
@@ -59217,7 +59537,7 @@
       {
         "difficulty": "master",
         "level": 12,
-        "internal_level": 12.9,
+        "internal_level": 12.7,
         "notes_designer": "Jack&アマリリス",
         "max_notes": 634
       }
@@ -59431,7 +59751,7 @@
     "bpm": 175,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59471,7 +59791,7 @@
     "bpm": 204,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59511,7 +59831,7 @@
     "bpm": 178,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59551,7 +59871,7 @@
     "bpm": 163,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59591,7 +59911,7 @@
     "bpm": 205,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59631,7 +59951,7 @@
     "bpm": 166,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59671,7 +59991,7 @@
     "bpm": 190,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59711,7 +60031,7 @@
     "bpm": 150,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59751,7 +60071,7 @@
     "bpm": 190,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59791,7 +60111,7 @@
     "bpm": 160,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59831,7 +60151,7 @@
     "bpm": 185,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59871,7 +60191,7 @@
     "bpm": 250,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -59911,7 +60231,7 @@
     "bpm": 125,
     "category": "maimai",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60031,7 +60351,7 @@
     "bpm": 190,
     "category": "オンゲキ＆CHUNITHM",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60071,7 +60391,7 @@
     "bpm": 175,
     "category": "オンゲキ＆CHUNITHM",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60111,7 +60431,7 @@
     "bpm": 155,
     "category": "オンゲキ＆CHUNITHM",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60151,7 +60471,7 @@
     "bpm": 220,
     "category": "オンゲキ＆CHUNITHM",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60612,7 +60932,7 @@
     "bpm": 150,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60652,7 +60972,7 @@
     "bpm": 145,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60692,7 +61012,7 @@
     "bpm": 160,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60732,7 +61052,7 @@
     "bpm": 210,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60772,7 +61092,7 @@
     "bpm": 140,
     "category": "東方Project",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60812,7 +61132,7 @@
     "bpm": 55,
     "category": "東方Project",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60852,7 +61172,7 @@
     "bpm": 158,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60899,7 +61219,7 @@
     "bpm": 170,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60946,7 +61266,7 @@
     "bpm": 176,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -60986,7 +61306,7 @@
     "bpm": 108,
     "category": "東方Project",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61026,7 +61346,7 @@
     "bpm": 195,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61066,7 +61386,7 @@
     "bpm": 150,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61106,7 +61426,7 @@
     "bpm": 170,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61146,7 +61466,7 @@
     "bpm": 190,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61186,7 +61506,7 @@
     "bpm": 175,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61226,7 +61546,7 @@
     "bpm": 165,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61266,7 +61586,7 @@
     "bpm": 181,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61306,7 +61626,7 @@
     "bpm": 216,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61346,7 +61666,7 @@
     "bpm": 190,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61386,7 +61706,7 @@
     "bpm": 154,
     "category": "POPS＆アニメ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61426,7 +61746,7 @@
     "bpm": 135,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61466,7 +61786,7 @@
     "bpm": 185,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61506,7 +61826,7 @@
     "bpm": 204,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61546,7 +61866,7 @@
     "bpm": 175,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61586,7 +61906,7 @@
     "bpm": 155,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61626,7 +61946,7 @@
     "bpm": 225,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61666,7 +61986,7 @@
     "bpm": 175,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61706,7 +62026,7 @@
     "bpm": 224,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61746,7 +62066,7 @@
     "bpm": 230,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61786,7 +62106,7 @@
     "bpm": 142,
     "category": "niconico&ボーカロイド",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61826,7 +62146,7 @@
     "bpm": 102,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61866,7 +62186,7 @@
     "bpm": 185,
     "category": "ゲーム＆バラエティ",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "basic",
@@ -61935,6 +62255,2921 @@
         "internal_level": 13.2,
         "notes_designer": "ロシェ@ペンギン",
         "max_notes": 836
+      }
+    ]
+  },
+  {
+    "song_id": 11806,
+    "name": "Fraq",
+    "artist": "owl＊tree feat. べんざ",
+    "type": "dx",
+    "bpm": 221,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 229
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.5,
+        "notes_designer": null,
+        "max_notes": 427
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.2,
+        "notes_designer": "サファ太",
+        "max_notes": 677
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "Luxizhel",
+        "max_notes": 806
+      }
+    ]
+  },
+  {
+    "song_id": 11807,
+    "name": "ウタヒメナイトストーム",
+    "artist": "yowanecity feat.Eye",
+    "type": "dx",
+    "bpm": 164,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 190
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 313
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.5,
+        "notes_designer": "Jack",
+        "max_notes": 552
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 856
+      }
+    ]
+  },
+  {
+    "song_id": 11808,
+    "name": "Feel The Luv",
+    "artist": "EmoCosine",
+    "type": "dx",
+    "bpm": 155,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 211
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 352
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "サファ太",
+        "max_notes": 594
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "アマリリス",
+        "max_notes": 927
+      }
+    ]
+  },
+  {
+    "song_id": 11809,
+    "name": "Åntinomiε",
+    "artist": "ああ…翡翠茶漬け…",
+    "type": "dx",
+    "bpm": 242,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 308
+      },
+      {
+        "difficulty": "advanced",
+        "level": 9,
+        "internal_level": 9.5,
+        "notes_designer": null,
+        "max_notes": 494
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.8,
+        "notes_designer": "サファ太",
+        "max_notes": 688
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.6,
+        "notes_designer": "SAFARi☆CAT",
+        "max_notes": 1039
+      }
+    ]
+  },
+  {
+    "song_id": 11810,
+    "name": "ATLAS RUSH",
+    "artist": "kanone",
+    "type": "dx",
+    "bpm": 156,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 236
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 368
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.6,
+        "notes_designer": "サファ太",
+        "max_notes": 592
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.7,
+        "notes_designer": "BELiZHEL",
+        "max_notes": 1045
+      }
+    ]
+  },
+  {
+    "song_id": 11811,
+    "name": "概して過誤",
+    "artist": "isonosuke feat.知声",
+    "type": "dx",
+    "bpm": 170,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 224
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 371
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 501
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 800
+      }
+    ]
+  },
+  {
+    "song_id": 11812,
+    "name": "Unfinished Epic",
+    "artist": "SLAVE.V-V-R feat.Sor△",
+    "type": "dx",
+    "bpm": 185,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 278
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.7,
+        "notes_designer": null,
+        "max_notes": 457
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.5,
+        "notes_designer": "Jack",
+        "max_notes": 655
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "Luxizhel",
+        "max_notes": 903
+      }
+    ]
+  },
+  {
+    "song_id": 11813,
+    "name": "忙シー日",
+    "artist": "原口沙輔, 式部めぐり",
+    "type": "dx",
+    "bpm": 150,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 194
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.9,
+        "notes_designer": null,
+        "max_notes": 356
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.8,
+        "notes_designer": "サファ太",
+        "max_notes": 529
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.2,
+        "notes_designer": "はっぴー",
+        "max_notes": 962
+      }
+    ]
+  },
+  {
+    "song_id": 11814,
+    "name": "FLΛME/FRΦST",
+    "artist": "FANTAGIRAFF",
+    "type": "dx",
+    "bpm": 174,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 243
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 358
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.9,
+        "notes_designer": "はっぴー",
+        "max_notes": 599
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.8,
+        "notes_designer": "SΛFΛRI/RΦCHER",
+        "max_notes": 1046
+      }
+    ]
+  },
+  {
+    "song_id": 11815,
+    "name": "IMBRUED:FLUX",
+    "artist": "qfeileadh feat.のあ",
+    "type": "dx",
+    "bpm": 176,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 208
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 341
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11,
+        "notes_designer": "サファ太",
+        "max_notes": 578
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.1,
+        "notes_designer": "きょむりん vs Luxizhel",
+        "max_notes": 943
+      }
+    ]
+  },
+  {
+    "song_id": 11816,
+    "name": "砂の函",
+    "artist": "Nego_tiator",
+    "type": "dx",
+    "bpm": 180,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 213
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 283
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 505
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": "サファ太",
+        "max_notes": 781
+      }
+    ]
+  },
+  {
+    "song_id": 11817,
+    "name": "Amereistr",
+    "artist": "rN",
+    "type": "dx",
+    "bpm": 147,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 261
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 436
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.5,
+        "notes_designer": "サファ太",
+        "max_notes": 263
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.9,
+        "notes_designer": "Jack",
+        "max_notes": 738
+      }
+    ]
+  },
+  {
+    "song_id": 11818,
+    "name": "World's end BLACKBOX",
+    "artist": "打打だいず",
+    "type": "dx",
+    "bpm": 205,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 406
+      },
+      {
+        "difficulty": "advanced",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": null,
+        "max_notes": 640
+      },
+      {
+        "difficulty": "expert",
+        "level": 13,
+        "internal_level": 13.1,
+        "notes_designer": "Luxizhel",
+        "max_notes": 879
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.9,
+        "notes_designer": "7sRef -DOVE-",
+        "max_notes": 1322
+      }
+    ]
+  },
+  {
+    "song_id": 11820,
+    "name": "Xaleid◆scopiX",
+    "artist": "xi",
+    "type": "dx",
+    "bpm": 180,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 7,
+        "internal_level": 7.9,
+        "notes_designer": null,
+        "max_notes": 600
+      },
+      {
+        "difficulty": "advanced",
+        "level": 11,
+        "internal_level": 11,
+        "notes_designer": null,
+        "max_notes": 1000
+      },
+      {
+        "difficulty": "expert",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "はっぴー",
+        "max_notes": 1357
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.9,
+        "notes_designer": "KALEIDXSCOPE",
+        "max_notes": 2181
+      },
+      {
+        "difficulty": "remaster",
+        "level": 15,
+        "internal_level": 15,
+        "notes_designer": "Xaleid◆scopiX",
+        "max_notes": 2222
+      }
+    ]
+  },
+  {
+    "song_id": 11821,
+    "name": "Ref:rain (for 7th Heaven)",
+    "artist": "カモメサノエレクトリックオーケストラ include Limonène",
+    "type": "dx",
+    "bpm": 188,
+    "category": "maimai",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 356
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 621
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.5,
+        "notes_designer": "きょむりん ＆ Luxizhel",
+        "max_notes": 1041
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": "Jack + Soma",
+        "max_notes": 1225
+      }
+    ]
+  },
+  {
+    "song_id": 11822,
+    "name": "Supersonic Generation",
+    "artist": "Massive New Krew",
+    "type": "dx",
+    "bpm": 155,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 171
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 311
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.7,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 503
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 815
+      }
+    ]
+  },
+  {
+    "song_id": 11823,
+    "name": "Zitronectar",
+    "artist": "Reku Mochizuki",
+    "type": "dx",
+    "bpm": 222,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 198
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.7,
+        "notes_designer": null,
+        "max_notes": 340
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12,
+        "notes_designer": "ロシェ@ペンギン",
+        "max_notes": 546
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.3,
+        "notes_designer": "サファ太",
+        "max_notes": 742
+      }
+    ]
+  },
+  {
+    "song_id": 11824,
+    "name": "なんかノイズにきこえる",
+    "artist": "HaNaMiNa feat.Hana",
+    "type": "dx",
+    "bpm": 160,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 236
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.5,
+        "notes_designer": null,
+        "max_notes": 371
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "じゃこレモン",
+        "max_notes": 544
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "はっぴー",
+        "max_notes": 893
+      }
+    ]
+  },
+  {
+    "song_id": 11825,
+    "name": "JIGOKU STATION CENTRAL GATE",
+    "artist": "鬱P feat.000",
+    "type": "dx",
+    "bpm": 160,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 250
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 390
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.4,
+        "notes_designer": "サファ太",
+        "max_notes": 624
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 1018
+      }
+    ]
+  },
+  {
+    "song_id": 11826,
+    "name": "Lover's Trick",
+    "artist": "litmus*",
+    "type": "dx",
+    "bpm": 130,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 171
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 261
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 442
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "Jack",
+        "max_notes": 748
+      }
+    ]
+  },
+  {
+    "song_id": 11827,
+    "name": "サウンドプレイヤー",
+    "artist": "tilt-six feat.バル",
+    "type": "dx",
+    "bpm": 143,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255041",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 198
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 314
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 519
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "サファ太",
+        "max_notes": 837
+      }
+    ]
+  },
+  {
+    "song_id": 11828,
+    "name": "crazy (about you)",
+    "artist": "kamome sano",
+    "type": "dx",
+    "bpm": 145,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 176
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 274
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.8,
+        "notes_designer": "サファ太",
+        "max_notes": 409
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "Jack",
+        "max_notes": 743
+      }
+    ]
+  },
+  {
+    "song_id": 11829,
+    "name": "Drivessover",
+    "artist": "Taishi",
+    "type": "dx",
+    "bpm": 182,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 214
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 376
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.2,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 565
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.6,
+        "notes_designer": "アマリリス",
+        "max_notes": 787
+      }
+    ]
+  },
+  {
+    "song_id": 11830,
+    "name": "Tidal Wave",
+    "artist": "D-Cee",
+    "type": "dx",
+    "bpm": 175,
+    "category": "オンゲキ＆CHUNITHM",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 212
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 315
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.3,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 453
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "あまくちジンジャー",
+        "max_notes": 608
+      }
+    ]
+  },
+  {
+    "song_id": 11831,
+    "name": "きゅびずむ",
+    "artist": "超てんちゃん",
+    "type": "dx",
+    "bpm": 185,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 172
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 369
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 469
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.9,
+        "notes_designer": "サファ太",
+        "max_notes": 738
+      }
+    ]
+  },
+  {
+    "song_id": 11832,
+    "name": "きゅびびびびずむ",
+    "artist": "超てんちゃん",
+    "type": "dx",
+    "bpm": 185,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 278
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 463
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12,
+        "notes_designer": "はっぴー",
+        "max_notes": 666
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "サぴぴぴぴちネファ太太太太コ",
+        "max_notes": 994
+      }
+    ]
+  },
+  {
+    "song_id": 11833,
+    "name": "ゆりかご",
+    "artist": "歌：可不／作詞・作曲：MIMI",
+    "type": "dx",
+    "bpm": 120,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 116
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 215
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 343
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 654
+      }
+    ]
+  },
+  {
+    "song_id": 11834,
+    "name": "月光",
+    "artist": "歌：V.I.P／作詞・作曲：廉",
+    "type": "dx",
+    "bpm": 195,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 211
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 398
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "アマリリス",
+        "max_notes": 641
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "ロシェ@ペンギン",
+        "max_notes": 820
+      }
+    ]
+  },
+  {
+    "song_id": 11835,
+    "name": "はいよろこんで",
+    "artist": "こっちのけんと",
+    "type": "dx",
+    "bpm": 147,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 193
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 346
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 506
+      },
+      {
+        "difficulty": "master",
+        "level": 11,
+        "internal_level": 11.6,
+        "notes_designer": "緑風 犬三郎",
+        "max_notes": 649
+      },
+      {
+        "difficulty": "remaster",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "Jack",
+        "max_notes": 838
+      }
+    ]
+  },
+  {
+    "song_id": 11836,
+    "name": "ビビデバ",
+    "artist": "星街すいせい（ホロライブ）",
+    "type": "dx",
+    "bpm": 120,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 173
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.4,
+        "notes_designer": null,
+        "max_notes": 316
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "サファ太",
+        "max_notes": 480
+      },
+      {
+        "difficulty": "master",
+        "level": 11,
+        "internal_level": 11.8,
+        "notes_designer": "緑風 犬三郎",
+        "max_notes": 668
+      },
+      {
+        "difficulty": "remaster",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "シチミヘルツ",
+        "max_notes": 825
+      }
+    ]
+  },
+  {
+    "song_id": 11837,
+    "name": "シカ色デイズ",
+    "artist": "シカ部 [鹿乃子のこ (CV.潘めぐみ)、虎視虎子 (CV.藤田 咲)、虎視餡子 (CV.田辺留依)、馬車芽めめ (CV.和泉風花)]",
+    "type": "dx",
+    "bpm": 183,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 122
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 230
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 388
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 495
+      }
+    ]
+  },
+  {
+    "song_id": 11838,
+    "name": "メズマライザー",
+    "artist": "サツキ feat.初音ミク・重音テト",
+    "type": "dx",
+    "bpm": 185,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 217
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.2,
+        "notes_designer": null,
+        "max_notes": 412
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": "ロシェ@ペンギン",
+        "max_notes": 524
+      },
+      {
+        "difficulty": "master",
+        "level": 11,
+        "internal_level": 11.9,
+        "notes_designer": "緑風 犬三郎",
+        "max_notes": 675
+      },
+      {
+        "difficulty": "remaster",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "サファ太",
+        "max_notes": 1000
+      }
+    ]
+  },
+  {
+    "song_id": 11839,
+    "name": "ももいろの鍵",
+    "artist": "いよわ",
+    "type": "dx",
+    "bpm": 165,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 174
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 314
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9,
+        "notes_designer": "はっぴー",
+        "max_notes": 396
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.7,
+        "notes_designer": "アマリリス",
+        "max_notes": 640
+      }
+    ]
+  },
+  {
+    "song_id": 11840,
+    "name": "のだ",
+    "artist": "大漠波新",
+    "type": "dx",
+    "bpm": 142,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 191
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 300
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "サファ太",
+        "max_notes": 443
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "Luxizhel & はっぴー",
+        "max_notes": 830
+      }
+    ]
+  },
+  {
+    "song_id": 11841,
+    "name": "Idoratrize World",
+    "artist": "A-One",
+    "type": "dx",
+    "bpm": 170,
+    "category": "東方Project",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 179
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.8,
+        "notes_designer": null,
+        "max_notes": 342
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": "Luxizhel",
+        "max_notes": 525
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 761
+      }
+    ]
+  },
+  {
+    "song_id": 11842,
+    "name": "Synthesis.",
+    "artist": "tn-shi",
+    "type": "dx",
+    "bpm": 180,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 273
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.8,
+        "notes_designer": null,
+        "max_notes": 477
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.6,
+        "notes_designer": "Jack",
+        "max_notes": 645
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.1,
+        "notes_designer": "サファ太",
+        "max_notes": 1103
+      }
+    ]
+  },
+  {
+    "song_id": 11843,
+    "name": "もういいよ",
+    "artist": "こっちのけんと",
+    "type": "dx",
+    "bpm": 147,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255005",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 164
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 316
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 546
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.1,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 806
+      }
+    ]
+  },
+  {
+    "song_id": 11844,
+    "name": "モエチャッカファイア",
+    "artist": "弌誠「ゲーム『ゼンレスゾーンゼロ』エレン・ジョー 同人イメージソング」",
+    "type": "dx",
+    "bpm": 163,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255005",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 198
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.7,
+        "notes_designer": null,
+        "max_notes": 332
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": "Luxizhel",
+        "max_notes": 525
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "サファ太",
+        "max_notes": 984
+      }
+    ]
+  },
+  {
+    "song_id": 11845,
+    "name": "マヌルネコのうた",
+    "artist": "小田朋美",
+    "type": "dx",
+    "bpm": 137,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 144
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 244
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 398
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "アマリリス",
+        "max_notes": 503
+      }
+    ]
+  },
+  {
+    "song_id": 11846,
+    "name": "スナネコのうた",
+    "artist": "ぷにぷに電機",
+    "type": "dx",
+    "bpm": 92,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 117
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 192
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "サファ太",
+        "max_notes": 261
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.4,
+        "notes_designer": "ぴちネコ",
+        "max_notes": 566
+      }
+    ]
+  },
+  {
+    "song_id": 11847,
+    "name": "M@GICAL☆CURE! LOVE ♥ SHOT!",
+    "artist": "SAWTOWNE",
+    "type": "dx",
+    "bpm": 192,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 232
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 405
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 623
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "はっぴー",
+        "max_notes": 947
+      }
+    ]
+  },
+  {
+    "song_id": 11848,
+    "name": "Overjoy ★ OVERDOSE!!",
+    "artist": "Luna Fozer (BilliumMoto, 黒皇帝, Sobrem feat. vally.exe)",
+    "type": "dx",
+    "bpm": 143,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 196
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 363
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11,
+        "notes_designer": "サファ太",
+        "max_notes": 569
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.1,
+        "notes_designer": "Jack",
+        "max_notes": 1074
+      }
+    ]
+  },
+  {
+    "song_id": 11849,
+    "name": "DATAERR0R",
+    "artist": "Cosmograph",
+    "type": "dx",
+    "bpm": 180,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 196
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 346
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.7,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 393
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": "Luxizhel",
+        "max_notes": 705
+      }
+    ]
+  },
+  {
+    "song_id": 11850,
+    "name": "あいたい星人",
+    "artist": "DECO*27",
+    "type": "dx",
+    "bpm": 150,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 207
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 330
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "はっぴー",
+        "max_notes": 529
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "じゃこレモン",
+        "max_notes": 752
+      }
+    ]
+  },
+  {
+    "song_id": 11851,
+    "name": "ハオ",
+    "artist": "DECO*27",
+    "type": "dx",
+    "bpm": 176,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 190
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 344
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10,
+        "notes_designer": "Luxizhel",
+        "max_notes": 502
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 752
+      }
+    ]
+  },
+  {
+    "song_id": 11852,
+    "name": "好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 164
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 302
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.5,
+        "notes_designer": "はっぴー",
+        "max_notes": 354
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.5,
+        "notes_designer": "はっぴー",
+        "max_notes": 490
+      }
+    ]
+  },
+  {
+    "song_id": 11853,
+    "name": "Help me, ERINNNNNN!!",
+    "artist": "ビートまりお",
+    "type": "dx",
+    "bpm": 185,
+    "category": "東方Project",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 220
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 361
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.7,
+        "notes_designer": "Luxizhel",
+        "max_notes": 581
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 914
+      }
+    ]
+  },
+  {
+    "song_id": 11854,
+    "name": "超最終鬼畜妹フランドール・S",
+    "artist": "ビートまりお×まろん",
+    "type": "dx",
+    "bpm": 210,
+    "category": "東方Project",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 5,
+        "internal_level": 5,
+        "notes_designer": null,
+        "max_notes": 237
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.2,
+        "notes_designer": null,
+        "max_notes": 384
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.6,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 632
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 840
+      }
+    ]
+  },
+  {
+    "song_id": 11855,
+    "name": "Destined Marionette",
+    "artist": "ビートまりお",
+    "type": "dx",
+    "bpm": 186,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 228
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.2,
+        "notes_designer": null,
+        "max_notes": 437
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.5,
+        "notes_designer": "サファ太",
+        "max_notes": 622
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.2,
+        "notes_designer": "ぴちネコ",
+        "max_notes": 1023
+      }
+    ]
+  },
+  {
+    "song_id": 11856,
+    "name": "MIRA",
+    "artist": "Kanaria",
+    "type": "dx",
+    "bpm": 148,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 152
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 282
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.5,
+        "notes_designer": "カマボコ君",
+        "max_notes": 334
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.9,
+        "notes_designer": "サファ太",
+        "max_notes": 540
+      }
+    ]
+  },
+  {
+    "song_id": 11857,
+    "name": "空回りライブラリ",
+    "artist": "雪乃イト",
+    "type": "dx",
+    "bpm": 130,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 180
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 302
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "Luxizhel",
+        "max_notes": 418
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 667
+      }
+    ]
+  },
+  {
+    "song_id": 11858,
+    "name": "お呪い",
+    "artist": "なきそ",
+    "type": "dx",
+    "bpm": 115,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 118
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 228
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.2,
+        "notes_designer": "きょむりん",
+        "max_notes": 337
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "アマリリス",
+        "max_notes": 549
+      }
+    ]
+  },
+  {
+    "song_id": 11859,
+    "name": "ありきたりな恋の歌",
+    "artist": "GYARI",
+    "type": "dx",
+    "bpm": 180,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 244
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.5,
+        "notes_designer": null,
+        "max_notes": 387
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": "はっぴー",
+        "max_notes": 577
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 931
+      }
+    ]
+  },
+  {
+    "song_id": 11860,
+    "name": "MYTH Re：LEASE",
+    "artist": "打打だいず Vs. Tanchiky Vs. uma Vs. モリモリあつし",
+    "type": "dx",
+    "bpm": 202,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 275
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 421
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12.9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 762
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.5,
+        "notes_designer": "サファ太 Vs. Safari Vs. Saf Vs. モリモリさふぁた",
+        "max_notes": 1111
+      }
+    ]
+  },
+  {
+    "song_id": 11861,
+    "name": "∀",
+    "artist": "ああああ",
+    "type": "dx",
+    "bpm": 245,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 225
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8.2,
+        "notes_designer": null,
+        "max_notes": 363
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 488
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.2,
+        "notes_designer": "サファ太",
+        "max_notes": 670
+      }
+    ]
+  },
+  {
+    "song_id": 11862,
+    "name": "㋰責任集合体",
+    "artist": "マサラダ",
+    "type": "dx",
+    "bpm": 135,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 226
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.5,
+        "notes_designer": null,
+        "max_notes": 380
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "サファ太",
+        "max_notes": 544
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.5,
+        "notes_designer": "はっぴー",
+        "max_notes": 978
+      }
+    ]
+  },
+  {
+    "song_id": 11863,
+    "name": "三日月ステップ 2023",
+    "artist": "r-906",
+    "type": "dx",
+    "bpm": 167,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 213
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 400
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 559
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "サファ太",
+        "max_notes": 722
+      }
+    ]
+  },
+  {
+    "song_id": 11864,
+    "name": "少女レイ",
+    "artist": "みきとP",
+    "type": "dx",
+    "bpm": 150,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 199
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 346
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.9,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 443
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.9,
+        "notes_designer": "Luxizhel",
+        "max_notes": 622
+      }
+    ]
+  },
+  {
+    "song_id": 11865,
+    "name": "少女A",
+    "artist": "椎名もた",
+    "type": "dx",
+    "bpm": 130,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 159
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.2,
+        "notes_designer": null,
+        "max_notes": 280
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.9,
+        "notes_designer": "アマリリス",
+        "max_notes": 466
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "はっぴー",
+        "max_notes": 842
+      }
+    ]
+  },
+  {
+    "song_id": 11866,
+    "name": "帝国少女",
+    "artist": "R Sound Design",
+    "type": "dx",
+    "bpm": 118,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 141
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 251
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.2,
+        "notes_designer": "はっぴー",
+        "max_notes": 389
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "カマボコホルダー",
+        "max_notes": 697
+      }
+    ]
+  },
+  {
+    "song_id": 11867,
+    "name": "うぇいびー",
+    "artist": "三枝明那",
+    "type": "dx",
+    "bpm": 200,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 225
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.8,
+        "notes_designer": null,
+        "max_notes": 400
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.5,
+        "notes_designer": "サファ太",
+        "max_notes": 545
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "Luxizhel",
+        "max_notes": 839
+      },
+      {
+        "difficulty": "remaster",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": "三枝明那とはっぴー",
+        "max_notes": 935
+      }
+    ]
+  },
+  {
+    "song_id": 11868,
+    "name": "RED",
+    "artist": "三枝明那",
+    "type": "dx",
+    "bpm": 168,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 164
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.5,
+        "notes_designer": null,
+        "max_notes": 308
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "はっぴー",
+        "max_notes": 399
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.3,
+        "notes_designer": "サファ太",
+        "max_notes": 603
+      }
+    ]
+  },
+  {
+    "song_id": 11869,
+    "name": "ホラフキパペット",
+    "artist": "七次元生徒会！",
+    "type": "dx",
+    "bpm": 205,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 224
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 341
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.8,
+        "notes_designer": "Luxizhel",
+        "max_notes": 530
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.6,
+        "notes_designer": "メロンポップ",
+        "max_notes": 756
+      }
+    ]
+  },
+  {
+    "song_id": 11870,
+    "name": "BlackFlagBreaker!!",
+    "artist": "社築 × sasakure.UK",
+    "type": "dx",
+    "bpm": 163,
+    "category": "POPS＆アニメ",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 214
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 404
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 589
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "Luxizhel",
+        "max_notes": 998
+      }
+    ]
+  },
+  {
+    "song_id": 11871,
+    "name": "クーネル・エンゲイザー",
+    "artist": "電ǂ鯨",
+    "type": "dx",
+    "bpm": 170,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 210
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7,
+        "notes_designer": null,
+        "max_notes": 350
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.7,
+        "notes_designer": "サファ太",
+        "max_notes": 481
+      },
+      {
+        "difficulty": "master",
+        "level": 12,
+        "internal_level": 12.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 644
+      }
+    ]
+  },
+  {
+    "song_id": 11872,
+    "name": "ゼロトーキング",
+    "artist": "はるまきごはん",
+    "type": "dx",
+    "bpm": 133,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 2,
+        "internal_level": 2,
+        "notes_designer": null,
+        "max_notes": 167
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 265
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.8,
+        "notes_designer": "はっぴー",
+        "max_notes": 383
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.2,
+        "notes_designer": "Jack",
+        "max_notes": 678
+      }
+    ]
+  },
+  {
+    "song_id": 11873,
+    "name": "抜錨",
+    "artist": "ナナホシ管弦楽団",
+    "type": "dx",
+    "bpm": 140,
+    "category": "niconico&ボーカロイド",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 193
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.7,
+        "notes_designer": null,
+        "max_notes": 322
+      },
+      {
+        "difficulty": "expert",
+        "level": 10,
+        "internal_level": 10.7,
+        "notes_designer": "アマリリス",
+        "max_notes": 564
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 765
+      }
+    ]
+  },
+  {
+    "song_id": 11874,
+    "name": "NO ONE YES MAN",
+    "artist": "MYUKKE.",
+    "type": "dx",
+    "bpm": 170,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 180
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.7,
+        "notes_designer": null,
+        "max_notes": 310
+      },
+      {
+        "difficulty": "expert",
+        "level": 12,
+        "internal_level": 12,
+        "notes_designer": "Jack",
+        "max_notes": 521
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.9,
+        "notes_designer": "鳩ホルダー & Luxizhel",
+        "max_notes": 827
+      }
+    ]
+  },
+  {
+    "song_id": 11875,
+    "name": "Leave All Behind",
+    "artist": "rider",
+    "type": "dx",
+    "bpm": 150,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 160
+      },
+      {
+        "difficulty": "advanced",
+        "level": 6,
+        "internal_level": 6.8,
+        "notes_designer": null,
+        "max_notes": 269
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "鳩ホルダー",
+        "max_notes": 433
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "Luxizhel",
+        "max_notes": 684
+      }
+    ]
+  },
+  {
+    "song_id": 11876,
+    "name": "Retribution ～ Cycle of Redemption ～",
+    "artist": "Ardolf vs. Daily天利 (原曲： nm-y & Kry.exe)",
+    "type": "dx",
+    "bpm": 112,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 6,
+        "internal_level": 6,
+        "notes_designer": null,
+        "max_notes": 372
+      },
+      {
+        "difficulty": "advanced",
+        "level": 8,
+        "internal_level": 8,
+        "notes_designer": null,
+        "max_notes": 429
+      },
+      {
+        "difficulty": "expert",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": "はっぴー",
+        "max_notes": 802
+      },
+      {
+        "difficulty": "master",
+        "level": 14,
+        "internal_level": 14.4,
+        "notes_designer": "サファ太",
+        "max_notes": 1088
+      }
+    ]
+  },
+  {
+    "song_id": 11877,
+    "name": "Luminescence",
+    "artist": "米虾Fomiki & 初云CLoudie",
+    "type": "dx",
+    "bpm": 184,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 4,
+        "internal_level": 4,
+        "notes_designer": null,
+        "max_notes": 241
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.6,
+        "notes_designer": null,
+        "max_notes": 380
+      },
+      {
+        "difficulty": "expert",
+        "level": 11,
+        "internal_level": 11.2,
+        "notes_designer": "サファ太",
+        "max_notes": 578
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.8,
+        "notes_designer": "Jack",
+        "max_notes": 882
+      }
+    ]
+  },
+  {
+    "song_id": 11878,
+    "name": "Pixel Galaxy",
+    "artist": "Snail's House",
+    "type": "dx",
+    "bpm": 150,
+    "category": "ゲーム＆バラエティ",
+    "version": "PRiSM PLUS",
+    "sort": "255051",
+    "charts": [
+      {
+        "difficulty": "basic",
+        "level": 3,
+        "internal_level": 3,
+        "notes_designer": null,
+        "max_notes": 167
+      },
+      {
+        "difficulty": "advanced",
+        "level": 7,
+        "internal_level": 7.4,
+        "notes_designer": null,
+        "max_notes": 334
+      },
+      {
+        "difficulty": "expert",
+        "level": 9,
+        "internal_level": 9.9,
+        "notes_designer": "サファ太",
+        "max_notes": 491
+      },
+      {
+        "difficulty": "master",
+        "level": 13,
+        "internal_level": 13.1,
+        "notes_designer": "じゃこレモン",
+        "max_notes": 721
       }
     ]
   },
@@ -62243,6 +65478,25 @@
     ]
   },
   {
+    "song_id": 100851,
+    "name": "[幸]犬日和。(はっぴー歌唱Ver)",
+    "artist": "こうのさんとはっぴーちゃん/Hiroの犯行",
+    "type": "dx",
+    "bpm": 138,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255011",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": null,
+        "max_notes": 412
+      }
+    ]
+  },
+  {
     "song_id": 100998,
     "name": "[宴]Oshama Scramble! (Cranky Remix)",
     "artist": "Cranky",
@@ -62277,6 +65531,25 @@
         "internal_level": 14.7,
         "notes_designer": null,
         "max_notes": 1490
+      }
+    ]
+  },
+  {
+    "song_id": 110121,
+    "name": "[甘]スイートマジック",
+    "artist": "ろん×Junky",
+    "type": "dx",
+    "bpm": 123,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 12,
+        "internal_level": 12,
+        "notes_designer": null,
+        "max_notes": 432
       }
     ]
   },
@@ -62452,6 +65725,25 @@
     ]
   },
   {
+    "song_id": 110781,
+    "name": "[協]Seyana. ～何でも言うことを聞いてくれるアカネチャン～",
+    "artist": "GYARI",
+    "type": "dx",
+    "bpm": 144,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": null,
+        "max_notes": 1279
+      }
+    ]
+  },
+  {
     "song_id": 110793,
     "name": "[疑]ロキ",
     "artist": "みきとP",
@@ -62490,6 +65782,25 @@
     ]
   },
   {
+    "song_id": 111113,
+    "name": "[回]ハム太郎とっとこうた",
+    "artist": "ハムちゃんず [covered by 光吉猛修]",
+    "type": "dx",
+    "bpm": 140,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": null,
+        "max_notes": 674
+      }
+    ]
+  },
+  {
     "song_id": 111156,
     "name": "[奏]マイオドレ！舞舞タイム",
     "artist": "キノシタ feat. そらみこ (ホロライブ ときのそら＆さくらみこ)",
@@ -62497,7 +65808,7 @@
     "bpm": 183,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62535,7 +65846,7 @@
     "bpm": 200,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62611,7 +65922,7 @@
     "bpm": 155,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62642,6 +65953,25 @@
     ]
   },
   {
+    "song_id": 111388,
+    "name": "[即]チューリングの跡",
+    "artist": "Frums",
+    "type": "dx",
+    "bpm": 180,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13,
+        "notes_designer": null,
+        "max_notes": 474
+      }
+    ]
+  },
+  {
     "song_id": 111429,
     "name": "[爆]Love's Theme of BADASS ～バッド・アス 愛のテーマ～",
     "artist": "Hommarju",
@@ -62649,7 +65979,7 @@
     "bpm": 202,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62695,6 +66025,25 @@
         "internal_level": 13,
         "notes_designer": null,
         "max_notes": 1282
+      }
+    ]
+  },
+  {
+    "song_id": 111479,
+    "name": "[覚]Hainuwele",
+    "artist": "ETIA.",
+    "type": "dx",
+    "bpm": 175,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 390
       }
     ]
   },
@@ -62763,7 +66112,7 @@
     "bpm": 195,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62813,6 +66162,25 @@
     ]
   },
   {
+    "song_id": 111628,
+    "name": "[逆]WE'RE BACK!!",
+    "artist": "Zekk",
+    "type": "dx",
+    "bpm": 185,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255031",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 12,
+        "internal_level": 12.7,
+        "notes_designer": null,
+        "max_notes": 648
+      }
+    ]
+  },
+  {
     "song_id": 111634,
     "name": "[協]青春コンプレックス",
     "artist": "結束バンド",
@@ -62851,6 +66219,44 @@
     ]
   },
   {
+    "song_id": 111638,
+    "name": "[耐]星界ちゃんと可不ちゃんのおつかい合騒曲",
+    "artist": "南ノ南",
+    "type": "dx",
+    "bpm": 220,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": null,
+        "max_notes": 1297
+      }
+    ]
+  },
+  {
+    "song_id": 111714,
+    "name": "[匿]匿名M",
+    "artist": "ピノキオピー",
+    "type": "dx",
+    "bpm": 140,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 1131
+      }
+    ]
+  },
+  {
     "song_id": 111715,
     "name": "[嘘]ライアーダンサー",
     "artist": "マサラダ",
@@ -62858,7 +66264,7 @@
     "bpm": 170,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62870,14 +66276,33 @@
     ]
   },
   {
+    "song_id": 111770,
+    "name": "[協]Ultimate taste",
+    "artist": "ぱらどっと",
+    "type": "dx",
+    "bpm": 200,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 1943
+      }
+    ]
+  },
+  {
     "song_id": 111772,
-    "name": "[宴]人マニア",
+    "name": "[X]人マニア",
     "artist": "原口沙輔 feat.重音テト",
     "type": "dx",
     "bpm": 150,
     "category": "宴会場",
     "version": "PRiSM",
-    "sort": "250061",
+    "sort": "250000",
     "charts": [
       {
         "difficulty": "utage",
@@ -62885,6 +66310,63 @@
         "internal_level": 14,
         "notes_designer": null,
         "max_notes": 801
+      }
+    ]
+  },
+  {
+    "song_id": 111838,
+    "name": "[助]メズマライザー",
+    "artist": "サツキ feat.初音ミク・重音テト",
+    "type": "dx",
+    "bpm": 185,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255000",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 2043
+      }
+    ]
+  },
+  {
+    "song_id": 111852,
+    "name": "[好]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": null,
+        "max_notes": 926
+      }
+    ]
+  },
+  {
+    "song_id": 111859,
+    "name": "[騒]ありきたりな恋の歌",
+    "artist": "GYARI",
+    "type": "dx",
+    "bpm": 180,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255061",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 1592
       }
     ]
   },
@@ -62927,6 +66409,25 @@
     ]
   },
   {
+    "song_id": 121852,
+    "name": "[譜]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": null,
+        "max_notes": 831
+      }
+    ]
+  },
+  {
     "song_id": 130227,
     "name": "[玉]Garakuta Doll Play",
     "artist": "t+pazolite",
@@ -62946,6 +66447,25 @@
     ]
   },
   {
+    "song_id": 131852,
+    "name": "[面]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 14,
+        "internal_level": 14,
+        "notes_designer": null,
+        "max_notes": 860
+      }
+    ]
+  },
+  {
     "song_id": 140227,
     "name": "[某]Garakuta Doll Play",
     "artist": "t+pazolite",
@@ -62961,6 +66481,63 @@
         "internal_level": 14.7,
         "notes_designer": null,
         "max_notes": 1204
+      }
+    ]
+  },
+  {
+    "song_id": 141852,
+    "name": "[発]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 729
+      }
+    ]
+  },
+  {
+    "song_id": 151852,
+    "name": "[表]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 685
+      }
+    ]
+  },
+  {
+    "song_id": 161852,
+    "name": "[龍]好きな惣菜発表ドラゴン",
+    "artist": "ンバヂ",
+    "type": "dx",
+    "bpm": 160,
+    "category": "宴会場",
+    "version": "PRiSM PLUS",
+    "sort": "255021",
+    "charts": [
+      {
+        "difficulty": "utage",
+        "level": 13,
+        "internal_level": 13.7,
+        "notes_designer": null,
+        "max_notes": 707
       }
     ]
   }
