@@ -1,5 +1,6 @@
 frontend: check status code after fetch and display error
 backend: create unit tests for endpoints
+doc: add requirements to readme
 
 v1.2
 ----
